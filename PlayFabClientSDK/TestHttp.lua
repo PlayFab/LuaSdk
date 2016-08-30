@@ -24,7 +24,7 @@ function InvalidLoginTest()
     local invalidRequest = {
         -- Currently, you need to look up the correct format for this object in the API-docs:
         --   https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
-        Email = "paul@playfab.com",
+        Email = "noreply@playfab.com",
         Password = "INVALID"
     }
     PlayFabClientApi.LoginWithEmailAddress(invalidRequest, OnSuccess, OnError)
