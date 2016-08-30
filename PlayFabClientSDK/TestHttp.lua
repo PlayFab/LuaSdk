@@ -27,7 +27,7 @@ function InvalidLoginTest()
         Email = "paul@playfab.com",
         Password = "INVALID"
     }
-    -- PlayFabClientApi.LoginWithEmailAddress(invalidRequest, OnSuccess, OnError)
+    PlayFabClientApi.LoginWithEmailAddress(invalidRequest, OnSuccess, OnError)
 end
 
 function InvalidRegistrationTest()
@@ -38,7 +38,7 @@ function InvalidRegistrationTest()
         Email = "x",
         Password = "x"
     }
-    -- PlayFabClientApi.RegisterPlayFabUser(invalidRequest, OnSuccess, OnError)
+    PlayFabClientApi.RegisterPlayFabUser(invalidRequest, OnSuccess, OnError)
 end
 
 function LoginOrRegisterTest()

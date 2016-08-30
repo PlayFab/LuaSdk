@@ -16,10 +16,6 @@ local PlayFabHttps_LuaSec = {
 }
 
 function MakePlayFabApiCall(urlPath, request, authKey, authValue, onSuccess, onError)
-    if (PlayFabSettings.settings.titleId == "undefined") then
-        return "PlayFabSettings.settings.titleId must be set before making API calls"
-    end
-
     local requestStr = json.encode(request)
     local requestHeaders = {
         ["X-ReportErrorAsSuccess"] = "true",
@@ -43,13 +39,28 @@ function MakePlayFabApiCall(urlPath, request, authKey, authValue, onSuccess, onE
 
     if (code == 200) then
         local response = json.decode(playFabResponse[1])
-        if (not (onSuccess == nil)) then
+        if (not (response == nil) and response.code == 200 and not (response.data == nil)) then
             onSuccess(response.data)
+        elseif (not (response == nil)) then
+            onError(response)
+        else
+            onError({
+                code = code,
+                status = status,
+                errorCode = 1123,
+                error = "ServiceUnavailable",
+                errorMessage = "Could not deserialize reseponse from server: " .. playFabResponse[1]
+            })
         end
-        return
+    else
+        onError({
+            code = code,
+            status = status,
+            errorCode = 1123,
+            error = "ServiceUnavailable",
+            errorMessage = "Could not deserialize reseponse from server: " .. playFabResponse[1]
+        })
     end
-    
-    -- TODO: Error handling
 end
 PlayFabHttps_LuaSec.MakePlayFabApiCall = MakePlayFabApiCall
 
