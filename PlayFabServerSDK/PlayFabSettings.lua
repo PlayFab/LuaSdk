@@ -4,7 +4,8 @@ local PlayFabSettings = {
         buildIdentifier = "luasdk_manual"
     },
     settings = {
-        devSecretKey = nil, -- This should never be assigned in a client distribution        titleId = nil
+        devSecretKey = nil, -- This should never be assigned in a client distribution
+        titleId = nil
     }
 }
 
