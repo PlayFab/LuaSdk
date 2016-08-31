@@ -1,5 +1,5 @@
 -- PlayFabHttps_Defold.lua
--- 
+--
 -- Defold HTTPS implementation for PlayFab LuaSdk
 -- This implementation is specifically for running a Defold project, and won't work anywhere else
 
@@ -9,32 +9,32 @@ local PlayFabSettings = require("PlayFab.PlayFabSettings")
 local PlayFabHttps_Defold = {
 }
 
-function InternalCallbackWrapper(onSuccess, onError)
-	return function(a, b, httpResponse)
+local function InternalCallbackWrapper(onSuccess, onError)
+	return function(_, _, httpResponse)
 		if (httpResponse.status == 200) then
-	        local response = json.decode(httpResponse.response or "")
-	        if (not (response == nil) and response.code == 200 and not (response.data == nil)) then
-	            onSuccess(response.data)
-	        elseif (not (response == nil)) then
-	            onError(response)
-	        else
-	            onError({
-	                code = code,
-	                status = status,
-	                errorCode = 1123,
-	                error = "ServiceUnavailable",
-	                errorMessage = "Could not deserialize reseponse from server: " .. playFabResponse[1]
-	            })
-	        end
-	    else
-	        onError({
-	            code = code,
-	            status = status,
-	            errorCode = 1123,
-	            error = "ServiceUnavailable",
-	            errorMessage = "Could not deserialize reseponse from server: " .. playFabResponse[1]
-	        })
-	    end
+        local response = json.decode(httpResponse.response or "")
+        if response and response.code == 200 and response.data then
+            onSuccess(response.data)
+        elseif response then
+            onError(response)
+        else
+            onError({
+                code = 123,	-- where is this supposed to come from?
+                status = httpResponse.status,
+                errorCode = 1123,
+                error = "ServiceUnavailable",
+                errorMessage = "Could not deserialize reseponse from server: " .. tostring(httpResponse.response)
+            })
+        end
+    else
+        onError({
+            code = 123,	-- where is this supposed to come from?
+            status = httpResponse.status,
+            errorCode = 1123,
+            error = "ServiceUnavailable",
+            errorMessage = "Could not deserialize reseponse from server: " .. tostring(httpResponse.response)
+        })
+    end
 	end
 end
 
@@ -48,7 +48,7 @@ function MakePlayFabApiCall(urlPath, request, authKey, authValue, onSuccess, onE
         ["X-ReportErrorAsSuccess"] = "true",
         ["X-PlayFabSDK"] = PlayFabSettings.internalSettings.sdkVersionString,
         ["Content-Type"] = "application/json"
-        -- ["content-length"] = tostring(string.len(requestStr)) -- probably not needed for this one 
+        -- ["content-length"] = tostring(string.len(requestStr)) -- probably not needed for this one
     }
     if (not (authKey == nil)) then
         requestHeaders[authKey] = authValue;
