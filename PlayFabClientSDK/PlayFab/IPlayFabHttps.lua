@@ -10,7 +10,7 @@
 --     local PlayFabClientApi = require("PlayFabClientApi")
 --     PlayFabClientApi.<YourApiCall>(...)
 
-local PlayFabSettings = require("PlayFabSettings")
+local PlayFabSettings = require("PlayFab.PlayFabSettings")
 
 local IPlayFabHttp = {
     _defaultHttpsFile = "PlayFabHttps_LuaSec", -- implied .lua
@@ -24,7 +24,7 @@ function SetHttp(httpInterface)
     end
     
     if (not (IPlayFabHttp._defaultHttpsFile == nil)) then
-        IPlayFabHttp._internalHttp = require(IPlayFabHttp._defaultHttpsFile)
+        IPlayFabHttp._internalHttp = require("PlayFab." .. IPlayFabHttp._defaultHttpsFile)
         return
     end
 end

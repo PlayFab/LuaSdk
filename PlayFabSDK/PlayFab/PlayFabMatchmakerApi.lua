@@ -1,6 +1,6 @@
-local json = require("json")
-local IPlayFabHttps = require("IPlayFabHttps")
-local PlayFabSettings = require("PlayFabSettings")
+local json = require("PlayFab.json")
+local IPlayFabHttps = require("PlayFab.IPlayFabHttps")
+local PlayFabSettings = require("PlayFab.PlayFabSettings")
 
 local PlayFabMatchmakerApi = {
     settings = PlayFabSettings.settings

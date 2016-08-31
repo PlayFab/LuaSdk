@@ -9,19 +9,19 @@
 local https = require("ssl.https") -- LuaSec 0.4+
 local ltn12 = require("ltn12") -- LuaSec 0.4+
 
-local json = require("json")
-local PlayFabSettings = require("PlayFabSettings")
+local json = require("PlayFab.json")
+local PlayFabSettings = require("PlayFab.PlayFabSettings")
 
 local PlayFabHttps_LuaSec = {
 }
 
 function MakePlayFabApiCall(urlPath, request, authKey, authValue, onSuccess, onError)
-    local requestStr = json.encode(request)
+	local requestJson = json.encode(request)
     local requestHeaders = {
         ["X-ReportErrorAsSuccess"] = "true",
         ["X-PlayFabSDK"] = PlayFabSettings.internalSettings.sdkVersionString,
         ["Content-Type"] = "application/json",
-        ["content-length"] = tostring(string.len(requestStr))
+        ["content-length"] = tostring(string.len(requestJson))
     }
     if (not (authKey == nil)) then
         requestHeaders[authKey] = authValue;
@@ -33,7 +33,7 @@ function MakePlayFabApiCall(urlPath, request, authKey, authValue, onSuccess, onE
         method = "POST",
         url = fullUrl,
         headers = requestHeaders,
-        source = ltn12.source.string(requestStr),
+        source = ltn12.source.string(requestJson),
         sink = ltn12.sink.table(playFabResponse)
     }
 

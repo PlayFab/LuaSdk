@@ -1,7 +1,7 @@
-local json = require("json")
-local PlayFabClientApi = require("PlayFabClientApi")
+local json = require("PlayFab.json")
+local PlayFabClientApi = require("PlayFab.PlayFabClientApi")
 -- Most users won't need to import PlayFabSettings, as the public settings are available via PlayFabClientApi.settings
-local PlayFabSettings = require("PlayFabSettings")
+local PlayFabSettings = require("PlayFab.PlayFabSettings")
 
 -- Always set your titleId first, before making any API calls
 PlayFabClientApi.settings.titleId = "6195"
