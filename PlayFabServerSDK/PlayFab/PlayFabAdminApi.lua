@@ -103,7 +103,7 @@ function PlayFabAdminApi.CreatePlayerStatisticDefinition(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+-- Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeleteUsers
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersResult
