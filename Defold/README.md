@@ -15,3 +15,28 @@ See this link for more information:
 
 * Client Testing Example:
  * dependencies = https://api.playfab.com/sdks/download/defold-testing
+
+The following example script sets up PlayFab to a GUI element:
+```Lua
+local PlayFabApiTestSuite = require("PlayFabTesting.PlayFabApiTestSuite")
+local PlayFabSettings = require("PlayFab.PlayFabSettings")
+local IPlayFabHttps = require("PlayFab.IPlayFabHttps")
+local PlayFabHttps_Defold = require("PlayFab.PlayFabHttps_Defold")
+
+PlayFabSettings.titleId = "6195"
+IPlayFabHttps.SetHttp(PlayFabHttps_Defold) -- The auto import magic doens't work if you set the name, so you have to set the reference
+
+function init(self)
+    local loginRequest = {
+        -- https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
+        CustomId = "TestCustomId",
+        CreateAccount = true
+    }
+    PlayFabClientApi.LoginWithCustomID(loginRequest, function(result) print("Login Successful: " .. result.PlayFabId) end, function(error) print("Login Failed: " .. error.errorMessage) end)
+end
+
+-- After login, the full client API will fuction properly
+-- PlayFabClientApi.GetTitleData( etc etc etc )
+-- Try linking more api calls to buttons!
+```
+Link the file to a gui script and run!
