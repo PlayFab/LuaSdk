@@ -40,3 +40,5 @@ end
 -- Try linking more api calls to buttons!
 ```
 Link the file to a gui script and run!
+
+The guys at defold even made a sample game-project which has PlayFab LuaSdk pre-integrated!  Check it out here: https://github.com/britzl/playfab_example
