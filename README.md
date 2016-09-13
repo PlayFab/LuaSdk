@@ -62,10 +62,9 @@ lua PlayFabTesting/TestPlayFabConsole.lua
 ----
 
 * Download and install defold
-* Download PlayFab LuaSdk
-* Copy PlayFabClientSDK/PlayFab into your project folder
- * (We will be introducing a dependency link to a zipped project very soon)
-* Create the following gui_script file in your project (such as: {YourLuaProjectFolder}/PlayFabExample.lua)
+* Set a project-dependency to our Defold Client Example
+ * Details here: https://github.com/PlayFab/LuaSdk/tree/master/Defold
+* The following example script sets up PlayFab to a GUI element:
 ```Lua
 local PlayFabApiTestSuite = require("PlayFabTesting.PlayFabApiTestSuite")
 local PlayFabSettings = require("PlayFab.PlayFabSettings")
