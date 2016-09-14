@@ -562,6 +562,15 @@ function PlayFabServerApi.UpdateUserInventoryItemCustomData(request, onSuccess, 
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserInventoryItemCustomData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Inform the matchmaker that a Game Server Instance is removed.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeregisterGame
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameResponse
+function PlayFabServerApi.DeregisterGame(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Informs the PlayFab match-making service that the user specified has left the Game Server Instance
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/NotifyMatchmakerPlayerLeft
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NotifyMatchmakerPlayerLeftRequest
@@ -578,6 +587,15 @@ end
 function PlayFabServerApi.RedeemMatchmakerTicket(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RedeemMatchmakerTicket", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Inform the matchmaker that a new Game Server Instance is added.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RegisterGame
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameResponse
+function PlayFabServerApi.RegisterGame(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Sets the custom data of the indicated Game Server Instance
