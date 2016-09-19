@@ -1,11 +1,14 @@
-LuaSdk BETA README
+LuaSdk README
 ========
 1. Overview:
 ----
 The PlayFab LuaSdk includes the files needed to make PlayFab HTTPS API calls within a Lua Project.
 
-Current supported platforms are LuaDist console for Windows, and Defold.  Other Lua platforms are coming soon.
-
+Current supported platforms:
+* LuaDist console for Windows - Useful for evaluating/debugging
+* Defold - See our [Defold Readme](https://github.com/PlayFab/LuaSdk/tree/master/Defold)
+* Corona - See our [Corona Readme](https://github.com/PlayFab/LuaSdk/tree/master/Corona)
+* If your favorite Lua-engine/environment is not listed, let us know on the [Forums](https://community.playfab.com/index.html).
 
 2. Prerequisites:
 ----
