@@ -112,6 +112,15 @@ function PlayFabServerApi.DeleteUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetFriendLeaderboard
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendLeaderboardRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult
+function PlayFabServerApi.GetFriendLeaderboard(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetFriendLeaderboard", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetLeaderboard
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardRequest
@@ -562,6 +571,42 @@ function PlayFabServerApi.UpdateUserInventoryItemCustomData(request, onSuccess, 
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserInventoryItemCustomData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddFriend
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddFriendRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
+function PlayFabServerApi.AddFriend(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/AddFriend", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetFriendsList
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListResult
+function PlayFabServerApi.GetFriendsList(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetFriendsList", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Removes the specified friend from the the user's friend list
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemoveFriend
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveFriendRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
+function PlayFabServerApi.RemoveFriend(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Inform the matchmaker that a Game Server Instance is removed.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeregisterGame
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameResponse
+function PlayFabServerApi.DeregisterGame(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Informs the PlayFab match-making service that the user specified has left the Game Server Instance
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/NotifyMatchmakerPlayerLeft
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NotifyMatchmakerPlayerLeftRequest
@@ -580,6 +625,24 @@ function PlayFabServerApi.RedeemMatchmakerTicket(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RedeemMatchmakerTicket", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RefreshGameServerInstanceHeartbeat
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RefreshGameServerInstanceHeartbeatRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RefreshGameServerInstanceHeartbeatResult
+function PlayFabServerApi.RefreshGameServerInstanceHeartbeat(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Inform the matchmaker that a new Game Server Instance is added.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RegisterGame
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameResponse
+function PlayFabServerApi.RegisterGame(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Sets the custom data of the indicated Game Server Instance
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceData
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceDataRequest
@@ -596,6 +659,15 @@ end
 function PlayFabServerApi.SetGameServerInstanceState(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceState", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Set custom tags for the specified Game Server Instance
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceTags
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsResult
+function PlayFabServerApi.SetGameServerInstanceTags(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Awards the specified users the specified Steam achievements

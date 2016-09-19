@@ -202,6 +202,15 @@ function PlayFabAdminApi.IncrementPlayerStatisticVersion(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Attempts to process an order refund through the original real money payment provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/RefundPurchase
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RefundPurchaseRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RefundPurchaseResponse
+function PlayFabAdminApi.RefundPurchase(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/RefundPurchase", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Completely removes all statistics for the specified user, for the current game
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ResetUserStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetUserStatisticsRequest
@@ -209,6 +218,15 @@ end
 function PlayFabAdminApi.ResetUserStatistics(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ResetUserStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Attempts to resolve a dispute with the original order's payment provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ResolvePurchaseDispute
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResolvePurchaseDisputeRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResolvePurchaseDisputeResponse
+function PlayFabAdminApi.ResolvePurchaseDispute(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/ResolvePurchaseDispute", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval.
