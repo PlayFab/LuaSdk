@@ -35,12 +35,9 @@ plugins = {
 ```
 * Here is a main.lua script for your Corona game project which will log in to PlayFab, and print the result to the console
 ```Lua
-local IPlayFabHttps = require("plugin.playfab.IPlayFabHttps")
-local PlayFabHttps_Corona = require("plugin.playfab.PlayFabHttps_Corona")
-local PlayFabClientApi = require("plugin.playfab.PlayFabClientApi")
-
-PlayFabClientApi.settings.titleId = "&lt;your-title-id>" -- You must create a title on the PlayFab website.  Afterwards, you can find the titleId here: https://developer.playfab.com/en-us/studios
-IPlayFabHttps.SetHttp(PlayFabHttps_Corona) -- Assign the Corona-specific IHttps wrapper
+local pfClient = require("plugin.playfab.client")
+local PlayFabClientApi = pfClient.PlayFabClientApi
+PlayFabClientApi.settings.titleId = "<your-title-id>"
 
 local loginRequest = {
     -- https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
@@ -51,7 +48,7 @@ PlayFabClientApi.LoginWithCustomID(loginRequest, function(result) print("Login S
 
 -- After login, the full client API will fuction properly
 -- PlayFabClientApi.GetTitleData( etc etc etc )
--- Try linking more API methods to buttons and game events!
+-- Try linking more api calls to buttons and game events!
 ```
 * All API methods follow the same signature: PlayFabClientApi.&lt;ApiName>(request, function(result) end, function(error) end)
 * You can see a list of all available [client APIs methods](https://api.playfab.com/Documentation/Client)
@@ -67,16 +64,14 @@ plugins = {
 ```
 * Here is a main.lua script for your Corona game-server project which will log in to PlayFab, and print the result to the console
 ```Lua
-local IPlayFabHttps = require("plugin.playfab.IPlayFabHttps")
-local PlayFabHttps_Corona = require("plugin.playfab.PlayFabHttps_Corona")
-local PlayFabServerApi = require("plugin.playfab.PlayFabServerApi")
-
-PlayFabServerApi.settings.titleId = "&lt;your-title-id>" -- You must create a title on the PlayFab website.  Afterwards, you can find the titleId here: https://developer.playfab.com/en-us/studios
-PlayFabServerApi.settings.devSecretKey = "&lt;your-secret-key>" -- You must create a title on the PlayFab website.  Afterwards, you can find this in the "Settings" portion of our Game-Manager on our website
-IPlayFabHttps.SetHttp(PlayFabHttps_Corona) -- Assign the Corona-specific IHttps wrapper
+local pfServer = require("plugin.playfab.server")
+local json = pfServer.json
+local PlayFabServerApi = pfServer.PlayFabServerApi
+PlayFabServerApi.settings.titleId = "<your-title-id>"
+PlayFabServerApi.settings.devSecretKey = "<your-secret-key>"
 
 local dataRequest = {} -- https://api.playfab.com/Documentation/Server/method/GetTitleData
-PlayFabServerApi.LoginWithCustomID(dataRequest, function(result) print("GetTitleData Successful: " .. result.PlayFabId) end, function(error) print("GetTitleData Failed: " .. error.errorMessage) end)
+PlayFabServerApi.GetTitleData(dataRequest, function(result) print("GetTitleData Successful: " .. json.encode(result.Data)) end, function(error) print("GetTitleData Failed: " .. error.errorMessage) end)
 
 -- Many server APIs act on a PlayFabId, which is the ID that represents each player
 -- Transmit this data from your client to your server
@@ -93,14 +88,14 @@ plugins = {
   ["plugin.playfab.client"] = { publisherId = "com.playfab" }
 }
 ```
-* Here is a main.lua script for your Corona game project which will log in to PlayFab, and print the result to the console
+* Here is a main.lua script for your Corona game project which will log in to PlayFab via the client, and get the titleId as a server, and print the results to the console
 ```Lua
-local IPlayFabHttps = require("plugin.playfab.IPlayFabHttps")
-local PlayFabHttps_Corona = require("plugin.playfab.PlayFabHttps_Corona")
-local PlayFabClientApi = require("plugin.playfab.PlayFabClientApi")
-
-PlayFabClientApi.settings.titleId = "&lt;your-title-id>" -- You must create a title on the PlayFab website.  Afterwards, you can find the titleId here: https://developer.playfab.com/en-us/studios
-IPlayFabHttps.SetHttp(PlayFabHttps_Corona) -- Assign the Corona-specific IHttps wrapper
+local pfCombo = require("plugin.playfab.combo")
+local json = pfCombo.json
+local PlayFabClientApi = pfCombo.PlayFabClientApi
+local PlayFabServerApi = pfCombo.PlayFabServerApi
+PlayFabClientApi.settings.titleId = "<your-title-id>"
+PlayFabServerApi.settings.devSecretKey = "<your-secret-key>"
 
 local loginRequest = {
     -- https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
@@ -109,9 +104,13 @@ local loginRequest = {
 }
 PlayFabClientApi.LoginWithCustomID(loginRequest, function(result) print("Login Successful: " .. result.PlayFabId) end, function(error) print("Login Failed: " .. error.errorMessage) end)
 
+local dataRequest = {} -- https://api.playfab.com/Documentation/Server/method/GetTitleData
+PlayFabServerApi.GetTitleData(dataRequest, function(result) print("GetTitleData Successful: " .. json.encode(result.Data)) end, function(error) print("GetTitleData Failed: " .. error.errorMessage) end)
+
+
 -- After login, the full client API will fuction properly
 -- PlayFabClientApi.GetTitleData( etc etc etc )
--- Try linking more API methods to buttons and game events!
+-- Try linking more api calls to buttons and game events!
 ```
 * All API methods follow the same signature: PlayFabClientApi.&lt;ApiName>(request, function(result) end, function(error) end)
 * The combo plugin has all [client APIs methods](https://api.playfab.com/Documentation/Client), [server APIs methods](https://api.playfab.com/Documentation/Server), [admin APIs methods](https://api.playfab.com/Documentation/Admin), and [matchmaker APIs methods](https://api.playfab.com/Documentation/Matchmaker)
