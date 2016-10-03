@@ -741,6 +741,15 @@ function PlayFabClientApi.GetStoreItems(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetStoreItems", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the current server time
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetTime
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTimeRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTimeResult
+function PlayFabClientApi.GetTime(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetTime", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the key-value store of custom title settings
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetTitleData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitleDataRequest
