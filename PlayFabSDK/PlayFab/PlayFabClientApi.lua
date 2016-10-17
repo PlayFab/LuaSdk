@@ -5,7 +5,6 @@
 -- local PlayFabClientApi = require("PlayFab.PlayFabClientApi")
 -- PlayFabClientApi.<ClientApiCall>(request, successCallbackFunc, errorCallbackFunc)
 
-local json = require("PlayFab.json")
 local IPlayFabHttps = require("PlayFab.IPlayFabHttps")
 local PlayFabSettings = require("PlayFab.PlayFabSettings")
 
@@ -23,7 +22,7 @@ function PlayFabClientApi._MultiStepClientLogin(needsAttribution)
         if (PlayFabSettings.settings.advertisingIdType == PlayFabSettings.settings.AD_TYPE_IDFA) then
             request.Idfa = PlayFabSettings.settings.advertisingIdValue
         elseif (PlayFabSettings.settings.advertisingIdType == PlayFabSettings.settings.AD_TYPE_ANDROID_ID) then
-            request.Android_Id = PlayFabSettings.settings.advertisingIdValue
+            request.Adid = PlayFabSettings.settings.advertisingIdValue
         else
             return
         end
@@ -570,15 +569,6 @@ function PlayFabClientApi.GetFriendLeaderboard(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetFriendLeaderboard", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetFriendLeaderboardAroundCurrentUser
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundCurrentUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundCurrentUserResult
-function PlayFabClientApi.GetFriendLeaderboardAroundCurrentUser(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetFriendLeaderboardAroundCurrentUser", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetFriendLeaderboardAroundPlayer
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerRequest
@@ -595,15 +585,6 @@ end
 function PlayFabClientApi.GetLeaderboard(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetLeaderboard", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetLeaderboardAroundCurrentUser
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundCurrentUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundCurrentUserResult
-function PlayFabClientApi.GetLeaderboardAroundCurrentUser(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetLeaderboardAroundCurrentUser", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
@@ -669,15 +650,6 @@ function PlayFabClientApi.GetUserReadOnlyData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetUserReadOnlyData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the details of all title-specific statistics for the user
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetUserStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetUserStatisticsResult
-function PlayFabClientApi.GetUserStatistics(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetUserStatistics", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdatePlayerStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsRequest
@@ -703,15 +675,6 @@ end
 function PlayFabClientApi.UpdateUserPublisherData(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateUserPublisherData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateUserStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateUserStatisticsResult
-function PlayFabClientApi.UpdateUserStatistics(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateUserStatistics", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
@@ -1002,15 +965,6 @@ function PlayFabClientApi.ValidateGooglePlayPurchase(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Logs a custom analytics event
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LogEvent
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LogEventRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LogEventResult
-function PlayFabClientApi.LogEvent(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LogEvent", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Writes a character-based event into PlayStream.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/WriteCharacterEvent
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.WriteClientCharacterEventRequest
@@ -1090,24 +1044,6 @@ end
 function PlayFabClientApi.ExecuteCloudScript(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/ExecuteCloudScript", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetCloudScriptUrl
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCloudScriptUrlRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetCloudScriptUrlResult
-function PlayFabClientApi.GetCloudScriptUrl(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetCloudScriptUrl", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RunCloudScript
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RunCloudScriptRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RunCloudScriptResult
-function PlayFabClientApi.RunCloudScript(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/RunCloudScript", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service

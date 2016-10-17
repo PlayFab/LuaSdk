@@ -13,8 +13,8 @@
 local PlayFabSettings = {
     _internalSettings = {
         sessionTicket = nil,
-        sdkVersionString = "LuaSdk-0.4.161003",
-        buildIdentifier = "jbuild_luasdk_1"
+        sdkVersionString = "LuaSdk_0.5.161017",
+        buildIdentifier = "jbuild_luasdk_0"
     },
     settings = {
         devSecretKey = nil, -- This should never be assigned in a client distribution
@@ -22,7 +22,7 @@ local PlayFabSettings = {
         advertisingIdType = nil,
         advertisingIdValue = nil,
         AD_TYPE_IDFA = "Idfa", -- a constant value that can be assigned to advertisingIdType
-        AD_TYPE_ANDROID_ID = "Android_Id", -- a constant value that can be assigned to advertisingIdType
+        AD_TYPE_ANDROID_ID = "Adid", -- a constant value that can be assigned to advertisingIdType
         titleId = nil
     }
 }

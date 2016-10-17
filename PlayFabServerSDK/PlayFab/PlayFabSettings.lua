@@ -12,8 +12,8 @@
 
 local PlayFabSettings = {
     _internalSettings = {
-        sdkVersionString = "LuaSdk-0.4.161003",
-        buildIdentifier = "jbuild_luasdk_1"
+        sdkVersionString = "LuaSdk_0.5.161017",
+        buildIdentifier = "jbuild_luasdk_0"
     },
     settings = {
         devSecretKey = nil, -- This should never be assigned in a client distribution

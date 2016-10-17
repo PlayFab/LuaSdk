@@ -5,7 +5,6 @@
 -- local PlayFabServerApi = require("PlayFab.PlayFabServerApi")
 -- PlayFabServerApi.<ServerApiCall>(request, successCallbackFunc, errorCallbackFunc)
 
-local json = require("PlayFab.json")
 local IPlayFabHttps = require("PlayFab.IPlayFabHttps")
 local PlayFabSettings = require("PlayFab.PlayFabSettings")
 
@@ -220,15 +219,6 @@ function PlayFabServerApi.GetUserReadOnlyData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the details of all title-specific statistics for the user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserStatisticsResult
-function PlayFabServerApi.GetUserStatistics(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Updates the values of the specified title-specific statistics for the user
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdatePlayerStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdatePlayerStatisticsRequest
@@ -290,15 +280,6 @@ end
 function PlayFabServerApi.UpdateUserReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserStatisticsResult
-function PlayFabServerApi.UpdateUserStatistics(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
@@ -686,15 +667,6 @@ end
 function PlayFabServerApi.AwardSteamAchievement(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Logs a custom analytics event
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LogEvent
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LogEventRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LogEventResult
-function PlayFabServerApi.LogEvent(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/LogEvent", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Writes a character-based event into PlayStream.
