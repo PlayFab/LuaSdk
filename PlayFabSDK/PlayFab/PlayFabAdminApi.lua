@@ -12,6 +12,24 @@ local PlayFabAdminApi = {
     settings = PlayFabSettings.settings
 }
 
+-- Gets the requested policy.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetPolicy
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPolicyRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPolicyResponse
+function PlayFabAdminApi.GetPolicy(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetPolicy", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Changes a policy for a title
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/UpdatePolicy
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePolicyRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePolicyResponse
+function PlayFabAdminApi.UpdatePolicy(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdatePolicy", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/BanUsers
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BanUsersRequest
