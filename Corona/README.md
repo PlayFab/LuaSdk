@@ -85,7 +85,7 @@ Combo Plugin Instructions:
 * Add the following to your build.settings:
 ```lua
 plugins = {
-  ["plugin.playfab.client"] = { publisherId = "com.playfab" }
+  ["plugin.playfab.combo"] = { publisherId = "com.playfab" }
 }
 ```
 * Here is a main.lua script for your Corona game project which will log in to PlayFab via the client, and get the titleId as a server, and print the results to the console
