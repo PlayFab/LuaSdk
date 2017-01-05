@@ -12,7 +12,7 @@ Corona Project Setup
     * This guide will help you through the first-time steps if you haven't already done them:
     * https://docs.coronalabs.com/guide/start/installWin/index.html
   * Once you've installed, logged in, and created a new project, you should see several windows that look something like this:
-    * ![Corona image](/SdkQuickStart/images/Corona/NewProject.png)
+    * ![Corona image](/images/Corona/NewProject.png)
   * Activate the PlayFab Client plugin on the Corona Marketplace
     * https://marketplace.coronalabs.com/plugin/playfab-client
 * PlayFab installation complete!
@@ -59,7 +59,7 @@ Finish and Execute
 ----
 
 * Corona automatically executes the project source immediately when you save.  So as soon as you update and save these two files, you should see this:
-  * ![Corona image](/SdkQuickStart/images/Corona/Finished.png)
+  * ![Corona image](/images/Corona/Finished.png)
 * At this point, you can start making other api calls, and building your game
 * For a list of all available client API calls, see our documentation:
   * https://api.playfab.com/

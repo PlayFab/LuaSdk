@@ -16,12 +16,12 @@ Defold Project Setup
     * ![Defold image](http://www.defold.com/static/images/getting-started/1/dashboard.png)
   * Run Defold, and load your new project
   * You should see several windows that look something like this:
-    * ![Defold image](/SdkQuickStart/images/Defold/CreateProject.png)
+    * ![Defold image](/images/Defold/CreateProject.png)
   * Update the Project Settings, and include PlayFab in the dependencies
     * dependencies: https://github.com/PlayFab/LuaSdk/raw/master/Defold/PlayFabClientSdk.zip
-    * ![Defold image](/SdkQuickStart/images/Defold/Dependency1.png)
+    * ![Defold image](/images/Defold/Dependency1.png)
     * Click: Project -> Fetch Libraries, and you should see a new builtin "PlayFab" folder:
-    * ![Defold image](/SdkQuickStart/images/Defold/Dependency2.png)
+    * ![Defold image](/images/Defold/Dependency2.png)
   * Create a few files:
     * main/PfGettingStarted.gui
       * right-click "main" folder -> new -> Gui File -> PfGettingStarted.gui
@@ -34,7 +34,7 @@ Defold Project Setup
         * Right-Click the new object, Add Component From File...
           * PfGettingStarted.gui (Created above)
     * The Outline panel viewing main.collection should look like this:
-      * ![Defold image](/SdkQuickStart/images/Defold/MainOutline.png)
+      * ![Defold image](/images/Defold/MainOutline.png)
 * PlayFab installation complete
   * This project isn't ready to build yet, but we'll fix that in the next step
 
