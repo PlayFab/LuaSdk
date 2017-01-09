@@ -731,7 +731,7 @@ function PlayFabClientApi.AddUserVirtualCurrency(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddUserVirtualCurrency", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual currency balances as appropriate
+-- Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual currency balances as appropriate
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ConfirmPurchase
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseResult
@@ -785,7 +785,7 @@ function PlayFabClientApi.PayForPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/PayForPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+-- Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/PurchaseItem
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemResult
