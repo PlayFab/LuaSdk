@@ -39,6 +39,22 @@ function PlayFabClientApi.GetPhotonAuthenticationToken(request, onSuccess, onErr
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPhotonAuthenticationToken", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetWindowsHelloChallenge
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeResponse
+function PlayFabClientApi.GetWindowsHelloChallenge(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetWindowsHelloChallenge", request, nil, nil, onSuccess, onError)
+end
+
+-- Link Windows Hello to the current PlayFab Account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkWindowsHello
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse
+function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, nil, nil, onSuccess, onError)
+end
+
 -- Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithAndroidDeviceIDRequest
@@ -237,6 +253,24 @@ function PlayFabClientApi.LoginWithTwitch(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithTwitch", request, nil, nil, onSuccess, onError)
 end
 
+-- Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server. 
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithWindowsHello
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithWindowsHelloRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.LoginWithWindowsHello(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithWindowsHello", request, nil, nil, onSuccess, onError)
+end
+
 -- Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterPlayFabUser
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserRequest
@@ -253,6 +287,32 @@ function PlayFabClientApi.RegisterPlayFabUser(request, onSuccess, onError)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterPlayFabUser", request, nil, nil, onSuccess, onError)
+end
+
+-- Register using Windows Hello authentication. Before a user can request a challenge or perform a signin the user must first either register or link a Windows Hello account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterWithWindowsHello
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterWithWindowsHelloRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterWithWindowsHello", request, nil, nil, onSuccess, onError)
+end
+
+-- Unlink Windows Hello from the current PlayFab Account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkWindowsHello
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse
+function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
 -- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
@@ -540,6 +600,15 @@ end
 function PlayFabClientApi.UnlinkTwitch(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkTwitch", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Update the avatar URL of the player
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateAvatarUrl
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateAvatarUrlRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult
+function PlayFabClientApi.UpdateAvatarUrl(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateAvatarUrl", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Updates the title specific display name for the user
@@ -1216,6 +1285,14 @@ end
 function PlayFabClientApi.GetPlayerTags(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayerTags", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateWindowsStoreReceipt
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult
+function PlayFabClientApi.ValidateWindowsStoreReceipt(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateWindowsStoreReceipt", request, nil, nil, onSuccess, onError)
 end
 
 return PlayFabClientApi
