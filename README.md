@@ -69,13 +69,12 @@ lua PlayFabTesting/TestPlayFabConsole.lua
  * Details here: https://github.com/PlayFab/LuaSdk/tree/master/Defold
 * The following example script sets up PlayFab to a GUI element:
 ```Lua
-local PlayFabApiTestSuite = require("PlayFabTesting.PlayFabApiTestSuite")
-local PlayFabSettings = require("PlayFab.PlayFabSettings")
+local PlayFabClientApi = require("PlayFab.PlayFabClientApi")
 local IPlayFabHttps = require("PlayFab.IPlayFabHttps")
 local PlayFabHttps_Defold = require("PlayFab.PlayFabHttps_Defold")
 
-PlayFabSettings.titleId = "6195"
 IPlayFabHttps.SetHttp(PlayFabHttps_Defold) -- The auto import magic doens't work if you set the name, so you have to set the reference
+PlayFabClientApi.settings.titleId = "6195"
 
 function init(self)
     local loginRequest = {
