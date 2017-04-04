@@ -47,14 +47,6 @@ function PlayFabClientApi.GetWindowsHelloChallenge(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetWindowsHelloChallenge", request, nil, nil, onSuccess, onError)
 end
 
--- Link Windows Hello to the current PlayFab Account
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkWindowsHello
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse
-function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, nil, nil, onSuccess, onError)
-end
-
 -- Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithAndroidDeviceIDRequest
@@ -91,7 +83,7 @@ function PlayFabClientApi.LoginWithCustomID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithCustomID", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the  creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via RegisterPlayFabUser.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithEmailAddressRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -199,7 +191,7 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithKongregate", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike other login API calls, LoginWithEmailAddress does not permit the creation of new accounts via the CreateAccountFlag. Email accounts must be created using the RegisterPlayFabUser API or added to existing accounts using AddUsernamePassword.
+-- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via  RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithPlayFab
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithPlayFabRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -289,7 +281,7 @@ function PlayFabClientApi.RegisterPlayFabUser(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterPlayFabUser", request, nil, nil, onSuccess, onError)
 end
 
--- Register using Windows Hello authentication. Before a user can request a challenge or perform a signin the user must first either register or link a Windows Hello account.
+-- Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterWithWindowsHello
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterWithWindowsHelloRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -305,14 +297,6 @@ function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterWithWindowsHello", request, nil, nil, onSuccess, onError)
-end
-
--- Unlink Windows Hello from the current PlayFab Account
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkWindowsHello
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse
-function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
 -- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
@@ -495,6 +479,14 @@ function PlayFabClientApi.LinkTwitch(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkTwitch", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Link Windows Hello authentication to the current PlayFab Account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkWindowsHello
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse
+function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, nil, nil, onSuccess, onError)
+end
+
 -- Removes the specified generic service identifier from the player's PlayFab account.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RemoveGenericID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveGenericIDRequest
@@ -600,6 +592,14 @@ end
 function PlayFabClientApi.UnlinkTwitch(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkTwitch", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Unlink Windows Hello authentication from the current PlayFab Account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkWindowsHello
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse
+function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
 -- Update the avatar URL of the player
@@ -827,7 +827,7 @@ function PlayFabClientApi.GetCharacterInventory(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetCharacterInventory", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a completed purchase along with its current PlayFab status.
+-- Retrieves a purchase along with its current PlayFab status.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPurchase
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseResult
@@ -953,7 +953,7 @@ function PlayFabClientApi.RegisterForIOSPushNotification(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterForIOSPushNotification", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Restores all in-app purchases based on the given refresh receipt.
+-- Restores all in-app purchases based on the given restore receipt
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RestoreIOSPurchases
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesResult
