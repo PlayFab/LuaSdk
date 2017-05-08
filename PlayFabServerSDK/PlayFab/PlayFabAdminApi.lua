@@ -651,7 +651,7 @@ function PlayFabAdminApi.UpdateCloudScript(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateCloudScript", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Delete a content file from the title
+-- Delete a content file from the title. When deleting a file that does not exist, it returns success.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeleteContent
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteContentRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BlankResult
