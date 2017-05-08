@@ -484,7 +484,8 @@ end
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkWindowsHelloAccountResponse
 function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, nil, nil, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Removes the specified generic service identifier from the player's PlayFab account.
@@ -599,7 +600,8 @@ end
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkWindowsHelloAccountResponse
 function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, nil, nil, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Update the avatar URL of the player
@@ -827,7 +829,7 @@ function PlayFabClientApi.GetCharacterInventory(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetCharacterInventory", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a purchase along with its current PlayFab status.
+-- Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPurchase
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseResult
@@ -1292,7 +1294,8 @@ end
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult
 function PlayFabClientApi.ValidateWindowsStoreReceipt(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateWindowsStoreReceipt", request, nil, nil, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateWindowsStoreReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 return PlayFabClientApi
