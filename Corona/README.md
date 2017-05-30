@@ -1,5 +1,4 @@
-Corona builds for LuaSdk
-----
+# Corona builds for LuaSdk
 
 The Corona plugin files are available for free on the Corona marketplace.  (PlayFab subscription fees still apply when relevant)
 
@@ -24,8 +23,8 @@ The Corona plugin files are available for free on the Corona marketplace.  (Play
     * https://api.playfab.com/Documentation/Matchmaker
     * https://api.playfab.com/Documentation/Admin
 
-Client Plugin Instructions:
-----
+
+## Client Plugin Instructions:
 
 * Add the following to your build.settings:
 ```lua
@@ -53,8 +52,8 @@ PlayFabClientApi.LoginWithCustomID(loginRequest, function(result) print("Login S
 * All API methods follow the same signature: PlayFabClientApi.&lt;ApiName>(request, function(result) end, function(error) end)
 * You can see a list of all available [client APIs methods](https://api.playfab.com/Documentation/Client)
  
-Server Plugin Instructions:
-----
+ 
+## Server Plugin Instructions:
 
 * Add the following to your build.settings:
 ```lua
@@ -79,8 +78,8 @@ PlayFabServerApi.GetTitleData(dataRequest, function(result) print("GetTitleData 
 * All API methods follow the same signature: PlayFabServerApi.&lt;ApiName>(request, function(result) end, function(error) end)
 * You can see a list of all available [server APIs methods](https://api.playfab.com/Documentation/Server)
 
-Combo Plugin Instructions:
-----
+
+## Combo Plugin Instructions:
 
 * Add the following to your build.settings:
 ```lua

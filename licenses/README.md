@@ -1,17 +1,16 @@
-PlayFab LuaSdk external licenses
-----
+# PlayFab LuaSdk external licenses
 
 This is a description of all the software included in, and referenced by the PlayFab LuaSdk
 
-Distributed with PlayFab LuaSdk
-----
+
+## Distributed with PlayFab LuaSdk
 
 Json.lua 0.1.0 is included with the PlayFab LuaSdk
 * https://github.com/rxi/json.lua
 * https://github.com/rxi/json.lua/blob/master/LICENSE
 
-Not Distributed with PlayFab LuaSdk
-----
+
+## Not Distributed with PlayFab LuaSdk
 
 LuaSec 0.4 is automatically included in LuaDist (LuaSec not required). LuaSec is not suggested for actual game development, as the HTTPS calls block the program while executing (this is not ideal)
 * https://github.com/brunoos/luasec

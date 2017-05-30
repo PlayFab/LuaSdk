@@ -335,6 +335,15 @@ function PlayFabClientApi.GetPlayerCombinedInfo(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayerCombinedInfo", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the player's profile
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayerProfile
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerProfileResult
+function PlayFabClientApi.GetPlayerProfile(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayerProfile", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromFacebookIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookIDsRequest

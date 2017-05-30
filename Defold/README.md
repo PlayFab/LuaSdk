@@ -1,5 +1,4 @@
-Defold builds for LuaSdk
-----
+# Defold builds for LuaSdk
 
 Set a project dependency to one of these files in GitHub to automatically download and sync the latest PlayFab LuaSdk in your Defold project.
 
