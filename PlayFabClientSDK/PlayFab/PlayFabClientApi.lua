@@ -955,33 +955,6 @@ function PlayFabClientApi.SetFriendTags(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/SetFriendTags", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Registers the iOS device to receive push notifications
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterForIOSPushNotification
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationResult
-function PlayFabClientApi.RegisterForIOSPushNotification(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterForIOSPushNotification", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Restores all in-app purchases based on the given restore receipt
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RestoreIOSPurchases
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesResult
-function PlayFabClientApi.RestoreIOSPurchases(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/RestoreIOSPurchases", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateIOSReceipt
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult
-function PlayFabClientApi.ValidateIOSReceipt(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateIOSReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Get details about all current running game servers matching the given parameters.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetCurrentGames
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CurrentGamesRequest
@@ -1016,24 +989,6 @@ end
 function PlayFabClientApi.StartGame(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/StartGame", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Registers the Android device to receive push notifications
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AndroidDevicePushNotificationRegistration
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationResult
-function PlayFabClientApi.AndroidDevicePushNotificationRegistration(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/AndroidDevicePushNotificationRegistration", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Validates a Google Play purchase and gives the corresponding item to the player.
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateGooglePlayPurchase
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseResult
-function PlayFabClientApi.ValidateGooglePlayPurchase(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Writes a character-based event into PlayStream.
@@ -1216,15 +1171,6 @@ function PlayFabClientApi.UpdateCharacterData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateCharacterData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
--- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateAmazonIAPReceipt
--- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptResult
-function PlayFabClientApi.ValidateAmazonIAPReceipt(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateAmazonIAPReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AcceptTrade
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeRequest
@@ -1296,6 +1242,60 @@ end
 function PlayFabClientApi.GetPlayerTags(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayerTags", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Registers the Android device to receive push notifications
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AndroidDevicePushNotificationRegistration
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AndroidDevicePushNotificationRegistrationResult
+function PlayFabClientApi.AndroidDevicePushNotificationRegistration(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/AndroidDevicePushNotificationRegistration", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Registers the iOS device to receive push notifications
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterForIOSPushNotification
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterForIOSPushNotificationResult
+function PlayFabClientApi.RegisterForIOSPushNotification(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterForIOSPushNotification", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Restores all in-app purchases based on the given restore receipt
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RestoreIOSPurchases
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RestoreIOSPurchasesResult
+function PlayFabClientApi.RestoreIOSPurchases(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/RestoreIOSPurchases", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateAmazonIAPReceipt
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptResult
+function PlayFabClientApi.ValidateAmazonIAPReceipt(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateAmazonIAPReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Validates a Google Play purchase and gives the corresponding item to the player.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateGooglePlayPurchase
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateGooglePlayPurchaseResult
+function PlayFabClientApi.ValidateGooglePlayPurchase(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateIOSReceipt
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult
+function PlayFabClientApi.ValidateIOSReceipt(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateIOSReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
