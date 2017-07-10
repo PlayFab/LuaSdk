@@ -39,6 +39,14 @@ function PlayFabClientApi.GetPhotonAuthenticationToken(request, onSuccess, onErr
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPhotonAuthenticationToken", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Returns the title's base 64 encoded RSA CSP blob.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetTitlePublicKey
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetTitlePublicKeyResult
+function PlayFabClientApi.GetTitlePublicKey(request, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetTitlePublicKey", request, nil, nil, onSuccess, onError)
+end
+
 -- Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetWindowsHelloChallenge
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetWindowsHelloChallengeRequest
@@ -297,6 +305,15 @@ function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterWithWindowsHello", request, nil, nil, onSuccess, onError)
+end
+
+-- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/SetPlayerSecret
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretResult
+function PlayFabClientApi.SetPlayerSecret(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/SetPlayerSecret", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
