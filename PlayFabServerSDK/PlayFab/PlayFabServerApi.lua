@@ -894,7 +894,7 @@ function PlayFabServerApi.GetCharacterReadOnlyData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates the title-specific custom data for the user's chjaracter which is readable and writable by the client
+-- Updates the title-specific custom data for the user's character which is readable and writable by the client
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateCharacterData
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataResult

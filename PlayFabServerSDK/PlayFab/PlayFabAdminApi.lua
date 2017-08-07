@@ -84,6 +84,15 @@ function PlayFabAdminApi.BanUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/BanUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Removes a user's player account from a title and deletes all associated data
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeletePlayer
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerResult
+function PlayFabAdminApi.DeletePlayer(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeletePlayer", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetUserAccountInfo
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.LookupUserAccountInfoRequest
