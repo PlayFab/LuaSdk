@@ -1035,7 +1035,7 @@ function PlayFabClientApi.WriteTitleEvent(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/WriteTitleEvent", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group can add new members.
+-- Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddSharedGroupMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersResult
@@ -1044,7 +1044,7 @@ function PlayFabClientApi.AddSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddSharedGroupMembers", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the group. Upon creation, the current user will be the only member of the group.
+-- Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/CreateSharedGroup
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupResult
@@ -1053,7 +1053,7 @@ function PlayFabClientApi.CreateSharedGroup(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/CreateSharedGroup", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
+-- Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private. Shared Groups are designed for sharing data between a  very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetSharedGroupData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataResult
@@ -1062,7 +1062,7 @@ function PlayFabClientApi.GetSharedGroupData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetSharedGroupData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted.
+-- Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RemoveSharedGroupMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersResult
@@ -1071,7 +1071,7 @@ function PlayFabClientApi.RemoveSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RemoveSharedGroupMembers", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data.
+-- Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateSharedGroupData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataResult
