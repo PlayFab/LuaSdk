@@ -48,7 +48,8 @@ function PlayFabMatchmakerApi.StartGame(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Matchmaker/StartGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
+-- Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
+-- effective matches
 -- API Method Documentation: https://api.playfab.com/Documentation/Matchmaker/method/UserInfo
 -- Request Documentation: https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.UserInfoRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Matchmaker/datatype/PlayFab.Matchmaker.Models/PlayFab.Matchmaker.Models.UserInfoResponse
