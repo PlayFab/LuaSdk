@@ -39,7 +39,8 @@ function PlayFabAdminApi.AddPlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
+-- Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
+-- client is permitted to request in a call to StartGame
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/AddServerBuild
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddServerBuildRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddServerBuildResult
@@ -57,7 +58,8 @@ function PlayFabAdminApi.AddUserVirtualCurrency(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/AddUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
+-- Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
+-- 2,147,483,647 when granted to a player. Any value over that will be discarded.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/AddVirtualCurrencyTypes
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddVirtualCurrencyTypesRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BlankResult
@@ -93,7 +95,8 @@ function PlayFabAdminApi.CreateCloudScriptTask(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/CreateCloudScriptTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+-- Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
+-- this API returns.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/CreatePlayerSharedSecret
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerSharedSecretResult
@@ -102,7 +105,8 @@ function PlayFabAdminApi.CreatePlayerSharedSecret(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/CreatePlayerSharedSecret", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
+-- Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval
+-- and an aggregation method.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/CreatePlayerStatisticDefinition
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreatePlayerStatisticDefinitionResult
@@ -129,7 +133,8 @@ function PlayFabAdminApi.DeletePlayer(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeletePlayer", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+-- Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API
+-- returns.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeletePlayerSharedSecret
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeletePlayerSharedSecretResult
@@ -156,13 +161,13 @@ function PlayFabAdminApi.DeleteTask(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
--- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeleteUsers
--- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteUsersResult
-function PlayFabAdminApi.DeleteUsers(request, onSuccess, onError)
+-- Permanently deletes a title and all associated configuration
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeleteTitle
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTitleRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteTitleResult
+function PlayFabAdminApi.DeleteTitle(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteTitle", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Get information about a ActionsOnPlayersInSegment task instance.
@@ -174,7 +179,8 @@ function PlayFabAdminApi.GetActionsOnPlayersInSegmentTaskInstance(request, onSuc
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetActionsOnPlayersInSegmentTaskInstance", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+-- Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+-- GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetAllSegments
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllSegmentsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetAllSegmentsResult
@@ -210,7 +216,8 @@ function PlayFabAdminApi.GetCloudScriptTaskInstance(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetCloudScriptTaskInstance", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
+-- Lists all the current cloud script versions. For each version, information about the current published and latest
+-- revisions is also listed.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetCloudScriptVersions
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptVersionsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetCloudScriptVersionsResult
@@ -228,7 +235,9 @@ function PlayFabAdminApi.GetContentList(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetContentList", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the  content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+-- Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the
+-- content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN
+-- rates apply.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetContentUploadUrl
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentUploadUrlRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetContentUploadUrlResult
@@ -282,7 +291,10 @@ function PlayFabAdminApi.GetPlayerSharedSecrets(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetPlayerSharedSecrets", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+-- Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+-- the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+-- on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+-- in the results. AB Test segments are currently not supported by this operation.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetPlayersInSegment
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersInSegmentRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersInSegmentResult
@@ -291,7 +303,8 @@ function PlayFabAdminApi.GetPlayersInSegment(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetPlayersInSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+-- Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
+-- a reset interval.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetPlayerStatisticDefinitions
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticDefinitionsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerStatisticDefinitionsResult
@@ -354,7 +367,8 @@ function PlayFabAdminApi.GetServerBuildInfo(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetServerBuildInfo", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
+-- Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
+-- use - see AddServerBuild)
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetServerBuildUploadUrl
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildUploadURLRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetServerBuildUploadURLResult
@@ -561,7 +575,8 @@ function PlayFabAdminApi.RemovePlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
+-- Removes the game server executable specified from the set of those a client is permitted to request in a call to
+-- StartGame
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/RemoveServerBuild
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveServerBuildRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveServerBuildResult
@@ -586,15 +601,6 @@ end
 function PlayFabAdminApi.ResetCharacterStatistics(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ResetCharacterStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Resets all title-specific information about a particular account, including user data, virtual currency balances, inventory, purchase history, and statistics
--- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ResetUsers
--- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ResetUsersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.BlankResult
-function PlayFabAdminApi.ResetUsers(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/ResetUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Completely removes all statistics for the specified user, for the current game
@@ -651,7 +657,8 @@ function PlayFabAdminApi.RunTask(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RunTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
+-- Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to
+-- change the password
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/SendAccountRecoveryEmail
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailResult
@@ -723,7 +730,9 @@ function PlayFabAdminApi.SetTitleInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetTitleInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
+-- Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
+-- be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
+-- Messaging is not supported.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/SetupPushNotification
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetupPushNotificationRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetupPushNotificationResult
@@ -759,7 +768,8 @@ function PlayFabAdminApi.UpdateCatalogItems(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateCatalogItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
+-- Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be
+-- submitted in the revision.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/UpdateCloudScript
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCloudScriptRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateCloudScriptResult
@@ -768,7 +778,8 @@ function PlayFabAdminApi.UpdateCloudScript(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateCloudScript", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+-- Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available
+-- after this API returns.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/UpdatePlayerSharedSecret
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdatePlayerSharedSecretResult

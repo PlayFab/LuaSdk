@@ -30,7 +30,9 @@ function PlayFabClientApi._MultiStepClientLogin(needsAttribution)
     end
 end
 
--- Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
+-- Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
+-- allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
+-- items will be swapped  between the two players' inventories.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AcceptTrade
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AcceptTradeResponse
@@ -39,7 +41,8 @@ function PlayFabClientApi.AcceptTrade(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AcceptTrade", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+-- Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At
+-- least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddFriend
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddFriendRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddFriendResult
@@ -48,7 +51,9 @@ function PlayFabClientApi.AddFriend(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddFriend", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+-- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+-- ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+-- authentication credentials, as the intent is that it is easily accessible by other players.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddGenericID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddGenericIDRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddGenericIDResult
@@ -57,7 +62,9 @@ function PlayFabClientApi.AddGenericID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddGenericID", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+-- users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
+-- players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddSharedGroupMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddSharedGroupMembersResult
@@ -66,7 +73,8 @@ function PlayFabClientApi.AddSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddSharedGroupMembers", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
+-- Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device
+-- ID login.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddUsernamePassword
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUsernamePasswordRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddUsernamePasswordResult
@@ -103,7 +111,9 @@ function PlayFabClientApi.AttributeInstall(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AttributeInstall", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
+-- Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
+-- can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
+-- players from accepting  them, for trades that can be claimed by more than one player).
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/CancelTrade
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CancelTradeRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CancelTradeResponse
@@ -112,7 +122,8 @@ function PlayFabClientApi.CancelTrade(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/CancelTrade", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual currency balances as appropriate
+-- Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+-- currency balances as appropriate
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ConfirmPurchase
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConfirmPurchaseResult
@@ -130,7 +141,10 @@ function PlayFabClientApi.ConsumeItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeItem", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
+-- group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
+-- data between a very small number of players, please see our guide:
+-- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/CreateSharedGroup
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.CreateSharedGroupResult
@@ -157,7 +171,8 @@ function PlayFabClientApi.GetAccountInfo(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetAccountInfo", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+-- Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+-- evaluated with the parent PlayFabId to guarantee uniqueness.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetAllUsersCharacters
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ListUsersCharactersResult
@@ -220,7 +235,13 @@ function PlayFabClientApi.GetCharacterStatistics(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetCharacterStatistics", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+-- This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+-- URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+-- content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+-- the query to retrieve the data will fail. See this post for more information:
+-- https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+-- Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+-- apply.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetContentDownloadUrl
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetContentDownloadUrlRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetContentDownloadUrlResult
@@ -238,7 +259,8 @@ function PlayFabClientApi.GetCurrentGames(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetCurrentGames", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in the leaderboard
+-- Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in
+-- the leaderboard
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetFriendLeaderboard
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardResult
@@ -247,7 +269,8 @@ function PlayFabClientApi.GetFriendLeaderboard(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetFriendLeaderboard", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+-- Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab
+-- user. If PlayFabId is empty or null will return currently logged in user.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetFriendLeaderboardAroundPlayer
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendLeaderboardAroundPlayerResult
@@ -256,7 +279,8 @@ function PlayFabClientApi.GetFriendLeaderboardAroundPlayer(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetFriendLeaderboardAroundPlayer", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+-- Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from
+-- linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetFriendsList
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendsListRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetFriendsListResult
@@ -265,7 +289,7 @@ function PlayFabClientApi.GetFriendsList(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetFriendsList", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
---  Get details about the regions hosting game servers matching the given parameters.
+-- Get details about the regions hosting game servers matching the given parameters.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetGameServerRegions
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameServerRegionsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GameServerRegionsResult
@@ -292,7 +316,8 @@ function PlayFabClientApi.GetLeaderboardAroundCharacter(request, onSuccess, onEr
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetLeaderboardAroundCharacter", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+-- Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or
+-- null will return currently logged in user.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetLeaderboardAroundPlayer
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundPlayerRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetLeaderboardAroundPlayerResult
@@ -310,7 +335,8 @@ function PlayFabClientApi.GetLeaderboardForUserCharacters(request, onSuccess, on
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetLeaderboardForUserCharacters", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+-- Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
+-- https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPhotonAuthenticationToken
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPhotonAuthenticationTokenResult
@@ -346,7 +372,8 @@ function PlayFabClientApi.GetPlayerSegments(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayerSegments", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+-- Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local
+-- player.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayerStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayerStatisticsResult
@@ -391,7 +418,8 @@ function PlayFabClientApi.GetPlayFabIDsFromFacebookIDs(request, onSuccess, onErr
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromFacebookIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center Programming Guide as the Player Identifier).
+-- Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center
+-- Programming Guide as the Player Identifier).
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromGameCenterIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGameCenterIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGameCenterIDsResult
@@ -400,7 +428,9 @@ function PlayFabClientApi.GetPlayFabIDsFromGameCenterIDs(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromGameCenterIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+-- Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+-- service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+-- added to the player account.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromGenericIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGenericIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGenericIDsResult
@@ -409,7 +439,8 @@ function PlayFabClientApi.GetPlayFabIDsFromGenericIDs(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromGenericIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for the user accounts, available as "id" in the Google+ People API calls.
+-- Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for
+-- the user accounts, available as "id" in the Google+ People API calls.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromGoogleIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGoogleIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromGoogleIDsResult
@@ -418,7 +449,9 @@ function PlayFabClientApi.GetPlayFabIDsFromGoogleIDs(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromGoogleIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex: http://developers.kongregate.com/docs/client/getUserId).
+-- Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
+-- IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
+-- http://developers.kongregate.com/docs/client/getUserId).
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromKongregateIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromKongregateIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromKongregateIDsResult
@@ -427,7 +460,8 @@ function PlayFabClientApi.GetPlayFabIDsFromKongregateIDs(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+-- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+-- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromSteamIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromSteamIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromSteamIDsResult
@@ -436,7 +470,9 @@ function PlayFabClientApi.GetPlayFabIDsFromSteamIDs(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromSteamIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+-- Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+-- the user accounts, available as "_id" from the Twitch API methods (ex:
+-- https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromTwitchIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromTwitchIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromTwitchIDsResult
@@ -454,7 +490,8 @@ function PlayFabClientApi.GetPublisherData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPublisherData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
+-- Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
+-- active.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPurchase
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPurchaseResult
@@ -463,7 +500,10 @@ function PlayFabClientApi.GetPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private. Shared Groups are designed for sharing data between a  very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
+-- may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
+-- Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+-- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetSharedGroupData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetSharedGroupDataResult
@@ -578,7 +618,8 @@ function PlayFabClientApi.GetWindowsHelloChallenge(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetWindowsHelloChallenge", request, nil, nil, onSuccess, onError)
 end
 
--- Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+-- Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+-- with the parent PlayFabId to guarantee uniqueness.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GrantCharacterToUser
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GrantCharacterToUserRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GrantCharacterToUserResult
@@ -677,7 +718,8 @@ function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+-- API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithAndroidDeviceIDRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -695,7 +737,8 @@ function PlayFabClientApi.LoginWithAndroidDeviceID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithAndroidDeviceID", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+-- subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithCustomID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithCustomIDRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -713,7 +756,10 @@ function PlayFabClientApi.LoginWithCustomID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithCustomID", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the  creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via RegisterPlayFabUser.
+-- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+-- which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the
+-- creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via
+-- RegisterPlayFabUser.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithEmailAddress
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithEmailAddressRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -731,7 +777,8 @@ function PlayFabClientApi.LoginWithEmailAddress(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithEmailAddress", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API
+-- calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithFacebook
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithFacebookRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -749,7 +796,8 @@ function PlayFabClientApi.LoginWithFacebook(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithFacebook", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
+-- used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithGameCenter
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithGameCenterRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -785,7 +833,8 @@ function PlayFabClientApi.LoginWithGoogleAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithGoogleAccount", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
+-- be used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithIOSDeviceID
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithIOSDeviceIDRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -821,7 +870,10 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithKongregate", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via  RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
+-- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+-- which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
+-- of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+-- RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithPlayFab
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithPlayFabRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -839,7 +891,8 @@ function PlayFabClientApi.LoginWithPlayFab(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithPlayFab", request, nil, nil, onSuccess, onError)
 end
 
--- Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+-- Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
+-- API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithSteam
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithSteamRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -875,7 +928,10 @@ function PlayFabClientApi.LoginWithTwitch(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithTwitch", request, nil, nil, onSuccess, onError)
 end
 
--- Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server. 
+-- Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
+-- Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
+-- string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
+-- server.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithWindowsHello
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithWindowsHelloRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -893,7 +949,12 @@ function PlayFabClientApi.LoginWithWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
--- Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound.
+-- Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
+-- active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
+-- parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
+-- found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
+-- availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
+-- GameNotFound.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/Matchmake
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MatchmakeRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.MatchmakeResult
@@ -920,7 +981,8 @@ function PlayFabClientApi.PayForPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/PayForPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+-- Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
+-- what the client believes the price to be. This lets the server fail the purchase if the price has changed.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/PurchaseItem
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.PurchaseItemResult
@@ -929,7 +991,8 @@ function PlayFabClientApi.PurchaseItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/PurchaseItem", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy->Catalogs tab in the PlayFab Game Manager.
+-- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+-- Economy->Catalogs tab in the PlayFab Game Manager.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RedeemCoupon
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RedeemCouponRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RedeemCouponResult
@@ -947,7 +1010,8 @@ function PlayFabClientApi.RegisterForIOSPushNotification(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterForIOSPushNotification", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
+-- Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
+-- require an authenticated user. You must supply either a username or an email address.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterPlayFabUser
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterPlayFabUserResult
@@ -965,7 +1029,8 @@ function PlayFabClientApi.RegisterPlayFabUser(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterPlayFabUser", request, nil, nil, onSuccess, onError)
 end
 
--- Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can subsequently be used for API calls which require an authenticated user
+-- Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+-- subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RegisterWithWindowsHello
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RegisterWithWindowsHelloRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
@@ -1001,7 +1066,10 @@ function PlayFabClientApi.RemoveGenericID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RemoveGenericID", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
+-- group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
+-- will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+-- guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RemoveSharedGroupMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveSharedGroupMembersResult
@@ -1010,7 +1078,8 @@ function PlayFabClientApi.RemoveSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RemoveSharedGroupMembers", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+-- Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
+-- can take action concerning potentially toxic players.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ReportPlayer
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ReportPlayerClientResult
@@ -1028,7 +1097,8 @@ function PlayFabClientApi.RestoreIOSPurchases(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RestoreIOSPurchases", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to change the password
+-- Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
+-- change the password
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/SendAccountRecoveryEmail
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailResult
@@ -1045,7 +1115,8 @@ function PlayFabClientApi.SetFriendTags(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/SetFriendTags", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+-- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+-- secret use the Admin or Server API method SetPlayerSecret.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/SetPlayerSecret
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SetPlayerSecretResult
@@ -1072,7 +1143,8 @@ function PlayFabClientApi.StartPurchase(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/StartPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Decrements the user's balance of the specified virtual currency by the stated amount
+-- Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+-- balance negative with this API.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/SubtractUserVirtualCurrency
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SubtractUserVirtualCurrencyRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ModifyUserVirtualCurrencyResult
@@ -1117,7 +1189,8 @@ function PlayFabClientApi.UnlinkGameCenterAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkGameCenterAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
+-- Unlinks the related Google account from the user's PlayFab account
+-- (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkGoogleAccount
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGoogleAccountRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGoogleAccountResult
@@ -1171,7 +1244,9 @@ function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Opens the specified container, with the specified key (when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+-- Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
+-- If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented,
+-- consistent with the operation of ConsumeItem.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlockContainerInstance
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerInstanceRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemResult
@@ -1180,7 +1255,9 @@ function PlayFabClientApi.UnlockContainerInstance(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlockContainerInstance", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+-- Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
+-- appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
+-- consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlockContainerItem
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlockContainerItemResult
@@ -1198,7 +1275,8 @@ function PlayFabClientApi.UpdateAvatarUrl(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateAvatarUrl", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Creates and updates the title-specific custom data for the user's character which is readable  and writable by the client
+-- Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
+-- client
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateCharacterData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterDataResult
@@ -1207,7 +1285,8 @@ function PlayFabClientApi.UpdateCharacterData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateCharacterData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+-- Updates the values of the specified title-specific statistics for the specific character. By default, clients are not
+-- permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateCharacterStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterStatisticsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateCharacterStatisticsResult
@@ -1216,7 +1295,8 @@ function PlayFabClientApi.UpdateCharacterStatistics(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateCharacterStatistics", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+-- Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to
+-- update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdatePlayerStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdatePlayerStatisticsResult
@@ -1225,7 +1305,11 @@ function PlayFabClientApi.UpdatePlayerStatistics(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdatePlayerStatistics", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+-- or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+-- Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+-- sharing data between a very small number of players, please see our guide:
+-- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateSharedGroupData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateSharedGroupDataResult
@@ -1261,7 +1345,8 @@ function PlayFabClientApi.UpdateUserTitleDisplayName(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateUserTitleDisplayName", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+-- Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
+-- purchased catalog item
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateAmazonIAPReceipt
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateAmazonReceiptResult
@@ -1279,7 +1364,8 @@ function PlayFabClientApi.ValidateGooglePlayPurchase(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+-- Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
+-- catalog item
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateIOSReceipt
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateIOSReceiptResult
@@ -1288,7 +1374,8 @@ function PlayFabClientApi.ValidateIOSReceipt(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ValidateIOSReceipt", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+-- Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
+-- purchased catalog item
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ValidateWindowsStoreReceipt
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ValidateWindowsReceiptResult

@@ -21,7 +21,8 @@ function PlayFabServerApi.AddCharacterVirtualCurrency(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+-- Adds the Friend user to the friendlist of the user with PlayFabId. At least one of
+-- FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddFriend
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddFriendRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
@@ -39,7 +40,9 @@ function PlayFabServerApi.AddPlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+-- users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
+-- small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddSharedGroupMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddSharedGroupMembersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddSharedGroupMembersResult
@@ -93,7 +96,10 @@ function PlayFabServerApi.ConsumeItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/ConsumeItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
+-- group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+-- between a very small number of players, please see our guide:
+-- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/CreateSharedGroup
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CreateSharedGroupRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CreateSharedGroupResult
@@ -111,7 +117,9 @@ function PlayFabServerApi.DeleteCharacterFromUser(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteCharacterFromUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+-- sharing data between a very small number of players, please see our guide:
+-- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeleteSharedGroup
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteSharedGroupRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
@@ -138,7 +146,8 @@ function PlayFabServerApi.DeregisterGame(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+-- Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
+-- added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/EvaluateRandomResultTable
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableResult
@@ -156,7 +165,8 @@ function PlayFabServerApi.ExecuteCloudScript(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/ExecuteCloudScript", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+-- Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+-- GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetAllSegments
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsResult
@@ -165,7 +175,8 @@ function PlayFabServerApi.GetAllSegments(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetAllSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+-- Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+-- evaluated with the parent PlayFabId to guarantee uniqueness.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetAllUsersCharacters
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersResult
@@ -237,7 +248,13 @@ function PlayFabServerApi.GetCharacterStatistics(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+-- This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+-- URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+-- content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+-- the query to retrieve the data will fail. See this post for more information:
+-- https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+-- Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+-- apply.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetContentDownloadUrl
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetContentDownloadUrlRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetContentDownloadUrlResult
@@ -246,7 +263,8 @@ function PlayFabServerApi.GetContentDownloadUrl(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetContentDownloadUrl", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+-- Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the
+-- leaderboard
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetFriendLeaderboard
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendLeaderboardRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult
@@ -255,7 +273,8 @@ function PlayFabServerApi.GetFriendLeaderboard(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetFriendLeaderboard", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+-- Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from
+-- linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetFriendsList
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListResult
@@ -300,7 +319,8 @@ function PlayFabServerApi.GetLeaderboardForUserCharacters(request, onSuccess, on
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetLeaderboardForUserCharacters", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)             may be returned. All parameters default to false.
+-- Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
+-- may be returned. All parameters default to false.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerCombinedInfo
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoResult
@@ -327,7 +347,10 @@ function PlayFabServerApi.GetPlayerSegments(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+-- Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+-- the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+-- on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+-- in the results. AB Test segments are currently not supported by this operation.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayersInSegment
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersInSegmentRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersInSegmentResult
@@ -372,7 +395,8 @@ function PlayFabServerApi.GetPlayFabIDsFromFacebookIDs(request, onSuccess, onErr
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+-- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+-- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromSteamIDs
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsResult
@@ -390,7 +414,8 @@ function PlayFabServerApi.GetPublisherData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+-- Retrieves the configuration information for the specified random results tables for the title, including all ItemId
+-- values and weights
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetRandomResultTables
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesResult
@@ -399,7 +424,9 @@ function PlayFabServerApi.GetRandomResultTables(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
+-- public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+-- please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetSharedGroupData
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataResult
@@ -525,7 +552,8 @@ function PlayFabServerApi.GetUserReadOnlyData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+-- Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+-- with the parent PlayFabId to guarantee uniqueness.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GrantCharacterToUser
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserResult
@@ -606,7 +634,8 @@ function PlayFabServerApi.NotifyMatchmakerPlayerLeft(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Server/NotifyMatchmakerPlayerLeft", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy->Catalogs tab in the PlayFab Game Manager.
+-- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+-- Economy->Catalogs tab in the PlayFab Game Manager.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RedeemCoupon
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemCouponRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemCouponResult
@@ -660,7 +689,10 @@ function PlayFabServerApi.RemovePlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+-- group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+-- will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+-- guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemoveSharedGroupMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveSharedGroupMembersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveSharedGroupMembersResult
@@ -669,7 +701,8 @@ function PlayFabServerApi.RemoveSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveSharedGroupMembers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
+-- Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service
+-- representatives for the title can take action concerning potentially toxic players.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/ReportPlayer
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerResult
@@ -705,7 +738,8 @@ function PlayFabServerApi.RevokeInventoryItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+-- Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
+-- Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendPushNotification
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult
@@ -750,7 +784,8 @@ function PlayFabServerApi.SetGameServerInstanceTags(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+-- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+-- secret use the Admin or Server API method SetPlayerSecret.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetPlayerSecret
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretResult
@@ -786,7 +821,8 @@ function PlayFabServerApi.SetTitleInternalData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetTitleInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Decrements the character's balance of the specified virtual currency by the stated amount
+-- Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+-- balance negative with this API.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SubtractCharacterVirtualCurrency
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubtractCharacterVirtualCurrencyRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyCharacterVirtualCurrencyResult
@@ -795,7 +831,8 @@ function PlayFabServerApi.SubtractCharacterVirtualCurrency(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Decrements the user's balance of the specified virtual currency by the stated amount
+-- Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+-- balance negative with this API.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SubtractUserVirtualCurrency
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubtractUserVirtualCurrencyRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyUserVirtualCurrencyResult
@@ -804,7 +841,9 @@ function PlayFabServerApi.SubtractUserVirtualCurrency(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+-- Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
+-- returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses >
+-- 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlockContainerInstance
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerInstanceRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemResult
@@ -813,7 +852,10 @@ function PlayFabServerApi.UnlockContainerInstance(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlockContainerInstance", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+-- Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
+-- using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
+-- are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of
+-- ConsumeItem.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlockContainerItem
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemResult
@@ -885,7 +927,11 @@ function PlayFabServerApi.UpdatePlayerStatistics(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdatePlayerStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+-- Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+-- or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+-- Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+-- designed for sharing data between a very small number of players, please see our guide:
+-- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateSharedGroupData
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateSharedGroupDataRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateSharedGroupDataResult
