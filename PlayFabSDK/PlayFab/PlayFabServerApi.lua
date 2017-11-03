@@ -738,6 +738,16 @@ function PlayFabServerApi.RevokeInventoryItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
+-- email template
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailResult
+function PlayFabServerApi.SendCustomAccountRecoveryEmail(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
 -- Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendPushNotification

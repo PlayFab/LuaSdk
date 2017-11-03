@@ -62,6 +62,15 @@ function PlayFabClientApi.AddGenericID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddGenericID", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Adds or updates a contact email to the player's profile
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddOrUpdateContactEmail
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailResult
+function PlayFabClientApi.AddOrUpdateContactEmail(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/AddOrUpdateContactEmail", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
 -- users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
 -- players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
@@ -1046,6 +1055,15 @@ function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterWithWindowsHello", request, nil, nil, onSuccess, onError)
+end
+
+-- Removes a contact email from the player's profile
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RemoveContactEmail
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailResult
+function PlayFabClientApi.RemoveContactEmail(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/RemoveContactEmail", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Removes a specified user from the friend list of the local user
