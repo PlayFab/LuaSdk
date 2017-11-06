@@ -748,6 +748,15 @@ function PlayFabServerApi.SendCustomAccountRecoveryEmail(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Sends an email based on an email template to a player's contact email
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendEmailFromTemplate
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateResult
+function PlayFabServerApi.SendEmailFromTemplate(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/SendEmailFromTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
 -- Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendPushNotification

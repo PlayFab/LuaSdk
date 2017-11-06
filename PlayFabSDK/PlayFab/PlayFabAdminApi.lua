@@ -282,6 +282,15 @@ function PlayFabAdminApi.GetPlayerIdFromAuthToken(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetPlayerIdFromAuthToken", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves the player's profile
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetPlayerProfile
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayerProfileResult
+function PlayFabAdminApi.GetPlayerProfile(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetPlayerProfile", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- List all segments that a player currently belongs to at this moment in time.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetPlayerSegments
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayersSegmentsRequest
