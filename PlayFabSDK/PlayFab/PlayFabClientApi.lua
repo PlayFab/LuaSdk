@@ -62,7 +62,7 @@ function PlayFabClientApi.AddGenericID(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/AddGenericID", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Adds or updates a contact email to the player's profile
+-- Adds or updates a contact email to the player's profile.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/AddOrUpdateContactEmail
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.AddOrUpdateContactEmailResult
@@ -342,6 +342,17 @@ end
 function PlayFabClientApi.GetLeaderboardForUserCharacters(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetLeaderboardForUserCharacters", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
+-- completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
+-- create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPaymentToken
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPaymentTokenResult
+function PlayFabClientApi.GetPaymentToken(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPaymentToken", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
@@ -1057,7 +1068,7 @@ function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterWithWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
--- Removes a contact email from the player's profile
+-- Removes a contact email from the player's profile.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RemoveContactEmail
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RemoveContactEmailResult
@@ -1094,6 +1105,16 @@ end
 function PlayFabClientApi.RemoveSharedGroupMembers(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/RemoveSharedGroupMembers", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Write a PlayStream event to describe the provided player device information. This API method is not designed to be
+-- called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ReportDeviceInfo
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.DeviceInfoRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult
+function PlayFabClientApi.ReportDeviceInfo(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ReportDeviceInfo", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
