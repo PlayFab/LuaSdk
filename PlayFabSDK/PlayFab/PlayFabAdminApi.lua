@@ -702,8 +702,9 @@ function PlayFabAdminApi.RunTask(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RunTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to
--- change the password
+-- Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
+-- change the password.If an account recovery email template ID is provided, an email using the custom email template will
+-- be used.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/SendAccountRecoveryEmail
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SendAccountRecoveryEmailResult
