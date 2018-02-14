@@ -1137,7 +1137,8 @@ function PlayFabClientApi.RestoreIOSPurchases(request, onSuccess, onError)
 end
 
 -- Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
--- change the password
+-- change the password.If an account recovery email template ID is provided, an email using the custom email template will
+-- be used.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/SendAccountRecoveryEmail
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.SendAccountRecoveryEmailResult
