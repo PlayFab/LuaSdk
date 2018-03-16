@@ -693,6 +693,15 @@ function PlayFabAdminApi.RevokeInventoryItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Revokes access for up to 25 items across multiple users and characters.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/RevokeInventoryItems
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItemsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RevokeInventoryItemsResult
+function PlayFabAdminApi.RevokeInventoryItems(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/RevokeInventoryItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Run a task immediately regardless of its schedule.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/RunTask
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RunTaskRequest
