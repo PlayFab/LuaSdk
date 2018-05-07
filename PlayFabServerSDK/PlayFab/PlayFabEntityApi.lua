@@ -206,6 +206,15 @@ function PlayFabEntityApi.GetProfile(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Profile/GetProfile", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Retrieves the entity's profile.
+-- API Method Documentation: https://api.playfab.com/Documentation/Profile/method/GetProfiles
+-- Request Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.GetEntityProfilesRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.GetEntityProfilesResponse
+function PlayFabEntityApi.GetProfiles(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Profile/GetProfiles", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Initiates file uploads to an entity's profile.
 -- API Method Documentation: https://api.playfab.com/Documentation/File/method/InitiateFileUploads
 -- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.InitiateFileUploadsRequest
