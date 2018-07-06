@@ -13,7 +13,7 @@
 local PlayFabSettings = {
     _internalSettings = {
         sessionTicket = nil,
-        sdkVersionString = "LuaSdk_0.34.180618",
+        sdkVersionString = "LuaSdk_0.35.180705",
         buildIdentifier = "jbuild_luasdk_0"
     },
     settings = {
