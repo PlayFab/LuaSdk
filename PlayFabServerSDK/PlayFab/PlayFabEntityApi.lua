@@ -120,6 +120,15 @@ function PlayFabEntityApi.DeleteRole(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Group/DeleteRole", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Executes CloudScript using the Entity Profile
+-- API Method Documentation: https://api.playfab.com/Documentation/CloudScript/method/ExecuteEntityCloudScript
+-- Request Documentation: https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.ExecuteEntityCloudScriptRequest
+-- Result Documentation: https://api.playfab.com/Documentation/CloudScript/datatype/PlayFab.CloudScript.Models/PlayFab.CloudScript.Models.ExecuteCloudScriptResult
+function PlayFabEntityApi.ExecuteEntityCloudScript(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/CloudScript/ExecuteEntityCloudScript", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Finalize file uploads to an entity's profile.
 -- API Method Documentation: https://api.playfab.com/Documentation/File/method/FinalizeFileUploads
 -- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.FinalizeFileUploadsRequest
@@ -375,6 +384,15 @@ end
 function PlayFabEntityApi.UpdateRole(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/UpdateRole", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Write batches of entity based events to PlayStream.
+-- API Method Documentation: https://api.playfab.com/Documentation/Event/method/WriteEvents
+-- Request Documentation: https://api.playfab.com/Documentation/Event/datatype/PlayFab.Event.Models/PlayFab.Event.Models.WriteEventsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Event/datatype/PlayFab.Event.Models/PlayFab.Event.Models.WriteEventsResponse
+function PlayFabEntityApi.WriteEvents(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Event/WriteEvents", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 return PlayFabEntityApi
