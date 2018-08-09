@@ -437,6 +437,15 @@ function PlayFabClientApi.GetPlayFabIDsFromFacebookIDs(request, onSuccess, onErr
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromFacebookIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Game identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromFacebookInstantGamesIds
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookInstantGamesIdsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromFacebookInstantGamesIdsResult
+function PlayFabClientApi.GetPlayFabIDsFromFacebookInstantGamesIds(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center
 -- Programming Guide as the Player Identifier).
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromGameCenterIDs
@@ -477,6 +486,15 @@ end
 function PlayFabClientApi.GetPlayFabIDsFromKongregateIDs(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
+function PlayFabClientApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
@@ -674,6 +692,15 @@ function PlayFabClientApi.LinkFacebookAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkFacebookAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Links the Facebook Instant Games Id to the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkFacebookInstantGamesId
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookInstantGamesIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkFacebookInstantGamesIdResult
+function PlayFabClientApi.LinkFacebookInstantGamesId(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkFacebookInstantGamesId", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkGameCenterAccount
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkGameCenterAccountRequest
@@ -708,6 +735,15 @@ end
 function PlayFabClientApi.LinkKongregate(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkKongregate", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Links the NintendoSwitchDeviceId to the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkNintendoSwitchDeviceId
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkNintendoSwitchDeviceIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkNintendoSwitchDeviceIdResult
+function PlayFabClientApi.LinkNintendoSwitchDeviceId(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
@@ -823,6 +859,27 @@ function PlayFabClientApi.LoginWithFacebook(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithFacebook", request, nil, nil, onSuccess, onError)
 end
 
+-- Signs the user in using a Facebook Instant Games ID, returning a session identifier that can subsequently be used for
+-- API calls which require an authenticated user. Requires Facebook Instant Games to be configured.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithFacebookInstantGamesId
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithFacebookInstantGamesIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.LoginWithFacebookInstantGamesId(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.Entity.EntityToken end
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithFacebookInstantGamesId", request, nil, nil, onSuccess, onError)
+end
+
 -- Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
 -- used for API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithGameCenter
@@ -903,6 +960,27 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithKongregate", request, nil, nil, onSuccess, onError)
+end
+
+-- Signs the user in using a Nintendo Switch Device ID, returning a session identifier that can subsequently be used for
+-- API calls which require an authenticated user
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithNintendoSwitchDeviceId
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithNintendoSwitchDeviceIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.LoginWithNintendoSwitchDeviceId(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.Entity.EntityToken end
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoSwitchDeviceId", request, nil, nil, onSuccess, onError)
 end
 
 -- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
@@ -1246,6 +1324,15 @@ function PlayFabClientApi.UnlinkFacebookAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkFacebookAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Unlinks the related Facebook Instant Game Ids from the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkFacebookInstantGamesId
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkFacebookInstantGamesIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkFacebookInstantGamesIdResult
+function PlayFabClientApi.UnlinkFacebookInstantGamesId(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkFacebookInstantGamesId", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Unlinks the related Game Center account from the user's PlayFab account
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkGameCenterAccount
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkGameCenterAccountRequest
@@ -1281,6 +1368,15 @@ end
 function PlayFabClientApi.UnlinkKongregate(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkKongregate", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkNintendoSwitchDeviceId
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkNintendoSwitchDeviceIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkNintendoSwitchDeviceIdResult
+function PlayFabClientApi.UnlinkNintendoSwitchDeviceId(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Unlinks the related Steam account from the user's PlayFab account

@@ -318,8 +318,8 @@ function PlayFabServerApi.GetLeaderboardForUserCharacters(request, onSuccess, on
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetLeaderboardForUserCharacters", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
--- may be returned. All parameters default to false.
+-- Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id) may be
+-- returned. All parameters default to false.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerCombinedInfo
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoResult
@@ -392,6 +392,24 @@ end
 function PlayFabServerApi.GetPlayFabIDsFromFacebookIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromFacebookInstantGamesIds
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookInstantGamesIdsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookInstantGamesIdsResult
+function PlayFabServerApi.GetPlayFabIDsFromFacebookInstantGamesIds(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
+function PlayFabServerApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
