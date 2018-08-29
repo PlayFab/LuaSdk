@@ -15,7 +15,7 @@ local PlayFabGroupsApi = {
 -- Accepts an outstanding invitation to to join a group
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/AcceptGroupApplication
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.AcceptGroupApplicationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.AcceptGroupApplication(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/AcceptGroupApplication", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -24,7 +24,7 @@ end
 -- Accepts an invitation to join a group
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/AcceptGroupInvitation
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.AcceptGroupInvitationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.AcceptGroupInvitation(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/AcceptGroupInvitation", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -33,7 +33,7 @@ end
 -- Adds members to a group or role.
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/AddMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.AddMembersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.AddMembers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/AddMembers", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -51,7 +51,7 @@ end
 -- Blocks a list of entities from joining a group.
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/BlockEntity
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.BlockEntityRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.BlockEntity(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/BlockEntity", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -60,7 +60,7 @@ end
 -- Changes the role membership of a list of entities from one role to another.
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/ChangeMemberRole
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.ChangeMemberRoleRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.ChangeMemberRole(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/ChangeMemberRole", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -87,7 +87,7 @@ end
 -- Deletes a group and all roles, invitations, join requests, and blocks associated with it.
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/DeleteGroup
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.DeleteGroupRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.DeleteGroup(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/DeleteGroup", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -96,7 +96,7 @@ end
 -- Deletes an existing role in a group.
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/DeleteRole
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.DeleteRoleRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.DeleteRole(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/DeleteRole", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -186,7 +186,7 @@ end
 -- Removes an application to join a group
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/RemoveGroupApplication
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.RemoveGroupApplicationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.RemoveGroupApplication(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/RemoveGroupApplication", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -195,7 +195,7 @@ end
 -- Removes an invitation join a group
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/RemoveGroupInvitation
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.RemoveGroupInvitationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.RemoveGroupInvitation(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/RemoveGroupInvitation", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -204,7 +204,7 @@ end
 -- Removes members from a group.
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/RemoveMembers
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.RemoveMembersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.RemoveMembers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/RemoveMembers", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
@@ -213,7 +213,7 @@ end
 -- Unblocks a list of entities from joining a group
 -- API Method Documentation: https://api.playfab.com/Documentation/Group/method/UnblockEntity
 -- Request Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.UnblockEntityRequest
--- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Group/datatype/PlayFab.Group.Models/PlayFab.Group.Models.EmptyResponse
 function PlayFabGroupsApi.UnblockEntity(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Group/UnblockEntity", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)

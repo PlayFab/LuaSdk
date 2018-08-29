@@ -150,6 +150,16 @@ function PlayFabClientApi.ConsumeItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeItem", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
+-- player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ConsumeXboxEntitlements
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeXboxEntitlementsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumeXboxEntitlementsResult
+function PlayFabClientApi.ConsumeXboxEntitlements(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeXboxEntitlements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
 -- group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
 -- between a very small number of players, please see our guide:
@@ -773,6 +783,15 @@ function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkXboxAccount
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkXboxAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkXboxAccountResult
+function PlayFabClientApi.LinkXboxAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkXboxAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
 -- API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithAndroidDeviceID
@@ -1070,6 +1089,27 @@ function PlayFabClientApi.LoginWithWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
+-- Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
+-- which require an authenticated user
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithXbox
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithXboxRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.LoginWithXbox(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.Entity.EntityToken end
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithXbox", request, nil, nil, onSuccess, onError)
+end
+
 -- Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
 -- active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
 -- parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
@@ -1215,7 +1255,7 @@ end
 -- called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ReportDeviceInfo
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.DeviceInfoRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResponse
 function PlayFabClientApi.ReportDeviceInfo(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/ReportDeviceInfo", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
@@ -1406,6 +1446,15 @@ function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Unlinks the related Xbox Live account from the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkXboxAccount
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkXboxAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkXboxAccountResult
+function PlayFabClientApi.UnlinkXboxAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkXboxAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
 -- If the container (and key when relevant) are consumable (RemainingUses > 0), their RemainingUses will be decremented,
 -- consistent with the operation of ConsumeItem.
@@ -1431,7 +1480,7 @@ end
 -- Update the avatar URL of the player
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UpdateAvatarUrl
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UpdateAvatarUrlRequest
--- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResponse
 function PlayFabClientApi.UpdateAvatarUrl(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UpdateAvatarUrl", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
