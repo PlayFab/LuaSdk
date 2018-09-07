@@ -48,7 +48,8 @@ function PlayFabProfilesApi.SetGlobalPolicy(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Profile/SetGlobalPolicy", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Updates the entity's language
+-- Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
+-- language, Master Player Account language, and then title default language if the first two aren't set or supported.
 -- API Method Documentation: https://api.playfab.com/Documentation/Profile/method/SetProfileLanguage
 -- Request Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.SetProfileLanguageRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.SetProfileLanguageResponse
