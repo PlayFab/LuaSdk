@@ -13,10 +13,13 @@
 local PlayFabSettings = {
     _internalSettings = {
         sessionTicket = nil,
-        sdkVersionString = "LuaSdk_0.41.180906",
-        buildIdentifier = "jbuild_luasdk__sdk-slave2016-1_0"
+        sdkVersionString = "LuaSdk_0.42.180917",
+        buildIdentifier = "jbuild_luasdk__sdk-slave2016-2_0",
+        requestGetParams = {["sdk"] = "LuaSdk_0.42.180917"}
     },
     settings = {
+        productionUrl = ".playfabapi.com",
+        verticalName = nil, -- The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
         devSecretKey = nil,
         disableAdvertising = false,
         advertisingIdType = nil,
@@ -26,5 +29,33 @@ local PlayFabSettings = {
         titleId = nil
     }
 }
+
+function PlayFabSettings.GetFullUrl(urlPath)
+    local fullUrl = "";
+    if (not (string.sub(PlayFabSettings.settings.productionUrl, 1, 4) == "http")) then
+        if (PlayFabSettings.settings.verticalName) then
+            fullUrl = "https://" .. PlayFabSettings.settings.verticalName
+        else
+            fullUrl = "https://" .. PlayFabSettings.settings.titleId
+        end
+    end
+
+    fullUrl = fullUrl .. PlayFabSettings.settings.productionUrl .. urlPath
+
+    local getParams = PlayFabSettings._internalSettings.requestGetParams
+    local firstParam = true
+    for key, value in pairs(getParams) do
+        if (firstParam) then
+            fullUrl = fullUrl .. "?"
+            firstParam = false
+        else
+            fullUrl = fullUrl .. "&"
+        end
+
+        fullUrl = fullUrl .. key .. "=" .. value
+    end
+
+    return fullUrl
+end
 
 return PlayFabSettings

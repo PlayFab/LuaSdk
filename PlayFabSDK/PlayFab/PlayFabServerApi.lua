@@ -117,6 +117,15 @@ function PlayFabServerApi.DeleteCharacterFromUser(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteCharacterFromUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Removes a user's player account from a title and deletes all associated data
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeletePlayer
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerResult
+function PlayFabServerApi.DeletePlayer(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/DeletePlayer", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
 -- sharing data between a very small number of players, please see our guide:
 -- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
@@ -128,7 +137,7 @@ function PlayFabServerApi.DeleteSharedGroup(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteSharedGroup", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+-- Deletes custom data, all account linkages, and statistics.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeleteUsers
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteUsersRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteUsersResult
