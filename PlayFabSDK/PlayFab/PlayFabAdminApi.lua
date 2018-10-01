@@ -300,15 +300,6 @@ function PlayFabAdminApi.GetMatchmakerGameModes(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetMatchmakerGameModes", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Get a matchmaking queue configuration.
--- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetMatchmakingQueue
--- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakingQueueRequest
--- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetMatchmakingQueueResult
-function PlayFabAdminApi.GetMatchmakingQueue(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetMatchmakingQueue", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Get the list of titles that the player has played
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/GetPlayedTitleList
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.GetPlayedTitleListRequest
@@ -593,15 +584,6 @@ function PlayFabAdminApi.IncrementPlayerStatisticVersion(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- List all matchmaking queue configs.
--- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ListMatchmakingQueues
--- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListMatchmakingQueuesRequest
--- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListMatchmakingQueuesResult
-function PlayFabAdminApi.ListMatchmakingQueues(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/ListMatchmakingQueues", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Retrieves the build details for all game server executables which are currently defined for the title
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ListServerBuilds
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListBuildsRequest
@@ -645,15 +627,6 @@ end
 function PlayFabAdminApi.RefundPurchase(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RefundPurchase", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Remove a matchmaking queue config.
--- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/RemoveMatchmakingQueue
--- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveMatchmakingQueueRequest
--- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.RemoveMatchmakingQueueResult
-function PlayFabAdminApi.RemoveMatchmakingQueue(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/RemoveMatchmakingQueue", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
@@ -783,15 +756,6 @@ end
 function PlayFabAdminApi.SetCatalogItems(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetCatalogItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Create or update a matchmaking queue configuration.
--- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/SetMatchmakingQueue
--- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetMatchmakingQueueRequest
--- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.SetMatchmakingQueueResult
-function PlayFabAdminApi.SetMatchmakingQueue(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/SetMatchmakingQueue", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Sets or resets the player's secret. Player secrets are used to sign API requests.
