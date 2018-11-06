@@ -528,6 +528,15 @@ function PlayFabClientApi.GetPlayFabIDsFromTwitchIDs(request, onSuccess, onError
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromTwitchIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromXboxLiveIDs
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromXboxLiveIDsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromXboxLiveIDsResult
+function PlayFabClientApi.GetPlayFabIDsFromXboxLiveIDs(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromXboxLiveIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the key-value store of custom publisher settings
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPublisherData
 -- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPublisherDataRequest
@@ -754,6 +763,16 @@ end
 function PlayFabClientApi.LinkNintendoSwitchDeviceId(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Links an OpenID Connect account to a user's PlayFab account, based on an existing relationship between a title and an
+-- Open ID Connect provider and the OpenId Connect JWT from that provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkOpenIdConnect
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkOpenIdConnectRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResult
+function PlayFabClientApi.LinkOpenIdConnect(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkOpenIdConnect", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
@@ -1000,6 +1019,27 @@ function PlayFabClientApi.LoginWithNintendoSwitchDeviceId(request, onSuccess, on
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoSwitchDeviceId", request, nil, nil, onSuccess, onError)
+end
+
+-- Logs in a user with an Open ID Connect JWT created by an existing relationship between a title and an Open ID Connect
+-- provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithOpenIdConnect
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithOpenIdConnectRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.LoginWithOpenIdConnect(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.Entity.EntityToken end
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithOpenIdConnect", request, nil, nil, onSuccess, onError)
 end
 
 -- Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
@@ -1417,6 +1457,16 @@ end
 function PlayFabClientApi.UnlinkNintendoSwitchDeviceId(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Unlinks an OpenID Connect account from a user's PlayFab account, based on the connection ID of an existing relationship
+-- between a title and an Open ID Connect provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkOpenIdConnect
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UninkOpenIdConnectRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResponse
+function PlayFabClientApi.UnlinkOpenIdConnect(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkOpenIdConnect", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Unlinks the related Steam account from the user's PlayFab account

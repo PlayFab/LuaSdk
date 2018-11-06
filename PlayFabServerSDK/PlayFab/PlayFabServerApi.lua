@@ -137,15 +137,6 @@ function PlayFabServerApi.DeleteSharedGroup(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteSharedGroup", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Deletes custom data, all account linkages, and statistics.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeleteUsers
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteUsersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteUsersResult
-function PlayFabServerApi.DeleteUsers(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Inform the matchmaker that a Game Server Instance is removed.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeregisterGame
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameRequest
@@ -431,6 +422,15 @@ function PlayFabServerApi.GetPlayFabIDsFromSteamIDs(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromSteamIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromXboxLiveIDs
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsResult
+function PlayFabServerApi.GetPlayFabIDsFromXboxLiveIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromXboxLiveIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves the key-value store of custom publisher settings
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPublisherData
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataRequest
@@ -448,6 +448,15 @@ end
 function PlayFabServerApi.GetRandomResultTables(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetServerCustomIDsFromPlayFabIDs
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsResult
+function PlayFabServerApi.GetServerCustomIDsFromPlayFabIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetServerCustomIDsFromPlayFabIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
@@ -613,6 +622,35 @@ end
 function PlayFabServerApi.GrantItemsToUsers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LinkXboxAccount
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountResult
+function PlayFabServerApi.LinkXboxAccount(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkXboxAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
+-- and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LoginWithServerCustomId
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithServerCustomIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult
+function PlayFabServerApi.LoginWithServerCustomId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
+-- subsequently be used for API calls which require an authenticated user
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LoginWithXbox
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult
+function PlayFabServerApi.LoginWithXbox(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithXbox", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Modifies the number of remaining uses of a player's inventory item
@@ -893,6 +931,15 @@ end
 function PlayFabServerApi.SubtractUserVirtualCurrency(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Unlinks the related Xbox Live account from the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlinkXboxAccount
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountResult
+function PlayFabServerApi.UnlinkXboxAccount(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkXboxAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
