@@ -138,6 +138,15 @@ function PlayFabMultiplayerApi.GetTitleEnabledForMultiplayerServersStatus(reques
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Lists archived multiplayer server sessions for a build.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/ListArchivedMultiplayerServers
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListMultiplayerServersRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListMultiplayerServersResponse
+function PlayFabMultiplayerApi.ListArchivedMultiplayerServers(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListArchivedMultiplayerServers", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Lists multiplayer server game assets for a title.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/ListAssetSummaries
 -- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListAssetSummariesRequest
