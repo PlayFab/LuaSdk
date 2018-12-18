@@ -150,6 +150,15 @@ function PlayFabClientApi.ConsumeItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeItem", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ConsumePSNEntitlements
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumePSNEntitlementsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.ConsumePSNEntitlementsResult
+function PlayFabClientApi.ConsumePSNEntitlements(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumePSNEntitlements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
 -- player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/ConsumeXboxEntitlements
@@ -507,6 +516,15 @@ function PlayFabClientApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSu
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromPSNAccountIDs
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromPSNAccountIDsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.GetPlayFabIDsFromPSNAccountIDsResult
+function PlayFabClientApi.GetPlayFabIDsFromPSNAccountIDs(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromPSNAccountIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
 -- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/GetPlayFabIDsFromSteamIDs
@@ -773,6 +791,15 @@ end
 function PlayFabClientApi.LinkOpenIdConnect(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkOpenIdConnect", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LinkPSNAccount
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkPSNAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LinkPSNAccountResult
+function PlayFabClientApi.LinkPSNAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkPSNAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
@@ -1065,6 +1092,27 @@ function PlayFabClientApi.LoginWithPlayFab(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithPlayFab", request, nil, nil, onSuccess, onError)
 end
 
+-- Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently
+-- be used for API calls which require an authenticated user
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithPSN
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginWithPSNRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.LoginResult
+function PlayFabClientApi.LoginWithPSN(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.Entity.EntityToken end
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithPSN", request, nil, nil, onSuccess, onError)
+end
+
 -- Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
 -- API calls which require an authenticated user
 -- API Method Documentation: https://api.playfab.com/Documentation/Client/method/LoginWithSteam
@@ -1200,6 +1248,15 @@ end
 function PlayFabClientApi.RedeemCoupon(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/RedeemCoupon", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Uses the supplied OAuth code to refresh the internally cached player PSN auth token
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/RefreshPSNAuthToken
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.RefreshPSNAuthTokenRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.EmptyResponse
+function PlayFabClientApi.RefreshPSNAuthToken(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/RefreshPSNAuthToken", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Registers the iOS device to receive push notifications
@@ -1467,6 +1524,15 @@ end
 function PlayFabClientApi.UnlinkOpenIdConnect(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkOpenIdConnect", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Unlinks the related PSN account from the user's PlayFab account
+-- API Method Documentation: https://api.playfab.com/Documentation/Client/method/UnlinkPSNAccount
+-- Request Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkPSNAccountRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Client/datatype/PlayFab.Client.Models/PlayFab.Client.Models.UnlinkPSNAccountResult
+function PlayFabClientApi.UnlinkPSNAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkPSNAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Unlinks the related Steam account from the user's PlayFab account
