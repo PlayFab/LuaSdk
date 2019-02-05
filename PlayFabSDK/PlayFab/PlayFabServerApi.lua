@@ -412,6 +412,15 @@ function PlayFabServerApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSu
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromPSNAccountIDs
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsResult
+function PlayFabServerApi.GetPlayFabIDsFromPSNAccountIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromPSNAccountIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
 -- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromSteamIDs

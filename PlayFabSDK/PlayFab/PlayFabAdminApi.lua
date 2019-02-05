@@ -21,6 +21,15 @@ function PlayFabAdminApi.AbortTaskInstance(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/AbortTaskInstance", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Update news item to include localized version
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/AddLocalizedNews
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddLocalizedNewsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddLocalizedNewsResult
+function PlayFabAdminApi.AddLocalizedNews(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/AddLocalizedNews", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Adds a new news item to the title's news feed
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/AddNews
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.AddNewsRequest
