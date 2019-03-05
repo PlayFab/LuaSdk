@@ -113,6 +113,15 @@ function PlayFabAdminApi.CreateCloudScriptTask(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/CreateCloudScriptTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Registers a relationship between a title and an Open ID Connect provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/CreateOpenIdConnection
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.CreateOpenIdConnectionRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResponse
+function PlayFabAdminApi.CreateOpenIdConnection(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/CreateOpenIdConnection", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
 -- this API returns.
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/CreatePlayerSharedSecret
@@ -149,6 +158,15 @@ end
 function PlayFabAdminApi.DeleteMasterPlayerAccount(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Removes a relationship between a title and an OpenID Connect provider.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/DeleteOpenIdConnection
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.DeleteOpenIdConnectionRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResponse
+function PlayFabAdminApi.DeleteOpenIdConnection(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteOpenIdConnection", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Removes a user's player account from a title and deletes all associated data
@@ -593,6 +611,15 @@ function PlayFabAdminApi.IncrementPlayerStatisticVersion(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves a list of all Open ID Connect providers registered to a title.
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ListOpenIdConnection
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListOpenIdConnectionRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListOpenIdConnectionResponse
+function PlayFabAdminApi.ListOpenIdConnection(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/ListOpenIdConnection", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves the build details for all game server executables which are currently defined for the title
 -- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/ListServerBuilds
 -- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.ListBuildsRequest
@@ -867,6 +894,15 @@ end
 function PlayFabAdminApi.UpdateCloudScript(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateCloudScript", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Modifies data and credentials for an existing relationship between a title and an Open ID Connect provider
+-- API Method Documentation: https://api.playfab.com/Documentation/Admin/method/UpdateOpenIdConnection
+-- Request Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.UpdateOpenIdConnectionRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Admin/datatype/PlayFab.Admin.Models/PlayFab.Admin.Models.EmptyResponse
+function PlayFabAdminApi.UpdateOpenIdConnection(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateOpenIdConnection", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available
