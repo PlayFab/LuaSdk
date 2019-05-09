@@ -157,15 +157,6 @@ function PlayFabMultiplayerApi.GetMatch(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Match/GetMatch", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Get a matchmaking queue configuration.
--- API Method Documentation: https://api.playfab.com/Documentation/Match/method/GetMatchmakingQueue
--- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.GetMatchmakingQueueRequest
--- Result Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.GetMatchmakingQueueResult
-function PlayFabMultiplayerApi.GetMatchmakingQueue(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Match/GetMatchmakingQueue", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
-end
-
 -- Get a matchmaking ticket by ticket Id.
 -- API Method Documentation: https://api.playfab.com/Documentation/Match/method/GetMatchmakingTicket
 -- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.GetMatchmakingTicketRequest
@@ -209,6 +200,15 @@ end
 function PlayFabMultiplayerApi.GetTitleEnabledForMultiplayerServersStatus(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Gets the quotas for a title in relation to multiplayer servers.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/GetTitleMultiplayerServersQuotas
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.GetTitleMultiplayerServersQuotasRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.GetTitleMultiplayerServersQuotasResponse
+function PlayFabMultiplayerApi.GetTitleMultiplayerServersQuotas(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetTitleMultiplayerServersQuotas", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Join a matchmaking ticket.
@@ -274,15 +274,6 @@ function PlayFabMultiplayerApi.ListContainerImageTags(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListContainerImageTags", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- List all matchmaking queue configs.
--- API Method Documentation: https://api.playfab.com/Documentation/Match/method/ListMatchmakingQueues
--- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.ListMatchmakingQueuesRequest
--- Result Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.ListMatchmakingQueuesResult
-function PlayFabMultiplayerApi.ListMatchmakingQueues(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Match/ListMatchmakingQueues", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
-end
-
 -- List all matchmaking ticket Ids the user is a member of.
 -- API Method Documentation: https://api.playfab.com/Documentation/Match/method/ListMatchmakingTicketsForPlayer
 -- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.ListMatchmakingTicketsForPlayerRequest
@@ -318,15 +309,6 @@ function PlayFabMultiplayerApi.ListVirtualMachineSummaries(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListVirtualMachineSummaries", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Remove a matchmaking queue config.
--- API Method Documentation: https://api.playfab.com/Documentation/Match/method/RemoveMatchmakingQueue
--- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.RemoveMatchmakingQueueRequest
--- Result Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.RemoveMatchmakingQueueResult
-function PlayFabMultiplayerApi.RemoveMatchmakingQueue(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Match/RemoveMatchmakingQueue", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
-end
-
 -- Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
 -- to request a server with player entity token.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/RequestMultiplayerServer
@@ -344,15 +326,6 @@ end
 function PlayFabMultiplayerApi.RolloverContainerRegistryCredentials(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/RolloverContainerRegistryCredentials", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
-end
-
--- Create or update a matchmaking queue configuration.
--- API Method Documentation: https://api.playfab.com/Documentation/Match/method/SetMatchmakingQueue
--- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.SetMatchmakingQueueRequest
--- Result Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.SetMatchmakingQueueResult
-function PlayFabMultiplayerApi.SetMatchmakingQueue(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Match/SetMatchmakingQueue", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Shuts down a multiplayer server session.
