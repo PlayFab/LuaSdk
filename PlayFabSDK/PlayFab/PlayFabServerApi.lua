@@ -31,6 +31,17 @@ function PlayFabServerApi.AddFriend(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddFriend", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+-- ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+-- authentication credentials, as the intent is that it is easily accessible by other players.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddGenericID
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddGenericIDRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
+function PlayFabServerApi.AddGenericID(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/AddGenericID", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddPlayerTag
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddPlayerTagRequest
@@ -124,6 +135,15 @@ end
 function PlayFabServerApi.DeletePlayer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeletePlayer", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Deletes push notification template for title
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeletePushNotificationTemplate
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateResult
+function PlayFabServerApi.DeletePushNotificationTemplate(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/DeletePushNotificationTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
@@ -403,6 +423,17 @@ function PlayFabServerApi.GetPlayFabIDsFromFacebookInstantGamesIds(request, onSu
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+-- service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+-- added to the player account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromGenericIDs
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsResult
+function PlayFabServerApi.GetPlayFabIDsFromGenericIDs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromGenericIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
@@ -633,6 +664,15 @@ function PlayFabServerApi.GrantItemsToUsers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Links the custom server identifier, generated by the title, to the user's PlayFab account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LinkServerCustomId
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdResult
+function PlayFabServerApi.LinkServerCustomId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Links the Xbox Live account associated with the provided access code to the user's PlayFab account
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LinkXboxAccount
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountRequest
@@ -753,6 +793,15 @@ function PlayFabServerApi.RemoveFriend(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Removes the specified generic service identifier from the player's PlayFab account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemoveGenericID
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveGenericIDRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
+function PlayFabServerApi.RemoveGenericID(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveGenericID", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemovePlayerTag
 -- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemovePlayerTagRequest
@@ -820,6 +869,15 @@ function PlayFabServerApi.RevokeInventoryItems(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeInventoryItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Saves push notification template for title
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SavePushNotificationTemplate
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateResult
+function PlayFabServerApi.SavePushNotificationTemplate(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/SavePushNotificationTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
 -- email template
 -- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
@@ -847,6 +905,16 @@ end
 function PlayFabServerApi.SendPushNotification(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SendPushNotification", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
+-- Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendPushNotificationFromTemplate
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationFromTemplateRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult
+function PlayFabServerApi.SendPushNotificationFromTemplate(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/SendPushNotificationFromTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the tag list for a specified user in the friend list of another user
@@ -940,6 +1008,15 @@ end
 function PlayFabServerApi.SubtractUserVirtualCurrency(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Unlinks the custom server identifier from the user's PlayFab account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlinkServerCustomId
+-- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdResult
+function PlayFabServerApi.UnlinkServerCustomId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Unlinks the related Xbox Live account from the user's PlayFab account
