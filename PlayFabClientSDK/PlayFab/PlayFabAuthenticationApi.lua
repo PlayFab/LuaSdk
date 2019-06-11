@@ -44,4 +44,13 @@ function PlayFabAuthenticationApi.GetEntityToken(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Authentication/GetEntityToken", request, authKey, authValue, onSuccess, onError)
 end
 
+-- Method for a server to validate a client provided EntityToken. Only callable by the title entity.
+-- API Method Documentation: https://api.playfab.com/Documentation/Authentication/method/ValidateEntityToken
+-- Request Documentation: https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenResponse
+function PlayFabAuthenticationApi.ValidateEntityToken(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Authentication/ValidateEntityToken", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 return PlayFabAuthenticationApi
