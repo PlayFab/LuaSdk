@@ -39,6 +39,15 @@ function PlayFabProfilesApi.GetProfiles(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Profile/GetProfiles", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Retrieves the title player accounts associated with the given master player account.
+-- API Method Documentation: https://api.playfab.com/Documentation/Profile/method/GetTitlePlayersFromMasterPlayerAccountIds
+-- Request Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.GetTitlePlayersFromMasterPlayerAccountIdsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.GetTitlePlayersFromMasterPlayerAccountIdsResponse
+function PlayFabProfilesApi.GetTitlePlayersFromMasterPlayerAccountIds(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Profile/GetTitlePlayersFromMasterPlayerAccountIds", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Sets the global title access policy
 -- API Method Documentation: https://api.playfab.com/Documentation/Profile/method/SetGlobalPolicy
 -- Request Documentation: https://api.playfab.com/Documentation/Profile/datatype/PlayFab.Profile.Models/PlayFab.Profile.Models.SetGlobalPolicyRequest
