@@ -309,6 +309,15 @@ function PlayFabMultiplayerApi.ListQosServers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListQosServers", request, nil, nil, onSuccess, onError)
 end
 
+-- Lists quality of service servers.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/ListQosServersForTitle
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListQosServersForTitleRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListQosServersForTitleResponse
+function PlayFabMultiplayerApi.ListQosServersForTitle(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListQosServersForTitle", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Lists virtual machines for a title.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/ListVirtualMachineSummaries
 -- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListVirtualMachineSummariesRequest
