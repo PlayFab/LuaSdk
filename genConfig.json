@@ -1,0 +1,6 @@
+{
+    "default": {
+        "templateFolder": "LuaSdk",
+        "versionKey": "luasdk"
+    }
+}
