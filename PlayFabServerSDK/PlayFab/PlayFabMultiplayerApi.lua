@@ -238,7 +238,8 @@ function PlayFabMultiplayerApi.ListAssetSummaries(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListAssetSummaries", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Lists summarized details of all multiplayer server builds for a title.
+-- Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+-- access is enabled, allows game client to request list of builds with player entity token.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/ListBuildSummaries
 -- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListBuildSummariesRequest
 -- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListBuildSummariesResponse
@@ -327,7 +328,7 @@ function PlayFabMultiplayerApi.ListVirtualMachineSummaries(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListVirtualMachineSummaries", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
+-- Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
 -- to request a server with player entity token.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/RequestMultiplayerServer
 -- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.RequestMultiplayerServerRequest
