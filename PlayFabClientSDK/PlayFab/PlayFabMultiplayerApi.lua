@@ -30,6 +30,15 @@ function PlayFabMultiplayerApi.CancelMatchmakingTicket(request, onSuccess, onErr
     IPlayFabHttps.MakePlayFabApiCall("/Match/CancelMatchmakingTicket", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Creates a multiplayer server build alias.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/CreateBuildAlias
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.CreateBuildAliasRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.BuildAliasDetailsResponse
+function PlayFabMultiplayerApi.CreateBuildAlias(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/CreateBuildAlias", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Creates a multiplayer server build with a custom container.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/CreateBuildWithCustomContainer
 -- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.CreateBuildWithCustomContainerRequest
@@ -94,6 +103,15 @@ function PlayFabMultiplayerApi.DeleteBuild(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/DeleteBuild", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Deletes a multiplayer server build alias.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/DeleteBuildAlias
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.DeleteBuildAliasRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.EmptyResponse
+function PlayFabMultiplayerApi.DeleteBuildAlias(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/DeleteBuildAlias", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Deletes a multiplayer server game certificate.
 -- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/DeleteCertificate
 -- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.DeleteCertificateRequest
@@ -137,6 +155,15 @@ end
 function PlayFabMultiplayerApi.GetBuild(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetBuild", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Gets a multiplayer server build alias.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/GetBuildAlias
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.GetBuildAliasRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.BuildAliasDetailsResponse
+function PlayFabMultiplayerApi.GetBuildAlias(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetBuildAlias", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Gets the credentials to the container registry.
@@ -236,6 +263,16 @@ end
 function PlayFabMultiplayerApi.ListAssetSummaries(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListAssetSummaries", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
+-- game client to request list of builds with player entity token.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/ListBuildAliases
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.MultiplayerEmptyRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.ListBuildAliasesForTitleResponse
+function PlayFabMultiplayerApi.ListBuildAliases(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListBuildAliases", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
@@ -354,6 +391,15 @@ end
 function PlayFabMultiplayerApi.ShutdownMultiplayerServer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Creates a multiplayer server build alias.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/UpdateBuildAlias
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.UpdateBuildAliasRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.BuildAliasDetailsResponse
+function PlayFabMultiplayerApi.UpdateBuildAlias(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/UpdateBuildAlias", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Updates a multiplayer server build's regions.
