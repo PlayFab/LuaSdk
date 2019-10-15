@@ -12,7 +12,7 @@ local PlayFabEventsApi = {
     settings = PlayFabSettings.settings
 }
 
--- Write batches of entity based events to PlayStream.
+-- Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
 -- API Method Documentation: https://api.playfab.com/Documentation/Event/method/WriteEvents
 -- Request Documentation: https://api.playfab.com/Documentation/Event/datatype/PlayFab.Event.Models/PlayFab.Event.Models.WriteEventsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Event/datatype/PlayFab.Event.Models/PlayFab.Event.Models.WriteEventsResponse
@@ -21,7 +21,8 @@ function PlayFabEventsApi.WriteEvents(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Event/WriteEvents", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Write batches of entity based events to as Telemetry events (bypass PlayStream).
+-- Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
+-- with 'custom.'
 -- API Method Documentation: https://api.playfab.com/Documentation/Event/method/WriteTelemetryEvents
 -- Request Documentation: https://api.playfab.com/Documentation/Event/datatype/PlayFab.Event.Models/PlayFab.Event.Models.WriteEventsRequest
 -- Result Documentation: https://api.playfab.com/Documentation/Event/datatype/PlayFab.Event.Models/PlayFab.Event.Models.WriteEventsResponse
