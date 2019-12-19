@@ -202,6 +202,15 @@ function PlayFabMultiplayerApi.GetMultiplayerServerDetails(request, onSuccess, o
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetMultiplayerServerDetails", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Gets multiplayer server logs after a server has terminated.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/GetMultiplayerServerLogs
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.GetMultiplayerServerLogsRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.GetMultiplayerServerLogsResponse
+function PlayFabMultiplayerApi.GetMultiplayerServerLogs(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetMultiplayerServerLogs", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Get the statistics for a queue.
 -- API Method Documentation: https://api.playfab.com/Documentation/Match/method/GetQueueStatistics
 -- Request Documentation: https://api.playfab.com/Documentation/Match/datatype/PlayFab.Match.Models/PlayFab.Match.Models.GetQueueStatisticsRequest
@@ -391,6 +400,15 @@ end
 function PlayFabMultiplayerApi.ShutdownMultiplayerServer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Untags a container image.
+-- API Method Documentation: https://api.playfab.com/Documentation/MultiplayerServer/method/UntagContainerImage
+-- Request Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.UntagContainerImageRequest
+-- Result Documentation: https://api.playfab.com/Documentation/MultiplayerServer/datatype/PlayFab.MultiplayerServer.Models/PlayFab.MultiplayerServer.Models.EmptyResponse
+function PlayFabMultiplayerApi.UntagContainerImage(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/UntagContainerImage", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Creates a multiplayer server build alias.
