@@ -1,6 +1,6 @@
 -- PlayFab Data API
 -- This is the main file you should require in your game
--- All api calls are documented here: https://api.playfab.com/Documentation/Data
+-- All api calls are documented here: https://docs.microsoft.com/gaming/playfab/api-references/
 -- Example code:
 -- local PlayFabDataApi = require("PlayFab.PlayFabDataApi")
 -- PlayFabDataApi.<DataApiCall>(request, successCallbackFunc, errorCallbackFunc)
@@ -13,63 +13,63 @@ local PlayFabDataApi = {
 }
 
 -- Abort pending file uploads to an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/File/method/AbortFileUploads
--- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.AbortFileUploadsRequest
--- Result Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.AbortFileUploadsResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/abortfileuploads
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/abortfileuploads#abortfileuploadsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/abortfileuploads#abortfileuploadsresponse
 function PlayFabDataApi.AbortFileUploads(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/File/AbortFileUploads", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Delete files on an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/File/method/DeleteFiles
--- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.DeleteFilesRequest
--- Result Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.DeleteFilesResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/deletefiles
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/deletefiles#deletefilesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/deletefiles#deletefilesresponse
 function PlayFabDataApi.DeleteFiles(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/File/DeleteFiles", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Finalize file uploads to an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/File/method/FinalizeFileUploads
--- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.FinalizeFileUploadsRequest
--- Result Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.FinalizeFileUploadsResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/finalizefileuploads
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/finalizefileuploads#finalizefileuploadsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/finalizefileuploads#finalizefileuploadsresponse
 function PlayFabDataApi.FinalizeFileUploads(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/File/FinalizeFileUploads", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Retrieves file metadata from an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/File/method/GetFiles
--- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.GetFilesRequest
--- Result Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.GetFilesResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/getfiles
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/getfiles#getfilesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/getfiles#getfilesresponse
 function PlayFabDataApi.GetFiles(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/File/GetFiles", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Retrieves objects from an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/Object/method/GetObjects
--- Request Documentation: https://api.playfab.com/Documentation/Object/datatype/PlayFab.Object.Models/PlayFab.Object.Models.GetObjectsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Object/datatype/PlayFab.Object.Models/PlayFab.Object.Models.GetObjectsResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/object/object/getobjects
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/object/object/getobjects#getobjectsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/object/object/getobjects#getobjectsresponse
 function PlayFabDataApi.GetObjects(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Object/GetObjects", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Initiates file uploads to an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/File/method/InitiateFileUploads
--- Request Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.InitiateFileUploadsRequest
--- Result Documentation: https://api.playfab.com/Documentation/File/datatype/PlayFab.File.Models/PlayFab.File.Models.InitiateFileUploadsResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/initiatefileuploads
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/initiatefileuploads#initiatefileuploadsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/file/file/initiatefileuploads#initiatefileuploadsresponse
 function PlayFabDataApi.InitiateFileUploads(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/File/InitiateFileUploads", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Sets objects on an entity's profile.
--- API Method Documentation: https://api.playfab.com/Documentation/Object/method/SetObjects
--- Request Documentation: https://api.playfab.com/Documentation/Object/datatype/PlayFab.Object.Models/PlayFab.Object.Models.SetObjectsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Object/datatype/PlayFab.Object.Models/PlayFab.Object.Models.SetObjectsResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/object/object/setobjects
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/object/object/setobjects#setobjectsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/object/object/setobjects#setobjectsresponse
 function PlayFabDataApi.SetObjects(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Object/SetObjects", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
