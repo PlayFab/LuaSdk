@@ -1,6 +1,6 @@
 -- PlayFab Server API
 -- This is the main file you should require in your game
--- All api calls are documented here: https://api.playfab.com/Documentation/Server
+-- All api calls are documented here: https://docs.microsoft.com/gaming/playfab/api-references/
 -- Example code:
 -- local PlayFabServerApi = require("PlayFab.PlayFabServerApi")
 -- PlayFabServerApi.<ServerApiCall>(request, successCallbackFunc, errorCallbackFunc)
@@ -13,9 +13,9 @@ local PlayFabServerApi = {
 }
 
 -- Increments the character's balance of the specified virtual currency by the stated amount
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddCharacterVirtualCurrency
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddCharacterVirtualCurrencyRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyCharacterVirtualCurrencyResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency#addcharactervirtualcurrencyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency#modifycharactervirtualcurrencyresult
 function PlayFabServerApi.AddCharacterVirtualCurrency(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -23,9 +23,9 @@ end
 
 -- Adds the Friend user to the friendlist of the user with PlayFabId. At least one of
 -- FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddFriend
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddFriendRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/addfriend
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/addfriend#addfriendrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/addfriend#emptyresponse
 function PlayFabServerApi.AddFriend(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddFriend", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -34,18 +34,18 @@ end
 -- Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
 -- ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
 -- authentication credentials, as the intent is that it is easily accessible by other players.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddGenericID
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddGenericIDRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/addgenericid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/addgenericid#addgenericidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/addgenericid#emptyresult
 function PlayFabServerApi.AddGenericID(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddGenericID", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddPlayerTag
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddPlayerTagRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddPlayerTagResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/addplayertag
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/addplayertag#addplayertagrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/addplayertag#addplayertagresult
 function PlayFabServerApi.AddPlayerTag(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -53,55 +53,56 @@ end
 
 -- Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
 -- in the group (and the server) can add new members. Shared Groups are designed for sharing data between a very small
--- number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddSharedGroupMembers
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddSharedGroupMembersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddSharedGroupMembersResult
+-- number of players, please see our guide:
+-- https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/addsharedgroupmembers
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/addsharedgroupmembers#addsharedgroupmembersrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/addsharedgroupmembers#addsharedgroupmembersresult
 function PlayFabServerApi.AddSharedGroupMembers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddSharedGroupMembers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Increments the user's balance of the specified virtual currency by the stated amount
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AddUserVirtualCurrency
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddUserVirtualCurrencyRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyUserVirtualCurrencyResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency#adduservirtualcurrencyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency#modifyuservirtualcurrencyresult
 function PlayFabServerApi.AddUserVirtualCurrency(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AddUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Validated a client's session ticket, and if successful, returns details for that user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AuthenticateSessionTicket
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AuthenticateSessionTicketRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AuthenticateSessionTicketResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/authenticatesessionticket
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/authenticatesessionticket#authenticatesessionticketrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/authenticatesessionticket#authenticatesessionticketresult
 function PlayFabServerApi.AuthenticateSessionTicket(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AuthenticateSessionTicket", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Awards the specified users the specified Steam achievements
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/AwardSteamAchievement
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AwardSteamAchievementRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AwardSteamAchievementResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/platform-specific-methods/awardsteamachievement
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/platform-specific-methods/awardsteamachievement#awardsteamachievementrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/platform-specific-methods/awardsteamachievement#awardsteamachievementresult
 function PlayFabServerApi.AwardSteamAchievement(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/BanUsers
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.BanUsersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.BanUsersResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/banusers
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/banusers#banusersrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/banusers#banusersresult
 function PlayFabServerApi.BanUsers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/BanUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/ConsumeItem
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ConsumeItemRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ConsumeItemResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem#consumeitemrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem#consumeitemresult
 function PlayFabServerApi.ConsumeItem(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/ConsumeItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -110,37 +111,37 @@ end
 -- Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
 -- group. When created by a server, the group will initially have no members. Shared Groups are designed for sharing data
 -- between a very small number of players, please see our guide:
--- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/CreateSharedGroup
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CreateSharedGroupRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CreateSharedGroupResult
+-- https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/createsharedgroup
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/createsharedgroup#createsharedgrouprequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/createsharedgroup#createsharedgroupresult
 function PlayFabServerApi.CreateSharedGroup(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/CreateSharedGroup", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Deletes the specific character ID from the specified user.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeleteCharacterFromUser
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteCharacterFromUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteCharacterFromUserResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/deletecharacterfromuser
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/deletecharacterfromuser#deletecharacterfromuserrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/deletecharacterfromuser#deletecharacterfromuserresult
 function PlayFabServerApi.DeleteCharacterFromUser(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteCharacterFromUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Removes a user's player account from a title and deletes all associated data
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeletePlayer
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/deleteplayer
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/deleteplayer#deleteplayerrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/deleteplayer#deleteplayerresult
 function PlayFabServerApi.DeletePlayer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeletePlayer", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Deletes push notification template for title
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeletePushNotificationTemplate
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/deletepushnotificationtemplate
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/deletepushnotificationtemplate#deletepushnotificationtemplaterequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/deletepushnotificationtemplate#deletepushnotificationtemplateresult
 function PlayFabServerApi.DeletePushNotificationTemplate(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeletePushNotificationTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -148,19 +149,19 @@ end
 
 -- Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
 -- sharing data between a very small number of players, please see our guide:
--- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeleteSharedGroup
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteSharedGroupRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse
+-- https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/deletesharedgroup
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/deletesharedgroup#deletesharedgrouprequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/deletesharedgroup#emptyresponse
 function PlayFabServerApi.DeleteSharedGroup(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeleteSharedGroup", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Inform the matchmaker that a Game Server Instance is removed.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/DeregisterGame
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame#deregistergamerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame#deregistergameresponse
 function PlayFabServerApi.DeregisterGame(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -168,18 +169,18 @@ end
 
 -- Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
 -- added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/EvaluateRandomResultTable
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable#evaluaterandomresulttablerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable#evaluaterandomresulttableresult
 function PlayFabServerApi.EvaluateRandomResultTable(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/EvaluateRandomResultTable", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/ExecuteCloudScript
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ExecuteCloudScriptServerRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ExecuteCloudScriptResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript#executecloudscriptserverrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript#executecloudscriptresult
 function PlayFabServerApi.ExecuteCloudScript(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/ExecuteCloudScript", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -187,9 +188,9 @@ end
 
 -- Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
 -- GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetAllSegments
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getallsegments
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getallsegments#getallsegmentsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getallsegments#getallsegmentsresult
 function PlayFabServerApi.GetAllSegments(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetAllSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -197,72 +198,72 @@ end
 
 -- Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
 -- evaluated with the parent PlayFabId to guarantee uniqueness.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetAllUsersCharacters
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getalluserscharacters
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getalluserscharacters#listuserscharactersrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getalluserscharacters#listuserscharactersresult
 function PlayFabServerApi.GetAllUsersCharacters(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetAllUsersCharacters", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCatalogItems
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCatalogItemsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCatalogItemsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems#getcatalogitemsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems#getcatalogitemsresult
 function PlayFabServerApi.GetCatalogItems(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCatalogItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title-specific custom data for the user which is readable and writable by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCharacterData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterdata#getcharacterdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterdata#getcharacterdataresult
 function PlayFabServerApi.GetCharacterData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title-specific custom data for the user's character which cannot be accessed by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCharacterInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterinternaldata#getcharacterdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterinternaldata#getcharacterdataresult
 function PlayFabServerApi.GetCharacterInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the specified character's current inventory of virtual goods
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCharacterInventory
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterInventoryRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterInventoryResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory#getcharacterinventoryrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory#getcharacterinventoryresult
 function PlayFabServerApi.GetCharacterInventory(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterInventory", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCharacterLeaderboard
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterLeaderboardRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterLeaderboardResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterleaderboard
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterleaderboard#getcharacterleaderboardrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterleaderboard#getcharacterleaderboardresult
 function PlayFabServerApi.GetCharacterLeaderboard(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterLeaderboard", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title-specific custom data for the user's character which can only be read by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCharacterReadOnlyData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterreadonlydata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterreadonlydata#getcharacterdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterreadonlydata#getcharacterdataresult
 function PlayFabServerApi.GetCharacterReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the details of all title-specific statistics for the specific character
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetCharacterStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterStatisticsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterstatistics
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterstatistics#getcharacterstatisticsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterstatistics#getcharacterstatisticsresult
 function PlayFabServerApi.GetCharacterStatistics(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetCharacterStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -272,11 +273,11 @@ end
 -- URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
 -- content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
 -- the query to retrieve the data will fail. See this post for more information:
--- https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+-- https://community.playfab.com/hc/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
 -- please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetContentDownloadUrl
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetContentDownloadUrlRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetContentDownloadUrlResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/content/getcontentdownloadurl
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/content/getcontentdownloadurl#getcontentdownloadurlrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/content/getcontentdownloadurl#getcontentdownloadurlresult
 function PlayFabServerApi.GetContentDownloadUrl(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetContentDownloadUrl", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -284,9 +285,9 @@ end
 
 -- Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the
 -- leaderboard
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetFriendLeaderboard
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendLeaderboardRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getfriendleaderboard
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getfriendleaderboard#getfriendleaderboardrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getfriendleaderboard#getleaderboardresult
 function PlayFabServerApi.GetFriendLeaderboard(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetFriendLeaderboard", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -294,45 +295,45 @@ end
 
 -- Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from
 -- linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetFriendsList
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/getfriendslist
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/getfriendslist#getfriendslistrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/getfriendslist#getfriendslistresult
 function PlayFabServerApi.GetFriendsList(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetFriendsList", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetLeaderboard
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboard
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboard#getleaderboardrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboard#getleaderboardresult
 function PlayFabServerApi.GetLeaderboard(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetLeaderboard", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves a list of ranked characters for the given statistic, centered on the requested user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetLeaderboardAroundCharacter
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundCharacterRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundCharacterResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardaroundcharacter
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardaroundcharacter#getleaderboardaroundcharacterrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardaroundcharacter#getleaderboardaroundcharacterresult
 function PlayFabServerApi.GetLeaderboardAroundCharacter(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetLeaderboardAroundCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetLeaderboardAroundUser
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundUserResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboardarounduser
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboardarounduser#getleaderboardarounduserrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboardarounduser#getleaderboardarounduserresult
 function PlayFabServerApi.GetLeaderboardAroundUser(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetLeaderboardAroundUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves a list of all of the user's characters for the given statistic.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetLeaderboardForUserCharacters
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardForUsersCharactersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardForUsersCharactersResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardforusercharacters
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardforusercharacters#getleaderboardforuserscharactersrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardforusercharacters#getleaderboardforuserscharactersresult
 function PlayFabServerApi.GetLeaderboardForUserCharacters(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetLeaderboardForUserCharacters", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -340,27 +341,27 @@ end
 
 -- Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id) may be
 -- returned. All parameters default to false.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerCombinedInfo
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayercombinedinfo
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayercombinedinfo#getplayercombinedinforequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayercombinedinfo#getplayercombinedinforesult
 function PlayFabServerApi.GetPlayerCombinedInfo(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerCombinedInfo", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the player's profile
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerProfile
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayerprofile
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayerprofile#getplayerprofilerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayerprofile#getplayerprofileresult
 function PlayFabServerApi.GetPlayerProfile(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerProfile", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- List all segments that a player currently belongs to at this moment in time.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerSegments
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersSegmentsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerSegmentsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersegments
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersegments#getplayerssegmentsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersegments#getplayersegmentsresult
 function PlayFabServerApi.GetPlayerSegments(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -371,54 +372,54 @@ end
 -- on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
 -- in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
 -- called 30 times in one minute. You will be returned an error if you exceed this threshold.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayersInSegment
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersInSegmentRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersInSegmentResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersinsegment
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersinsegment#getplayersinsegmentrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersinsegment#getplayersinsegmentresult
 function PlayFabServerApi.GetPlayersInSegment(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayersInSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the current version and values for the indicated statistics, for the local player.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatistics
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatistics#getplayerstatisticsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatistics#getplayerstatisticsresult
 function PlayFabServerApi.GetPlayerStatistics(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the information on the available versions of the specified statistic.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerStatisticVersions
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticVersionsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticVersionsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatisticversions
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatisticversions#getplayerstatisticversionsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatisticversions#getplayerstatisticversionsresult
 function PlayFabServerApi.GetPlayerStatisticVersions(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerStatisticVersions", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Get all tags with a given Namespace (optional) from a player profile.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayerTags
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerTagsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerTagsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayertags
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayertags#getplayertagsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayertags#getplayertagsresult
 function PlayFabServerApi.GetPlayerTags(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayerTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromFacebookIDs
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookIDsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookIDsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookids#getplayfabidsfromfacebookidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookids#getplayfabidsfromfacebookidsresult
 function PlayFabServerApi.GetPlayFabIDsFromFacebookIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromFacebookInstantGamesIds
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookInstantGamesIdsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookInstantGamesIdsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookinstantgamesids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookinstantgamesids#getplayfabidsfromfacebookinstantgamesidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookinstantgamesids#getplayfabidsfromfacebookinstantgamesidsresult
 function PlayFabServerApi.GetPlayFabIDsFromFacebookInstantGamesIds(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -427,27 +428,27 @@ end
 -- Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
 -- service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
 -- added to the player account.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromGenericIDs
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromgenericids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromgenericids#getplayfabidsfromgenericidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromgenericids#getplayfabidsfromgenericidsresult
 function PlayFabServerApi.GetPlayFabIDsFromGenericIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromGenericIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoswitchdeviceids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoswitchdeviceids#getplayfabidsfromnintendoswitchdeviceidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoswitchdeviceids#getplayfabidsfromnintendoswitchdeviceidsresult
 function PlayFabServerApi.GetPlayFabIDsFromNintendoSwitchDeviceIds(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromPSNAccountIDs
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids#getplayfabidsfrompsnaccountidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids#getplayfabidsfrompsnaccountidsresult
 function PlayFabServerApi.GetPlayFabIDsFromPSNAccountIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromPSNAccountIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -455,27 +456,27 @@ end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
 -- IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromSteamIDs
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids#getplayfabidsfromsteamidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids#getplayfabidsfromsteamidsresult
 function PlayFabServerApi.GetPlayFabIDsFromSteamIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromSteamIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromXboxLiveIDs
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromxboxliveids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromxboxliveids#getplayfabidsfromxboxliveidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromxboxliveids#getplayfabidsfromxboxliveidsresult
 function PlayFabServerApi.GetPlayFabIDsFromXboxLiveIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromXboxLiveIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the key-value store of custom publisher settings
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetPublisherData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getpublisherdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getpublisherdata#getpublisherdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getpublisherdata#getpublisherdataresult
 function PlayFabServerApi.GetPublisherData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -483,18 +484,18 @@ end
 
 -- Retrieves the configuration information for the specified random results tables for the title, including all ItemId
 -- values and weights
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetRandomResultTables
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables#getrandomresulttablesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables#getrandomresulttablesresult
 function PlayFabServerApi.GetRandomResultTables(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetServerCustomIDsFromPlayFabIDs
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getservercustomidsfromplayfabids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getservercustomidsfromplayfabids#getservercustomidsfromplayfabidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getservercustomidsfromplayfabids#getservercustomidsfromplayfabidsresult
 function PlayFabServerApi.GetServerCustomIDsFromPlayFabIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetServerCustomIDsFromPlayFabIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -502,136 +503,136 @@ end
 
 -- Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
 -- public and private group data. Shared Groups are designed for sharing data between a very small number of players,
--- please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetSharedGroupData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataResult
+-- please see our guide: https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/getsharedgroupdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/getsharedgroupdata#getsharedgroupdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/getsharedgroupdata#getsharedgroupdataresult
 function PlayFabServerApi.GetSharedGroupData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetSharedGroupData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetStoreItems
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetStoreItemsServerRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetStoreItemsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems#getstoreitemsserverrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems#getstoreitemsresult
 function PlayFabServerApi.GetStoreItems(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetStoreItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the current server time
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetTime
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTimeRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTimeResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettime
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettime#gettimerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettime#gettimeresult
 function PlayFabServerApi.GetTime(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetTime", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the key-value store of custom title settings
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetTitleData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitledata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitledata#gettitledatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitledata#gettitledataresult
 function PlayFabServerApi.GetTitleData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetTitleData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the key-value store of custom internal title settings
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetTitleInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitleinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitleinternaldata#gettitledatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitleinternaldata#gettitledataresult
 function PlayFabServerApi.GetTitleInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetTitleInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title news feed, as configured in the developer portal
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetTitleNews
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleNewsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleNewsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitlenews
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitlenews#gettitlenewsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitlenews#gettitlenewsresult
 function PlayFabServerApi.GetTitleNews(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetTitleNews", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the relevant details for a specified user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserAccountInfo
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserAccountInfoRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserAccountInfoResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getuseraccountinfo
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getuseraccountinfo#getuseraccountinforequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getuseraccountinfo#getuseraccountinforesult
 function PlayFabServerApi.GetUserAccountInfo(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserAccountInfo", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Gets all bans for a user.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserBans
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserBansRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserBansResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getuserbans
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getuserbans#getuserbansrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getuserbans#getuserbansresult
 function PlayFabServerApi.GetUserBans(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserBans", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title-specific custom data for the user which is readable and writable by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserdata#getuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserdata#getuserdataresult
 function PlayFabServerApi.GetUserData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title-specific custom data for the user which cannot be accessed by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserinternaldata#getuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserinternaldata#getuserdataresult
 function PlayFabServerApi.GetUserInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the specified user's current inventory of virtual goods
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserInventory
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserInventoryRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserInventoryResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory#getuserinventoryrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory#getuserinventoryresult
 function PlayFabServerApi.GetUserInventory(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserInventory", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the publisher-specific custom data for the user which is readable and writable by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserPublisherData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherdata#getuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherdata#getuserdataresult
 function PlayFabServerApi.GetUserPublisherData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserPublisherInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherinternaldata#getuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherinternaldata#getuserdataresult
 function PlayFabServerApi.GetUserPublisherInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserPublisherInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the publisher-specific custom data for the user which can only be read by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserPublisherReadOnlyData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherreadonlydata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherreadonlydata#getuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherreadonlydata#getuserdataresult
 function PlayFabServerApi.GetUserPublisherReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserPublisherReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the title-specific custom data for the user which can only be read by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GetUserReadOnlyData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserreadonlydata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserreadonlydata#getuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserreadonlydata#getuserdataresult
 function PlayFabServerApi.GetUserReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -639,54 +640,63 @@ end
 
 -- Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
 -- with the parent PlayFabId to guarantee uniqueness.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GrantCharacterToUser
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/grantcharactertouser
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/grantcharactertouser#grantcharactertouserrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/grantcharactertouser#grantcharactertouserresult
 function PlayFabServerApi.GrantCharacterToUser(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantCharacterToUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Adds the specified items to the specified character's inventory
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GrantItemsToCharacter
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToCharacterRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToCharacterResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter#grantitemstocharacterrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter#grantitemstocharacterresult
 function PlayFabServerApi.GrantItemsToCharacter(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Adds the specified items to the specified user's inventory
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GrantItemsToUser
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUserResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser#grantitemstouserrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser#grantitemstouserresult
 function PlayFabServerApi.GrantItemsToUser(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Adds the specified items to the specified user inventories
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/GrantItemsToUsers
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUsersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUsersResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers#grantitemstousersrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers#grantitemstousersresult
 function PlayFabServerApi.GrantItemsToUsers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GrantItemsToUsers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount#linkpsnaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount#linkpsnaccountresult
+function PlayFabServerApi.LinkPSNAccount(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LinkPSNAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Links the custom server identifier, generated by the title, to the user's PlayFab account.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LinkServerCustomId
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkservercustomid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkservercustomid#linkservercustomidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkservercustomid#linkservercustomidresult
 function PlayFabServerApi.LinkServerCustomId(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LinkServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Links the Xbox Live account associated with the provided access code to the user's PlayFab account
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LinkXboxAccount
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkxboxaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkxboxaccount#linkxboxaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/linkxboxaccount#linkxboxaccountresult
 function PlayFabServerApi.LinkXboxAccount(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LinkXboxAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -694,9 +704,9 @@ end
 
 -- Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
 -- and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LoginWithServerCustomId
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithServerCustomIdRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid#loginwithservercustomidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid#serverloginresult
 function PlayFabServerApi.LoginWithServerCustomId(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -704,9 +714,9 @@ end
 
 -- Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
 -- subsequently be used for API calls which require an authenticated user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LoginWithXbox
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox#loginwithxboxrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox#serverloginresult
 function PlayFabServerApi.LoginWithXbox(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithXbox", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -714,54 +724,54 @@ end
 
 -- Signs the user in using an Xbox ID and Sandbox ID, returning a session identifier that can subsequently be used for API
 -- calls which require an authenticated user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/LoginWithXboxId
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxIdRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxboxid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxboxid#loginwithxboxidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxboxid#serverloginresult
 function PlayFabServerApi.LoginWithXboxId(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithXboxId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Modifies the number of remaining uses of a player's inventory item
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/ModifyItemUses
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyItemUsesRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyItemUsesResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses#modifyitemusesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses#modifyitemusesresult
 function PlayFabServerApi.ModifyItemUses(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/ModifyItemUses", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Moves an item from a character's inventory into another of the users's character's inventory.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/MoveItemToCharacterFromCharacter
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromCharacterRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromCharacterResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter#moveitemtocharacterfromcharacterrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter#moveitemtocharacterfromcharacterresult
 function PlayFabServerApi.MoveItemToCharacterFromCharacter(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/MoveItemToCharacterFromCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Moves an item from a user's inventory into their character's inventory.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/MoveItemToCharacterFromUser
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromUserResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser#moveitemtocharacterfromuserrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser#moveitemtocharacterfromuserresult
 function PlayFabServerApi.MoveItemToCharacterFromUser(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/MoveItemToCharacterFromUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Moves an item from a character's inventory into the owning user's inventory.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/MoveItemToUserFromCharacter
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToUserFromCharacterRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToUserFromCharacterResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter#moveitemtouserfromcharacterrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter#moveitemtouserfromcharacterresult
 function PlayFabServerApi.MoveItemToUserFromCharacter(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/MoveItemToUserFromCharacter", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Informs the PlayFab match-making service that the user specified has left the Game Server Instance
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/NotifyMatchmakerPlayerLeft
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NotifyMatchmakerPlayerLeftRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NotifyMatchmakerPlayerLeftResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft#notifymatchmakerplayerleftrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft#notifymatchmakerplayerleftresult
 function PlayFabServerApi.NotifyMatchmakerPlayerLeft(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/NotifyMatchmakerPlayerLeft", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -769,63 +779,63 @@ end
 
 -- Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
 -- Economy->Catalogs tab in the PlayFab Game Manager.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RedeemCoupon
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemCouponRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemCouponResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon#redeemcouponrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon#redeemcouponresult
 function PlayFabServerApi.RedeemCoupon(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RedeemCoupon", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Validates a Game Server session ticket and returns details about the user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RedeemMatchmakerTicket
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemMatchmakerTicketRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemMatchmakerTicketResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket#redeemmatchmakerticketrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket#redeemmatchmakerticketresult
 function PlayFabServerApi.RedeemMatchmakerTicket(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RedeemMatchmakerTicket", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RefreshGameServerInstanceHeartbeat
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RefreshGameServerInstanceHeartbeatRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RefreshGameServerInstanceHeartbeatResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat#refreshgameserverinstanceheartbeatrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat#refreshgameserverinstanceheartbeatresult
 function PlayFabServerApi.RefreshGameServerInstanceHeartbeat(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Inform the matchmaker that a new Game Server Instance is added.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RegisterGame
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame#registergamerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame#registergameresponse
 function PlayFabServerApi.RegisterGame(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Removes the specified friend from the the user's friend list
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemoveFriend
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveFriendRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend#removefriendrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend#emptyresponse
 function PlayFabServerApi.RemoveFriend(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Removes the specified generic service identifier from the player's PlayFab account.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemoveGenericID
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveGenericIDRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/removegenericid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/removegenericid#removegenericidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/removegenericid#emptyresult
 function PlayFabServerApi.RemoveGenericID(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveGenericID", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemovePlayerTag
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemovePlayerTagRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemovePlayerTagResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/removeplayertag
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/removeplayertag#removeplayertagrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/playstream/removeplayertag#removeplayertagresult
 function PlayFabServerApi.RemovePlayerTag(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -834,10 +844,10 @@ end
 -- Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
 -- group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
 -- will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
--- guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RemoveSharedGroupMembers
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveSharedGroupMembersRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveSharedGroupMembersResult
+-- guide: https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/removesharedgroupmembers
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/removesharedgroupmembers#removesharedgroupmembersrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/removesharedgroupmembers#removesharedgroupmembersresult
 function PlayFabServerApi.RemoveSharedGroupMembers(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RemoveSharedGroupMembers", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -845,54 +855,54 @@ end
 
 -- Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service
 -- representatives for the title can take action concerning potentially toxic players.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/ReportPlayer
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/reportplayer
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/reportplayer#reportplayerserverrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/reportplayer#reportplayerserverresult
 function PlayFabServerApi.ReportPlayer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/ReportPlayer", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Revoke all active bans for a user.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RevokeAllBansForUser
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeAllBansForUserRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeAllBansForUserResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/revokeallbansforuser
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/revokeallbansforuser#revokeallbansforuserrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/revokeallbansforuser#revokeallbansforuserresult
 function PlayFabServerApi.RevokeAllBansForUser(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeAllBansForUser", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Revoke all active bans specified with BanId.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RevokeBans
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeBansRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeBansResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/revokebans
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/revokebans#revokebansrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/revokebans#revokebansresult
 function PlayFabServerApi.RevokeBans(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeBans", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Revokes access to an item in a user's inventory
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RevokeInventoryItem
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItemRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem#revokeinventoryitemrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem#revokeinventoryresult
 function PlayFabServerApi.RevokeInventoryItem(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Revokes access for up to 25 items across multiple users and characters.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/RevokeInventoryItems
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItemsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItemsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems#revokeinventoryitemsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems#revokeinventoryitemsresult
 function PlayFabServerApi.RevokeInventoryItems(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/RevokeInventoryItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Saves push notification template for title
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SavePushNotificationTemplate
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/savepushnotificationtemplate
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/savepushnotificationtemplate#savepushnotificationtemplaterequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/savepushnotificationtemplate#savepushnotificationtemplateresult
 function PlayFabServerApi.SavePushNotificationTemplate(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SavePushNotificationTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -900,18 +910,18 @@ end
 
 -- Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
 -- email template
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendcustomaccountrecoveryemail
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendcustomaccountrecoveryemail#sendcustomaccountrecoveryemailrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendcustomaccountrecoveryemail#sendcustomaccountrecoveryemailresult
 function PlayFabServerApi.SendCustomAccountRecoveryEmail(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Sends an email based on an email template to a player's contact email
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendEmailFromTemplate
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendemailfromtemplate
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendemailfromtemplate#sendemailfromtemplaterequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendemailfromtemplate#sendemailfromtemplateresult
 function PlayFabServerApi.SendEmailFromTemplate(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SendEmailFromTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -919,9 +929,9 @@ end
 
 -- Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
 -- Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendPushNotification
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotification
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotification#sendpushnotificationrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotification#sendpushnotificationresult
 function PlayFabServerApi.SendPushNotification(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SendPushNotification", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -929,45 +939,45 @@ end
 
 -- Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
 -- Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SendPushNotificationFromTemplate
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationFromTemplateRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotificationfromtemplate
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotificationfromtemplate#sendpushnotificationfromtemplaterequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotificationfromtemplate#sendpushnotificationresult
 function PlayFabServerApi.SendPushNotificationFromTemplate(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SendPushNotificationFromTemplate", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the tag list for a specified user in the friend list of another user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetFriendTags
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetFriendTagsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/setfriendtags
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/setfriendtags#setfriendtagsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/setfriendtags#emptyresponse
 function PlayFabServerApi.SetFriendTags(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetFriendTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Sets the custom data of the indicated Game Server Instance
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata#setgameserverinstancedatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata#setgameserverinstancedataresult
 function PlayFabServerApi.SetGameServerInstanceData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Set the state of the indicated Game Server Instance.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceState
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceStateRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceStateResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate#setgameserverinstancestaterequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate#setgameserverinstancestateresult
 function PlayFabServerApi.SetGameServerInstanceState(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceState", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Set custom tags for the specified Game Server Instance
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceTags
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags#setgameserverinstancetagsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags#setgameserverinstancetagsresult
 function PlayFabServerApi.SetGameServerInstanceTags(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -975,36 +985,36 @@ end
 
 -- Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
 -- secret use the Admin or Server API method SetPlayerSecret.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetPlayerSecret
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/setplayersecret
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/setplayersecret#setplayersecretrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/setplayersecret#setplayersecretresult
 function PlayFabServerApi.SetPlayerSecret(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetPlayerSecret", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the key-value store of custom publisher settings
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetPublisherData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPublisherDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPublisherDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/setpublisherdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/setpublisherdata#setpublisherdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/setpublisherdata#setpublisherdataresult
 function PlayFabServerApi.SetPublisherData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the key-value store of custom title settings
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetTitleData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetTitleDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetTitleDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitledata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitledata#settitledatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitledata#settitledataresult
 function PlayFabServerApi.SetTitleData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetTitleData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the key-value store of custom title settings
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SetTitleInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetTitleDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetTitleDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitleinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitleinternaldata#settitledatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitleinternaldata#settitledataresult
 function PlayFabServerApi.SetTitleInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SetTitleInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -1012,9 +1022,9 @@ end
 
 -- Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
 -- balance negative with this API.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SubtractCharacterVirtualCurrency
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubtractCharacterVirtualCurrencyRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyCharacterVirtualCurrencyResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency#subtractcharactervirtualcurrencyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency#modifycharactervirtualcurrencyresult
 function PlayFabServerApi.SubtractCharacterVirtualCurrency(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -1022,27 +1032,36 @@ end
 
 -- Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
 -- balance negative with this API.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/SubtractUserVirtualCurrency
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubtractUserVirtualCurrencyRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyUserVirtualCurrencyResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency#subtractuservirtualcurrencyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency#modifyuservirtualcurrencyresult
 function PlayFabServerApi.SubtractUserVirtualCurrency(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Unlinks the related PSN account from the user's PlayFab account
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount#unlinkpsnaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount#unlinkpsnaccountresult
+function PlayFabServerApi.UnlinkPSNAccount(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkPSNAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Unlinks the custom server identifier from the user's PlayFab account.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlinkServerCustomId
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkservercustomid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkservercustomid#unlinkservercustomidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkservercustomid#unlinkservercustomidresult
 function PlayFabServerApi.UnlinkServerCustomId(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Unlinks the related Xbox Live account from the user's PlayFab account
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlinkXboxAccount
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkxboxaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkxboxaccount#unlinkxboxaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkxboxaccount#unlinkxboxaccountresult
 function PlayFabServerApi.UnlinkXboxAccount(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlinkXboxAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -1051,9 +1070,9 @@ end
 -- Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
 -- returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses >
 -- 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlockContainerInstance
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerInstanceRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance#unlockcontainerinstancerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance#unlockcontaineritemresult
 function PlayFabServerApi.UnlockContainerInstance(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlockContainerInstance", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -1063,72 +1082,72 @@ end
 -- using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
 -- are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of
 -- ConsumeItem.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UnlockContainerItem
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontaineritem
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontaineritem#unlockcontaineritemrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontaineritem#unlockcontaineritemresult
 function PlayFabServerApi.UnlockContainerItem(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UnlockContainerItem", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Update the avatar URL of the specified player
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateAvatarUrl
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateAvatarUrlRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/updateavatarurl
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/updateavatarurl#updateavatarurlrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/updateavatarurl#emptyresponse
 function PlayFabServerApi.UpdateAvatarUrl(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateAvatarUrl", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates information of a list of existing bans specified with Ban Ids.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateBans
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateBansRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateBansResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/updatebans
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/updatebans#updatebansrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/updatebans#updatebansresult
 function PlayFabServerApi.UpdateBans(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateBans", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the title-specific custom data for the user's character which is readable and writable by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateCharacterData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterdata#updatecharacterdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterdata#updatecharacterdataresult
 function PlayFabServerApi.UpdateCharacterData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateCharacterData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the title-specific custom data for the user's character which cannot be accessed by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateCharacterInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterinternaldata#updatecharacterdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterinternaldata#updatecharacterdataresult
 function PlayFabServerApi.UpdateCharacterInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateCharacterInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the title-specific custom data for the user's character which can only be read by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateCharacterReadOnlyData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterreadonlydata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterreadonlydata#updatecharacterdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterreadonlydata#updatecharacterdataresult
 function PlayFabServerApi.UpdateCharacterReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateCharacterReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the values of the specified title-specific statistics for the specific character
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateCharacterStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterStatisticsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/updatecharacterstatistics
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/updatecharacterstatistics#updatecharacterstatisticsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/characters/updatecharacterstatistics#updatecharacterstatisticsresult
 function PlayFabServerApi.UpdateCharacterStatistics(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateCharacterStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the values of the specified title-specific statistics for the user
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdatePlayerStatistics
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdatePlayerStatisticsRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdatePlayerStatisticsResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateplayerstatistics
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateplayerstatistics#updateplayerstatisticsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateplayerstatistics#updateplayerstatisticsresult
 function PlayFabServerApi.UpdatePlayerStatistics(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdatePlayerStatistics", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
@@ -1138,100 +1157,100 @@ end
 -- or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
 -- Regardless of the permission setting, only members of the group (and the server) can update the data. Shared Groups are
 -- designed for sharing data between a very small number of players, please see our guide:
--- https://api.playfab.com/docs/tutorials/landing-players/shared-groups
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateSharedGroupData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateSharedGroupDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateSharedGroupDataResult
+-- https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/updatesharedgroupdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/updatesharedgroupdata#updatesharedgroupdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/updatesharedgroupdata#updatesharedgroupdataresult
 function PlayFabServerApi.UpdateSharedGroupData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateSharedGroupData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the title-specific custom data for the user which is readable and writable by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserdata#updateuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserdata#updateuserdataresult
 function PlayFabServerApi.UpdateUserData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the title-specific custom data for the user which cannot be accessed by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserInternalDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserinternaldata#updateuserinternaldatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserinternaldata#updateuserdataresult
 function PlayFabServerApi.UpdateUserInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the key-value pair data tagged to the specified item, which is read-only from the client.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserInventoryItemCustomData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserInventoryItemDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata#updateuserinventoryitemdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata#emptyresponse
 function PlayFabServerApi.UpdateUserInventoryItemCustomData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserInventoryItemCustomData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the publisher-specific custom data for the user which is readable and writable by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherdata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherdata#updateuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherdata#updateuserdataresult
 function PlayFabServerApi.UpdateUserPublisherData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserPublisherData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the publisher-specific custom data for the user which cannot be accessed by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherInternalData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserInternalDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherinternaldata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherinternaldata#updateuserinternaldatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherinternaldata#updateuserdataresult
 function PlayFabServerApi.UpdateUserPublisherInternalData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserPublisherInternalData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the publisher-specific custom data for the user which can only be read by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherReadOnlyData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherreadonlydata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherreadonlydata#updateuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherreadonlydata#updateuserdataresult
 function PlayFabServerApi.UpdateUserPublisherReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserPublisherReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the title-specific custom data for the user which can only be read by the client
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/UpdateUserReadOnlyData
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserreadonlydata
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserreadonlydata#updateuserdatarequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserreadonlydata#updateuserdataresult
 function PlayFabServerApi.UpdateUserReadOnlyData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/UpdateUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Writes a character-based event into PlayStream.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/WriteCharacterEvent
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteServerCharacterEventRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteEventResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writecharacterevent
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writecharacterevent#writeservercharactereventrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writecharacterevent#writeeventresponse
 function PlayFabServerApi.WriteCharacterEvent(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/WriteCharacterEvent", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Writes a player-based event into PlayStream.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/WritePlayerEvent
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteServerPlayerEventRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteEventResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writeplayerevent
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writeplayerevent#writeserverplayereventrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writeplayerevent#writeeventresponse
 function PlayFabServerApi.WritePlayerEvent(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/WritePlayerEvent", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Writes a title-based event into PlayStream.
--- API Method Documentation: https://api.playfab.com/Documentation/Server/method/WriteTitleEvent
--- Request Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteTitleEventRequest
--- Result Documentation: https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteEventResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writetitleevent
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writetitleevent#writetitleeventrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/analytics/writetitleevent#writeeventresponse
 function PlayFabServerApi.WriteTitleEvent(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/WriteTitleEvent", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)

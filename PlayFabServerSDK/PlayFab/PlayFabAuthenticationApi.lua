@@ -1,6 +1,6 @@
 -- PlayFab Authentication API
 -- This is the main file you should require in your game
--- All api calls are documented here: https://api.playfab.com/Documentation/Authentication
+-- All api calls are documented here: https://docs.microsoft.com/gaming/playfab/api-references/
 -- Example code:
 -- local PlayFabAuthenticationApi = require("PlayFab.PlayFabAuthenticationApi")
 -- PlayFabAuthenticationApi.<AuthenticationApiCall>(request, successCallbackFunc, errorCallbackFunc)
@@ -14,9 +14,9 @@ local PlayFabAuthenticationApi = {
 
 -- Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
 -- Entity Token.
--- API Method Documentation: https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
--- Request Documentation: https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetEntityTokenRequest
--- Result Documentation: https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetEntityTokenResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken#getentitytokenrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken#getentitytokenresponse
 function PlayFabAuthenticationApi.GetEntityToken(request, onSuccess, onError)
     local authKey = nil
     local authValue = nil
@@ -45,9 +45,9 @@ function PlayFabAuthenticationApi.GetEntityToken(request, onSuccess, onError)
 end
 
 -- Method for a server to validate a client provided EntityToken. Only callable by the title entity.
--- API Method Documentation: https://api.playfab.com/Documentation/Authentication/method/ValidateEntityToken
--- Request Documentation: https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest
--- Result Documentation: https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenResponse
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/validateentitytoken
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/validateentitytoken#validateentitytokenrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/authentication/authentication/validateentitytoken#validateentitytokenresponse
 function PlayFabAuthenticationApi.ValidateEntityToken(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Authentication/ValidateEntityToken", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
