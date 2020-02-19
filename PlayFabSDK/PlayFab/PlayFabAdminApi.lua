@@ -113,6 +113,15 @@ function PlayFabAdminApi.CreateCloudScriptTask(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/CreateCloudScriptTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Create a Insights Scheduled Scaling task, which can scale Insights Performance Units on a schedule
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createinsightsscheduledscalingtask
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createinsightsscheduledscalingtask#createinsightsscheduledscalingtaskrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/createinsightsscheduledscalingtask#createtaskresult
+function PlayFabAdminApi.CreateInsightsScheduledScalingTask(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/CreateInsightsScheduledScalingTask", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Registers a relationship between a title and an Open ID Connect provider.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/authentication/createopenidconnection
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/authentication/createopenidconnection#createopenidconnectionrequest

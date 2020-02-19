@@ -240,6 +240,15 @@ function PlayFabMultiplayerApi.GetMultiplayerServerLogs(request, onSuccess, onEr
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetMultiplayerServerLogs", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Gets multiplayer server logs after a server has terminated.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getmultiplayersessionlogsbysessionid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getmultiplayersessionlogsbysessionid#getmultiplayersessionlogsbysessionidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getmultiplayersessionlogsbysessionid#getmultiplayerserverlogsresponse
+function PlayFabMultiplayerApi.GetMultiplayerSessionLogsBySessionId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetMultiplayerSessionLogsBySessionId", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Get the statistics for a queue.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/getqueuestatistics
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/getqueuestatistics#getqueuestatisticsrequest
