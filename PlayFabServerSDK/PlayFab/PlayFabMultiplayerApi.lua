@@ -141,6 +141,15 @@ function PlayFabMultiplayerApi.DeleteBuildAlias(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/DeleteBuildAlias", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Removes a multiplayer server build's region.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deletebuildregion
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deletebuildregion#deletebuildregionrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deletebuildregion#emptyresponse
+function PlayFabMultiplayerApi.DeleteBuildRegion(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/DeleteBuildRegion", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Deletes a multiplayer server game certificate.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deletecertificate
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deletecertificate#deletecertificaterequest
@@ -474,6 +483,15 @@ end
 function PlayFabMultiplayerApi.UpdateBuildAlias(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/UpdateBuildAlias", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Updates a multiplayer server build's region. If the region is not yet created, it will be created
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/updatebuildregion
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/updatebuildregion#updatebuildregionrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/updatebuildregion#emptyresponse
+function PlayFabMultiplayerApi.UpdateBuildRegion(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/UpdateBuildRegion", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Updates a multiplayer server build's regions.
