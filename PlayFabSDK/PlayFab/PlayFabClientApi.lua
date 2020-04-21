@@ -199,6 +199,15 @@ function PlayFabClientApi.GetAccountInfo(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetAccountInfo", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Returns a list of ad placements and a reward for each
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/getadplacements
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/getadplacements#getadplacementsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/getadplacements#getadplacementsresult
+function PlayFabClientApi.GetAdPlacements(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetAdPlacements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
 -- evaluated with the parent PlayFabId to guarantee uniqueness.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/characters/getalluserscharacters
@@ -783,6 +792,15 @@ function PlayFabClientApi.LinkKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkKongregate", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Links the Nintendo Switch account associated with the token to the user's PlayFab account.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchaccount#linknintendoswitchaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchaccount#emptyresult
+function PlayFabClientApi.LinkNintendoSwitchAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkNintendoSwitchAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Links the NintendoSwitchDeviceId to the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchdeviceid
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoswitchdeviceid#linknintendoswitchdeviceidrequest
@@ -1054,6 +1072,26 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithKongregate", request, nil, nil, onSuccess, onError)
+end
+
+-- Signs in the user with a Nintendo Switch Account identity token.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoswitchaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoswitchaccount#loginwithnintendoswitchaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoswitchaccount#loginresult
+function PlayFabClientApi.LoginWithNintendoSwitchAccount(request, onSuccess, onError)
+    request.TitleId = PlayFabSettings.settings.titleId
+
+    local externalOnSuccess = onSuccess
+    function wrappedOnSuccess(result)
+        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
+        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (externalOnSuccess) then
+            externalOnSuccess(result)
+        end
+        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
+    end
+    onSuccess = wrappedOnSuccess
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoSwitchAccount", request, nil, nil, onSuccess, onError)
 end
 
 -- Signs the user in using a Nintendo Switch Device ID, returning a session identifier that can subsequently be used for
@@ -1377,6 +1415,15 @@ function PlayFabClientApi.RemoveSharedGroupMembers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/RemoveSharedGroupMembers", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Report player's ad activity
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/reportadactivity
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/reportadactivity#reportadactivityrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/reportadactivity#reportadactivityresult
+function PlayFabClientApi.ReportAdActivity(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ReportAdActivity", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Write a PlayStream event to describe the provided player device information. This API method is not designed to be
 -- called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/analytics/reportdeviceinfo
@@ -1404,6 +1451,15 @@ end
 function PlayFabClientApi.RestoreIOSPurchases(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/RestoreIOSPurchases", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Reward player's ad activity
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/rewardadactivity
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/rewardadactivity#rewardadactivityrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/rewardadactivity#rewardadactivityresult
+function PlayFabClientApi.RewardAdActivity(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/RewardAdActivity", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
@@ -1545,6 +1601,15 @@ function PlayFabClientApi.UnlinkKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkKongregate", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Unlinks the related Nintendo Switch account from the user's PlayFab account.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchaccount#unlinknintendoswitchaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchaccount#emptyresponse
+function PlayFabClientApi.UnlinkNintendoSwitchAccount(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkNintendoSwitchAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchdeviceid
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoswitchdeviceid#unlinknintendoswitchdeviceidrequest
@@ -1557,7 +1622,7 @@ end
 -- Unlinks an OpenID Connect account from a user's PlayFab account, based on the connection ID of an existing relationship
 -- between a title and an Open ID Connect provider.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkopenidconnect
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkopenidconnect#uninkopenidconnectrequest
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkopenidconnect#unlinkopenidconnectrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkopenidconnect#emptyresponse
 function PlayFabClientApi.UnlinkOpenIdConnect(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
