@@ -876,7 +876,7 @@ function PlayFabClientApi.LoginWithAndroidDeviceID(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -896,7 +896,7 @@ function PlayFabClientApi.LoginWithApple(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -917,7 +917,7 @@ function PlayFabClientApi.LoginWithCustomID(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -940,7 +940,7 @@ function PlayFabClientApi.LoginWithEmailAddress(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -961,7 +961,7 @@ function PlayFabClientApi.LoginWithFacebook(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -982,7 +982,7 @@ function PlayFabClientApi.LoginWithFacebookInstantGamesId(request, onSuccess, on
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1003,7 +1003,7 @@ function PlayFabClientApi.LoginWithGameCenter(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1023,7 +1023,7 @@ function PlayFabClientApi.LoginWithGoogleAccount(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1044,7 +1044,7 @@ function PlayFabClientApi.LoginWithIOSDeviceID(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1064,7 +1064,7 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1084,7 +1084,7 @@ function PlayFabClientApi.LoginWithNintendoSwitchAccount(request, onSuccess, onE
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1105,7 +1105,7 @@ function PlayFabClientApi.LoginWithNintendoSwitchDeviceId(request, onSuccess, on
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1126,7 +1126,7 @@ function PlayFabClientApi.LoginWithOpenIdConnect(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1149,7 +1149,7 @@ function PlayFabClientApi.LoginWithPlayFab(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1170,7 +1170,7 @@ function PlayFabClientApi.LoginWithPSN(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1191,7 +1191,7 @@ function PlayFabClientApi.LoginWithSteam(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1211,7 +1211,7 @@ function PlayFabClientApi.LoginWithTwitch(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1234,7 +1234,7 @@ function PlayFabClientApi.LoginWithWindowsHello(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1255,7 +1255,7 @@ function PlayFabClientApi.LoginWithXbox(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
@@ -1366,7 +1366,7 @@ function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.Entity) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
