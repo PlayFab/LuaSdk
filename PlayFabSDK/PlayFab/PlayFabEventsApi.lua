@@ -12,7 +12,7 @@ local PlayFabEventsApi = {
     settings = PlayFabSettings.settings
 }
 
--- Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
+-- Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/event/playstream-events/writeevents
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/event/playstream-events/writeevents#writeeventsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/event/playstream-events/writeevents#writeeventsresponse
