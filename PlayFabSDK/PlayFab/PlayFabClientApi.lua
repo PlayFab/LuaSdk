@@ -792,13 +792,13 @@ function PlayFabClientApi.LinkKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkKongregate", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Links the Nintendo account associated with the token to the user's PlayFab account. (Open ID)
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoaccount
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoaccount#linknintendoaccountrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoaccount#emptyresult
-function PlayFabClientApi.LinkNintendoAccount(request, onSuccess, onError)
+-- Links the Nintendo account associated with the token to the user's PlayFab account.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoserviceaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoserviceaccount#linknintendoserviceaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linknintendoserviceaccount#emptyresult
+function PlayFabClientApi.LinkNintendoServiceAccount(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkNintendoAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkNintendoServiceAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Links the NintendoSwitchDeviceId to the user's PlayFab account
@@ -1074,11 +1074,11 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithKongregate", request, nil, nil, onSuccess, onError)
 end
 
--- Signs in the user with a Nintendo account identity token. (Open ID)
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoaccount
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoaccount#loginwithnintendoaccountrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoaccount#loginresult
-function PlayFabClientApi.LoginWithNintendoAccount(request, onSuccess, onError)
+-- Signs in the user with a Nintendo service account token.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoserviceaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoserviceaccount#loginwithnintendoserviceaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithnintendoserviceaccount#loginresult
+function PlayFabClientApi.LoginWithNintendoServiceAccount(request, onSuccess, onError)
     request.TitleId = PlayFabSettings.settings.titleId
 
     local externalOnSuccess = onSuccess
@@ -1091,7 +1091,7 @@ function PlayFabClientApi.LoginWithNintendoAccount(request, onSuccess, onError)
         PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoAccount", request, nil, nil, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoServiceAccount", request, nil, nil, onSuccess, onError)
 end
 
 -- Signs the user in using a Nintendo Switch Device ID, returning a session identifier that can subsequently be used for
@@ -1601,13 +1601,13 @@ function PlayFabClientApi.UnlinkKongregate(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkKongregate", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Unlinks the related Nintendo account from the user's PlayFab account. (Open ID)
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoaccount
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoaccount#unlinknintendoaccountrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoaccount#emptyresponse
-function PlayFabClientApi.UnlinkNintendoAccount(request, onSuccess, onError)
+-- Unlinks the related Nintendo account from the user's PlayFab account.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoserviceaccount
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoserviceaccount#unlinknintendoserviceaccountrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinknintendoserviceaccount#emptyresponse
+function PlayFabClientApi.UnlinkNintendoServiceAccount(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkNintendoAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkNintendoServiceAccount", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Unlinks the related NintendoSwitchDeviceId from the user's PlayFab account
