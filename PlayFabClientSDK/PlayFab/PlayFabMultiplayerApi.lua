@@ -75,6 +75,15 @@ function PlayFabMultiplayerApi.CreateBuildWithManagedContainer(request, onSucces
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/CreateBuildWithManagedContainer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Creates a multiplayer server build with the server running as a process.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/createbuildwithprocessbasedserver
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/createbuildwithprocessbasedserver#createbuildwithprocessbasedserverrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/createbuildwithprocessbasedserver#createbuildwithprocessbasedserverresponse
+function PlayFabMultiplayerApi.CreateBuildWithProcessBasedServer(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/CreateBuildWithProcessBasedServer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Create a matchmaking ticket as a client.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/creatematchmakingticket
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/creatematchmakingticket#creatematchmakingticketrequest
