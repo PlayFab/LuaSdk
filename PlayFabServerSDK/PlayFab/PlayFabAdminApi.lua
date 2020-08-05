@@ -224,6 +224,15 @@ function PlayFabAdminApi.DeleteTitle(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteTitle", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Deletes a specified set of title data overrides.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletetitledataoverride
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletetitledataoverride#deletetitledataoverriderequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/deletetitledataoverride#deletetitledataoverrideresult
+function PlayFabAdminApi.DeleteTitleDataOverride(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteTitleDataOverride", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Exports all associated data of a master player account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/exportmasterplayerdata
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/exportmasterplayerdata#exportmasterplayerdatarequest
@@ -847,6 +856,15 @@ end
 function PlayFabAdminApi.SetTitleData(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetTitleData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Set and delete key-value pairs in a title data override instance.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledataandoverrides
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledataandoverrides#settitledataandoverridesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/settitledataandoverrides#settitledataandoverridesresult
+function PlayFabAdminApi.SetTitleDataAndOverrides(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/SetTitleDataAndOverrides", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the key-value store of custom title settings which cannot be read by the client
