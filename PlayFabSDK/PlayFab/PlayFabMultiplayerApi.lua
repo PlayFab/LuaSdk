@@ -439,15 +439,8 @@ function PlayFabMultiplayerApi.ListPartyQosServers(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListPartyQosServers", request, nil, nil, onSuccess, onError)
 end
 
--- Lists quality of service servers.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listqosservers
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listqosservers#listqosserversrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listqosservers#listqosserversresponse
-function PlayFabMultiplayerApi.ListQosServers(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListQosServers", request, nil, nil, onSuccess, onError)
-end
-
--- Lists quality of service servers.
+-- Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
+-- Servers build has been deployed.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listqosserversfortitle
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listqosserversfortitle#listqosserversfortitlerequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listqosserversfortitle#listqosserversfortitleresponse
