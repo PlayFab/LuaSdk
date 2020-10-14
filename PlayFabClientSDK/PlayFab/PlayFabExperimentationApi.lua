@@ -12,6 +12,15 @@ local PlayFabExperimentationApi = {
     settings = PlayFabSettings.settings
 }
 
+-- Creates a new experiment exclusion group for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexclusiongroup
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexclusiongroup#createexclusiongrouprequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexclusiongroup#createexclusiongroupresult
+function PlayFabExperimentationApi.CreateExclusionGroup(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Experimentation/CreateExclusionGroup", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Creates a new experiment for a title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexperiment
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/createexperiment#createexperimentrequest
@@ -21,6 +30,15 @@ function PlayFabExperimentationApi.CreateExperiment(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Experimentation/CreateExperiment", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Deletes an existing exclusion group for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexclusiongroup
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexclusiongroup#deleteexclusiongrouprequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexclusiongroup#emptyresponse
+function PlayFabExperimentationApi.DeleteExclusionGroup(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Experimentation/DeleteExclusionGroup", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Deletes an existing experiment for a title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexperiment
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/deleteexperiment#deleteexperimentrequest
@@ -28,6 +46,24 @@ end
 function PlayFabExperimentationApi.DeleteExperiment(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Experimentation/DeleteExperiment", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Gets the details of all exclusion groups for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongroups
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongroups#getexclusiongroupsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongroups#getexclusiongroupsresult
+function PlayFabExperimentationApi.GetExclusionGroups(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Experimentation/GetExclusionGroups", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Gets the details of all exclusion groups for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongrouptraffic
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongrouptraffic#getexclusiongrouptrafficrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/getexclusiongrouptraffic#getexclusiongrouptrafficresult
+function PlayFabExperimentationApi.GetExclusionGroupTraffic(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Experimentation/GetExclusionGroupTraffic", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Gets the details of all experiments for a title.
@@ -73,6 +109,15 @@ end
 function PlayFabExperimentationApi.StopExperiment(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Experimentation/StopExperiment", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Updates an existing exclusion group for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/updateexclusiongroup
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/updateexclusiongroup#updateexclusiongrouprequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/experimentation/experimentation/updateexclusiongroup#emptyresponse
+function PlayFabExperimentationApi.UpdateExclusionGroup(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Experimentation/UpdateExclusionGroup", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Updates an existing experiment for a title.
