@@ -150,6 +150,15 @@ function PlayFabClientApi.ConsumeItem(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeItem", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Grants the player's current entitlements from Microsoft Store's Collection API
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumemicrosoftstoreentitlements
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumemicrosoftstoreentitlements#consumemicrosoftstoreentitlementsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumemicrosoftstoreentitlements#consumemicrosoftstoreentitlementsresponse
+function PlayFabClientApi.ConsumeMicrosoftStoreEntitlements(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeMicrosoftStoreEntitlements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements#consumepsnentitlementsrequest
