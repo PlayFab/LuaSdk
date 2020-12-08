@@ -377,6 +377,16 @@ function PlayFabMultiplayerApi.ListBuildSummaries(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListBuildSummaries", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+-- access is enabled, allows game client to request list of builds with player entity token.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildsummariesv2
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildsummariesv2#listbuildsummariesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildsummariesv2#listbuildsummariesresponse
+function PlayFabMultiplayerApi.ListBuildSummariesV2(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListBuildSummariesV2", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Lists multiplayer server game certificates for a title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listcertificatesummaries
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listcertificatesummaries#listcertificatesummariesrequest
