@@ -151,6 +151,16 @@ function PlayFabAdminApi.CreatePlayerStatisticDefinition(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Creates a new player segment by defining the conditions on player properties. Also, create actions to target the player
+-- segments for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/createsegment
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/createsegment#createsegmentrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/createsegment#createsegmentresponse
+function PlayFabAdminApi.CreateSegment(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/CreateSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Delete a content file from the title. When deleting a file that does not exist, it returns success.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/content/deletecontent
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/content/deletecontent#deletecontentrequest
@@ -195,6 +205,15 @@ end
 function PlayFabAdminApi.DeletePlayerSharedSecret(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeletePlayerSharedSecret", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Deletes an existing player segment and its associated action(s) for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/deletesegment
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/deletesegment#deletesegmentrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/deletesegment#deletesegmentsresponse
+function PlayFabAdminApi.DeleteSegment(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Deletes an existing virtual item store
@@ -456,6 +475,15 @@ end
 function PlayFabAdminApi.GetRandomResultTables(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Get detail information of a segment and its associated definition(s) and action(s) for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/getsegments
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/getsegments#getsegmentsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/getsegments#getsegmentsresponse
+function PlayFabAdminApi.GetSegments(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the build details for the specified game server executable
@@ -968,6 +996,15 @@ end
 function PlayFabAdminApi.UpdateRandomResultTables(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateRandomResultTables", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Updates an existing player segment and its associated definition(s) and action(s) for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/updatesegment
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/updatesegment#updatesegmentrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/segments/updatesegment#updatesegmentresponse
+function PlayFabAdminApi.UpdateSegment(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/UpdateSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates an existing virtual item store with new or modified items
