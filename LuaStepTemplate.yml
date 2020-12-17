@@ -52,7 +52,7 @@ steps:
 - checkout: SdkGenerator
   clean: true
   path: s/SdkGenerator
-- checkout: LuaSdk
+- checkout: self
   clean: true
   submodules: true
   path: s/sdks/LuaSDK
@@ -71,20 +71,10 @@ steps:
     export WORKSPACE="$WORKSPACE"
     
     echo === load util.sh to find msbuild ===
-    if [ -f "util.sh" ]; then
-      . "./util.sh" 2> /dev/null
-    elif [ ! -z "$WORKSPACE" ]; then
-      . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh" 2> /dev/null
-    fi
-    
-    Find2019MsBuild || Find2017MsBuild
-    
-    cd "$WORKSPACE/sdks/$SdkName"
-    
+    . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh"
     . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
     
     cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
-    targetSrc="LuaSdk"
     . ./shared_build.sh
 
     rem === Execute $SdkName UnitTests ===
@@ -95,24 +85,22 @@ steps:
     nuget restore JenkinsConsoleUtility.sln
 
     echo === Build JenkinsConsoleUtility ===
+    Find2019MsBuild || Find2017MsBuild
     "$MSBUILD_EXE" "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility//JenkinsConsoleUtility.sln" //p:configuration="Debug" //p:platform="Any CPU" //t:Rebuild
     cd "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility"
     ListenCsJCU
 
-    if [ $TestServer = true ] ;
-    then
+    if [ $TestServer = true ]; then
       echo === testing server ===
       cd "$WORKSPACE/sdks/$SdkName/PlayFabServerSDK"
       ./deploy.sh
     fi
 
-    if [ $isVersioned = true ] ;
-    then
+    if [ $isVersioned = true ]; then
       echo === Build Defold Zips ===
       cd "$WORKSPACE\sdks\LuaSdk\_Build\Defold"
       cmd <<< ./BuildDefoldZips.bat
     fi
-
   displayName: 'Build/Test/Report'
 - task: PublishTestResults@2
   inputs:
