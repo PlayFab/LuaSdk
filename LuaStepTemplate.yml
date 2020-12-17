@@ -78,7 +78,7 @@ steps:
     . ./shared_build.sh
 
     echo === Execute $SdkName UnitTests ===
-    cd "$WORKSPACE\sdks\$SdkName\PlayFabClientSDK"
+    cd "$WORKSPACE\\sdks\\$SdkName\\PlayFabClientSDK"
     lua PlayFabTesting/TestPlayFabConsole.lua
 
     cd $WORKSPACE/SDKGenerator/JenkinsConsoleUtility
