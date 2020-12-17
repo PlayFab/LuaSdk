@@ -79,7 +79,8 @@ steps:
 
     echo === Execute $SdkName UnitTests ===
     cd "$WORKSPACE\\sdks\\$SdkName\\PlayFabClientSDK"
-    cmd <<< lua PlayFabTesting/TestPlayFabConsole.lua
+    sudo apt-get install lua5.2
+    lua PlayFabTesting/TestPlayFabConsole.lua
 
     cd $WORKSPACE/SDKGenerator/JenkinsConsoleUtility
     nuget restore JenkinsConsoleUtility.sln
