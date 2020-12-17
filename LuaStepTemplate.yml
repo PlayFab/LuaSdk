@@ -52,7 +52,7 @@ steps:
 - checkout: SdkGenerator
   clean: true
   path: s/SdkGenerator
-- checkout: self
+- checkout: ${{ parameters.SelfTemplateResource }}
   clean: true
   submodules: true
   path: s/sdks/LuaSDK
