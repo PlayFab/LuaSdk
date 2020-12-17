@@ -79,7 +79,7 @@ steps:
 
     echo === Execute $SdkName UnitTests ===
     cd "$WORKSPACE\\sdks\\$SdkName\\PlayFabClientSDK"
-    lua PlayFabTesting/TestPlayFabConsole.lua
+    cmd <<< lua PlayFabTesting/TestPlayFabConsole.lua
 
     cd $WORKSPACE/SDKGenerator/JenkinsConsoleUtility
     nuget restore JenkinsConsoleUtility.sln
