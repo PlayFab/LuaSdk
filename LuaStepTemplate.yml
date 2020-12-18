@@ -79,8 +79,8 @@ steps:
 
     echo === Execute $SdkName UnitTests ===
     cd "$WORKSPACE\\sdks\\$SdkName\\PlayFabClientSDK"
-    sudo apt-get install lua5.2
-    lua PlayFabTesting/TestPlayFabConsole.lua
+    echo === We need to set up a separate node not a vm === this does not work: sudo apt-get install lua5.2 ===
+    echo === lua PlayFabTesting/TestPlayFabConsole.lua === this is how we run the test ===
 
     cd $WORKSPACE/SDKGenerator/JenkinsConsoleUtility
     nuget restore JenkinsConsoleUtility.sln
