@@ -89,7 +89,7 @@ steps:
     Find2019MsBuild || Find2017MsBuild
     "$MSBUILD_EXE" "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility//JenkinsConsoleUtility.sln" //p:configuration="Debug" //p:platform="Any CPU" //t:Rebuild
     cd "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility"
-    ListenCsJCU
+    echo TODO: run this once lua is installed correctly - ListenCsJCU
 
     if [ $TestServer = true ]; then
       echo === testing server ===
