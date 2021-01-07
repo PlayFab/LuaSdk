@@ -83,7 +83,6 @@ steps:
     # Execute the test
     # lua PlayFabTesting/TestPlayFabConsole.lua
 
-    nuget restore JenkinsConsoleUtility.sln
 
     echo === Build JenkinsConsoleUtility ===
     Find2019MsBuild || Find2017MsBuild
