@@ -66,7 +66,6 @@ steps:
     GitDestBranch="${{ parameters.GitDestBranch }}"
     SdkName="${{ parameters.SdkName }}"
     BuildCorona="${{ parameters.BuildCorona }}"
-    TestServer="${{ parameters.TestServer }}"
     WORKSPACE=$(pwd -W)
     # Hack attempt to get WORKSPACE into a sub-environment
     export WORKSPACE="$WORKSPACE"
@@ -84,16 +83,9 @@ steps:
     # Execute the test
     # lua PlayFabTesting/TestPlayFabConsole.lua
 
-
     cd "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility"
     # TODO: run this once Lua is installed correctly
     # ListenCsJCU
-
-    if [ $TestServer = true ]; then
-      echo === testing server ===
-      cd "$WORKSPACE/sdks/$SdkName/PlayFabServerSDK"
-      ./deploy.sh
-    fi
 
     if [ $isVersioned = true ]; then
       echo === Build Defold Zips ===
