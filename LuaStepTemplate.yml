@@ -84,7 +84,6 @@ steps:
     # lua PlayFabTesting/TestPlayFabConsole.lua
 
 
-    echo === Build JenkinsConsoleUtility ===
     cd "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility"
     # TODO: run this once Lua is installed correctly
     # ListenCsJCU
