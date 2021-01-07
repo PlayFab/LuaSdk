@@ -85,7 +85,6 @@ steps:
 
 
     echo === Build JenkinsConsoleUtility ===
-    Find2019MsBuild || Find2017MsBuild
     cd "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility"
     # TODO: run this once Lua is installed correctly
     # ListenCsJCU
