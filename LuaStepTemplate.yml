@@ -86,7 +86,6 @@ steps:
 
     echo === Build JenkinsConsoleUtility ===
     Find2019MsBuild || Find2017MsBuild
-    "$MSBUILD_EXE" "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility//JenkinsConsoleUtility.sln" //p:configuration="Debug" //p:platform="Any CPU" //t:Rebuild
     cd "$WORKSPACE//SDKGenerator//JenkinsConsoleUtility"
     # TODO: run this once Lua is installed correctly
     # ListenCsJCU
