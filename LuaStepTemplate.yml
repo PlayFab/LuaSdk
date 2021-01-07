@@ -66,6 +66,7 @@ steps:
     GitDestBranch="${{ parameters.GitDestBranch }}"
     SdkName="${{ parameters.SdkName }}"
     BuildCorona="${{ parameters.BuildCorona }}"
+    TestServer="${{ parameters.TestServer }}"
     WORKSPACE=$(pwd -W)
     # Hack attempt to get WORKSPACE into a sub-environment
     export WORKSPACE="$WORKSPACE"
