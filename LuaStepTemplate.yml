@@ -83,7 +83,6 @@ steps:
     # Execute the test
     # lua PlayFabTesting/TestPlayFabConsole.lua
 
-    cd $WORKSPACE/SDKGenerator/JenkinsConsoleUtility
     nuget restore JenkinsConsoleUtility.sln
 
     echo === Build JenkinsConsoleUtility ===
