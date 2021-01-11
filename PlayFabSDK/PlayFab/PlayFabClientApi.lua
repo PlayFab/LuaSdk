@@ -159,6 +159,16 @@ function PlayFabClientApi.ConsumeMicrosoftStoreEntitlements(request, onSuccess, 
     IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumeMicrosoftStoreEntitlements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
+-- Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
+-- items
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements#consumeps5entitlementsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumeps5entitlements#consumeps5entitlementsresult
+function PlayFabClientApi.ConsumePS5Entitlements(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/ConsumePS5Entitlements", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
 -- Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/platform-specific-methods/consumepsnentitlements#consumepsnentitlementsrequest
