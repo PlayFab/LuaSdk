@@ -123,6 +123,15 @@ function PlayFabMultiplayerApi.CreateServerMatchmakingTicket(request, onSuccess,
     IPlayFabHttps.MakePlayFabApiCall("/Match/CreateServerMatchmakingTicket", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Creates a request to change a title's multiplayer server quotas.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/createtitlemultiplayerserversquotachange
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/createtitlemultiplayerserversquotachange#createtitlemultiplayerserversquotachangerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/createtitlemultiplayerserversquotachange#createtitlemultiplayerserversquotachangeresponse
+function PlayFabMultiplayerApi.CreateTitleMultiplayerServersQuotaChange(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/CreateTitleMultiplayerServersQuotaChange", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Deletes a multiplayer server game asset for a title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deleteasset
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deleteasset#deleteassetrequest
@@ -321,6 +330,15 @@ function PlayFabMultiplayerApi.GetTitleEnabledForMultiplayerServersStatus(reques
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Gets a title's server quota change request.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/gettitlemultiplayerserversquotachange
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/gettitlemultiplayerserversquotachange#gettitlemultiplayerserversquotachangerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/gettitlemultiplayerserversquotachange#gettitlemultiplayerserversquotachangeresponse
+function PlayFabMultiplayerApi.GetTitleMultiplayerServersQuotaChange(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetTitleMultiplayerServersQuotaChange", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Gets the quotas for a title in relation to multiplayer servers.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/gettitlemultiplayerserversquotas
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/gettitlemultiplayerserversquotas#gettitlemultiplayerserversquotasrequest
@@ -365,16 +383,6 @@ end
 function PlayFabMultiplayerApi.ListBuildAliases(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListBuildAliases", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
-end
-
--- Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
--- access is enabled, allows game client to request list of builds with player entity token.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildsummaries
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildsummaries#listbuildsummariesrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildsummaries#listbuildsummariesresponse
-function PlayFabMultiplayerApi.ListBuildSummaries(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListBuildSummaries", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
@@ -466,6 +474,15 @@ end
 function PlayFabMultiplayerApi.ListServerBackfillTicketsForPlayer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Match/ListServerBackfillTicketsForPlayer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- List all server quota change requests for a title.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listtitlemultiplayerserversquotachanges
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listtitlemultiplayerserversquotachanges#listtitlemultiplayerserversquotachangesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listtitlemultiplayerserversquotachanges#listtitlemultiplayerserversquotachangesresponse
+function PlayFabMultiplayerApi.ListTitleMultiplayerServersQuotaChanges(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListTitleMultiplayerServersQuotaChanges", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Lists virtual machines for a title.
