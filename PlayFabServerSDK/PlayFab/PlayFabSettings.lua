@@ -13,9 +13,9 @@
 local PlayFabSettings = {
     _internalSettings = {
         sessionTicket = nil,
-        sdkVersionString = "LuaSdk_0.92.210111",
-        buildIdentifier = "jbuild_luasdk_sdk-genericslave-2_1",
-        requestGetParams = {["sdk"] = "LuaSdk_0.92.210111"}
+        sdkVersionString = "LuaSdk_0.93.210125",
+        buildIdentifier = "jbuild_luasdk_sdk-genericslave-2_0",
+        requestGetParams = {["sdk"] = "LuaSdk_0.93.210125"}
     },
     settings = {
         productionUrl = ".playfabapi.com",
