@@ -712,6 +712,16 @@ function PlayFabServerApi.LoginWithServerCustomId(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithServerCustomId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+-- require an authenticated user
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithsteamid
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithsteamid#loginwithsteamidrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithsteamid#serverloginresult
+function PlayFabServerApi.LoginWithSteamId(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/LoginWithSteamId", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
 -- subsequently be used for API calls which require an authenticated user
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox
