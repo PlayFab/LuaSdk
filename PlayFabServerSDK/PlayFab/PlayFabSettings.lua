@@ -14,7 +14,7 @@ local PlayFabSettings = {
     _internalSettings = {
         sessionTicket = nil,
         sdkVersionString = "LuaSdk_0.94.210208",
-        buildIdentifier = "jbuild_luasdk_sdk-genericslave-2_1",
+        buildIdentifier = "jbuild_luasdk_sdk-generic-3_0",
         requestGetParams = {["sdk"] = "LuaSdk_0.94.210208"}
     },
     settings = {
