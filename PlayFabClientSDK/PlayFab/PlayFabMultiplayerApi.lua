@@ -378,8 +378,8 @@ end
 -- Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
 -- game client to request list of builds with player entity token.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildaliases
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildaliases#multiplayeremptyrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildaliases#listbuildaliasesfortitleresponse
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildaliases#listbuildaliasesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/listbuildaliases#listbuildaliasesresponse
 function PlayFabMultiplayerApi.ListBuildAliases(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ListBuildAliases", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
