@@ -2,20 +2,14 @@
 -- PlayFabSettings.settings is public and contains the following:
 --     titleId -- You must set this before making any PlayFab API calls
 -- It may optionally include:
--- (if you know you're on a device and wish to use advertising attribution:)
---     disableAdvertising -- Client only, set to true if you wish to disable advertising (even if it's set properly)
---     advertisingIdType  -- Client only, Can be one of: PlayFabSettings.settings.AD_TYPE_IDFA or PlayFabSettings.settings.AD_TYPE_ANDROID_ID
---     advertisingIdValue -- Client only, If using advertising, and if your game engine can provide this value, set it here
---     AD_TYPE_IDFA       -- Client only, a constant value for advertisingIdType
---     AD_TYPE_ANDROID_ID -- Client only, a constant value for advertisingIdType
 --     devSecretKey       -- Server/Admin only, required for any non-client call
 
 local PlayFabSettings = {
     _internalSettings = {
         sessionTicket = nil,
-        sdkVersionString = "LuaSdk_0.98.210511",
-        buildIdentifier = "jbuild_luasdk_sdk-generic-3_1",
-        requestGetParams = {["sdk"] = "LuaSdk_0.98.210511"}
+        sdkVersionString = "LuaSdk_0.99.210521",
+        buildIdentifier = "jbuild_luasdk_sdk-generic-1_2",
+        requestGetParams = {["sdk"] = "LuaSdk_0.99.210521"}
     },
     settings = {
         productionUrl = ".playfabapi.com",

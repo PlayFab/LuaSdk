@@ -16,20 +16,6 @@ function PlayFabClientApi.IsClientLoggedIn()
     return (not (PlayFabSettings._internalSettings.sessionTicket == nil))
 end
 
-function PlayFabClientApi._MultiStepClientLogin(needsAttribution)
-    if (needsAttribution and not PlayFabSettings.settings.disableAdvertising and PlayFabSettings.settings.advertisingIdType and PlayFabSettings.settings.advertisingIdValue) then
-        local request = {}
-        if (PlayFabSettings.settings.advertisingIdType == PlayFabSettings.settings.AD_TYPE_IDFA) then
-            request.Idfa = PlayFabSettings.settings.advertisingIdValue
-        elseif (PlayFabSettings.settings.advertisingIdType == PlayFabSettings.settings.AD_TYPE_ANDROID_ID) then
-            request.Adid = PlayFabSettings.settings.advertisingIdValue
-        else
-            return
-        end
-        PlayFabClientApi.AttributeInstall(request, nil, nil)
-    end
-end
-
 -- Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
 -- allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
 -- items will be swapped between the two players' inventories.
@@ -116,7 +102,6 @@ end
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/advertising/attributeinstall#attributeinstallresult
 function PlayFabClientApi.AttributeInstall(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    PlayFabSettings.settings.advertisingIdType = PlayFabSettings.settings.advertisingIdType .. "_Successful"
     IPlayFabHttps.MakePlayFabApiCall("/Client/AttributeInstall", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
@@ -712,14 +697,6 @@ function PlayFabClientApi.GetUserReadOnlyData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetUserReadOnlyData", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/getwindowshellochallenge
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/getwindowshellochallenge#getwindowshellochallengerequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/getwindowshellochallenge#getwindowshellochallengeresponse
-function PlayFabClientApi.GetWindowsHelloChallenge(request, onSuccess, onError)
-    IPlayFabHttps.MakePlayFabApiCall("/Client/GetWindowsHelloChallenge", request, nil, nil, onSuccess, onError)
-end
-
 -- Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
 -- with the parent PlayFabId to guarantee uniqueness.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/characters/grantcharactertouser
@@ -869,15 +846,6 @@ function PlayFabClientApi.LinkTwitch(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/LinkTwitch", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Link Windows Hello authentication to the current PlayFab Account
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkwindowshello
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkwindowshello#linkwindowshelloaccountrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkwindowshello#linkwindowshelloaccountresponse
-function PlayFabClientApi.LinkWindowsHello(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Links the Xbox Live account associated with the provided access code to the user's PlayFab account
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkxboxaccount
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/linkxboxaccount#linkxboxaccountrequest
@@ -898,11 +866,10 @@ function PlayFabClientApi.LoginWithAndroidDeviceID(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithAndroidDeviceID", request, nil, nil, onSuccess, onError)
@@ -918,11 +885,10 @@ function PlayFabClientApi.LoginWithApple(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithApple", request, nil, nil, onSuccess, onError)
@@ -939,11 +905,10 @@ function PlayFabClientApi.LoginWithCustomID(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithCustomID", request, nil, nil, onSuccess, onError)
@@ -962,11 +927,10 @@ function PlayFabClientApi.LoginWithEmailAddress(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithEmailAddress", request, nil, nil, onSuccess, onError)
@@ -983,11 +947,10 @@ function PlayFabClientApi.LoginWithFacebook(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithFacebook", request, nil, nil, onSuccess, onError)
@@ -1004,11 +967,10 @@ function PlayFabClientApi.LoginWithFacebookInstantGamesId(request, onSuccess, on
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithFacebookInstantGamesId", request, nil, nil, onSuccess, onError)
@@ -1028,11 +990,10 @@ function PlayFabClientApi.LoginWithGameCenter(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithGameCenter", request, nil, nil, onSuccess, onError)
@@ -1048,11 +1009,10 @@ function PlayFabClientApi.LoginWithGoogleAccount(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithGoogleAccount", request, nil, nil, onSuccess, onError)
@@ -1069,11 +1029,10 @@ function PlayFabClientApi.LoginWithIOSDeviceID(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithIOSDeviceID", request, nil, nil, onSuccess, onError)
@@ -1089,11 +1048,10 @@ function PlayFabClientApi.LoginWithKongregate(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithKongregate", request, nil, nil, onSuccess, onError)
@@ -1109,11 +1067,10 @@ function PlayFabClientApi.LoginWithNintendoServiceAccount(request, onSuccess, on
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoServiceAccount", request, nil, nil, onSuccess, onError)
@@ -1130,11 +1087,10 @@ function PlayFabClientApi.LoginWithNintendoSwitchDeviceId(request, onSuccess, on
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithNintendoSwitchDeviceId", request, nil, nil, onSuccess, onError)
@@ -1151,11 +1107,10 @@ function PlayFabClientApi.LoginWithOpenIdConnect(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithOpenIdConnect", request, nil, nil, onSuccess, onError)
@@ -1174,11 +1129,10 @@ function PlayFabClientApi.LoginWithPlayFab(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithPlayFab", request, nil, nil, onSuccess, onError)
@@ -1195,11 +1149,10 @@ function PlayFabClientApi.LoginWithPSN(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithPSN", request, nil, nil, onSuccess, onError)
@@ -1216,11 +1169,10 @@ function PlayFabClientApi.LoginWithSteam(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithSteam", request, nil, nil, onSuccess, onError)
@@ -1236,37 +1188,13 @@ function PlayFabClientApi.LoginWithTwitch(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithTwitch", request, nil, nil, onSuccess, onError)
-end
-
--- Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
--- Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
--- string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
--- server.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithwindowshello
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithwindowshello#loginwithwindowshellorequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/loginwithwindowshello#loginresult
-function PlayFabClientApi.LoginWithWindowsHello(request, onSuccess, onError)
-    request.TitleId = PlayFabSettings.settings.titleId
-
-    local externalOnSuccess = onSuccess
-    function wrappedOnSuccess(result)
-        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
-        if (externalOnSuccess) then
-            externalOnSuccess(result)
-        end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
-    end
-    onSuccess = wrappedOnSuccess
-    IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
 -- Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
@@ -1280,11 +1208,10 @@ function PlayFabClientApi.LoginWithXbox(request, onSuccess, onError)
     local externalOnSuccess = onSuccess
     function wrappedOnSuccess(result)
         PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
+        PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/LoginWithXbox", request, nil, nil, onSuccess, onError)
@@ -1374,31 +1301,9 @@ function PlayFabClientApi.RegisterPlayFabUser(request, onSuccess, onError)
         if (externalOnSuccess) then
             externalOnSuccess(result)
         end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
     end
     onSuccess = wrappedOnSuccess
     IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterPlayFabUser", request, nil, nil, onSuccess, onError)
-end
-
--- Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
--- subsequently be used for API calls which require an authenticated user
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/registerwithwindowshello
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/registerwithwindowshello#registerwithwindowshellorequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/authentication/registerwithwindowshello#loginresult
-function PlayFabClientApi.RegisterWithWindowsHello(request, onSuccess, onError)
-    request.TitleId = PlayFabSettings.settings.titleId
-
-    local externalOnSuccess = onSuccess
-    function wrappedOnSuccess(result)
-        PlayFabSettings._internalSettings.sessionTicket = result.SessionTicket
-        if (result.EntityToken) then PlayFabSettings._internalSettings.entityToken = result.EntityToken.EntityToken end
-        if (externalOnSuccess) then
-            externalOnSuccess(result)
-        end
-        PlayFabClientApi._MultiStepClientLogin(result.SettingsForUser.NeedsAttribution)
-    end
-    onSuccess = wrappedOnSuccess
-    IPlayFabHttps.MakePlayFabApiCall("/Client/RegisterWithWindowsHello", request, nil, nil, onSuccess, onError)
 end
 
 -- Removes a contact email from the player's profile.
@@ -1679,15 +1584,6 @@ end
 function PlayFabClientApi.UnlinkTwitch(request, onSuccess, onError)
     if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkTwitch", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
--- Unlink Windows Hello authentication from the current PlayFab Account
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkwindowshello
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkwindowshello#unlinkwindowshelloaccountrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/unlinkwindowshello#unlinkwindowshelloaccountresponse
-function PlayFabClientApi.UnlinkWindowsHello(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/UnlinkWindowsHello", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
 -- Unlinks the related Xbox Live account from the user's PlayFab account
