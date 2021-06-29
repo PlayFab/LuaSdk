@@ -204,7 +204,18 @@ function PlayFabMultiplayerApi.EnableMultiplayerServersForTitle(request, onSucce
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/EnableMultiplayerServersForTitle", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
--- Gets the URL to upload assets to.
+-- Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
+-- https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&ss=b&srt=sco&sp=rw&st=<startDate>&se=<endDate>&spr=https&sig=<sampleSig>&api-version=2017-07-29
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getassetdownloadurl
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getassetdownloadurl#getassetdownloadurlrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getassetdownloadurl#getassetdownloadurlresponse
+function PlayFabMultiplayerApi.GetAssetDownloadUrl(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetAssetDownloadUrl", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Gets the URL to upload assets to. A sample pre-authenticated url -
+-- https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&ss=b&srt=sco&sp=rw&st=<startDate>&se=<endDate>&spr=https&sig=<sampleSig>&api-version=2017-07-29
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getassetuploadurl
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getassetuploadurl#getassetuploadurlrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/getassetuploadurl#getassetuploadurlresponse
