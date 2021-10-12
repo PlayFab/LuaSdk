@@ -179,6 +179,15 @@ function PlayFabAdminApi.DeleteMasterPlayerAccount(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Deletes a player's subscription
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription#deletemembershipsubscriptionrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/deletemembershipsubscription#deletemembershipsubscriptionresult
+function PlayFabAdminApi.DeleteMembershipSubscription(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/DeleteMembershipSubscription", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Removes a relationship between a title and an OpenID Connect provider.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/authentication/deleteopenidconnection
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/authentication/deleteopenidconnection#deleteopenidconnectionrequest
@@ -839,6 +848,15 @@ end
 function PlayFabAdminApi.SetCatalogItems(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/SetCatalogItems", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Sets the override expiration for a membership subscription
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/setmembershipoverride
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/setmembershipoverride#setmembershipoverriderequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/account-management/setmembershipoverride#setmembershipoverrideresult
+function PlayFabAdminApi.SetMembershipOverride(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/SetMembershipOverride", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Sets or resets the player's secret. Player secrets are used to sign API requests.
