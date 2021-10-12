@@ -32,6 +32,15 @@ function PlayFabCloudScriptApi.ExecuteFunction(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/CloudScript/ExecuteFunction", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Gets registered Azure Functions for a given title id and function name.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/getfunction
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/getfunction#getfunctionrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/getfunction#getfunctionresult
+function PlayFabCloudScriptApi.GetFunction(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/CloudScript/GetFunction", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Lists all currently registered Azure Functions for a given title.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/cloudscript/server-side-cloud-script/listfunctions#listfunctionsrequest
