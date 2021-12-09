@@ -138,6 +138,15 @@ function PlayFabEconomyApi.GetItemReviewSummary(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Catalog/GetItemReviewSummary", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Retrieves items from the public catalog.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/catalog/catalog/getitems
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/catalog/catalog/getitems#getitemsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/catalog/catalog/getitems#getitemsresponse
+function PlayFabEconomyApi.GetItems(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Catalog/GetItems", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Initiates a publish of an item from the working catalog to the public catalog.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/catalog/catalog/publishdraftitem
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/catalog/catalog/publishdraftitem#publishdraftitemrequest
