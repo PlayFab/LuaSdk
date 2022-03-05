@@ -1421,15 +1421,6 @@ function PlayFabClientApi.SetPlayerSecret(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/SetPlayerSecret", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Start a new game server with a given configuration, add the current player and return the connection information.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/startgame
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/startgame#startgamerequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/matchmaking/startgame#startgameresult
-function PlayFabClientApi.StartGame(request, onSuccess, onError)
-    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Client/StartGame", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
-end
-
 -- Creates an order for a list of items from the title catalog
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/player-item-management/startpurchase#startpurchaserequest
