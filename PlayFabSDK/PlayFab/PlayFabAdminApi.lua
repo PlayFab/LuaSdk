@@ -48,16 +48,6 @@ function PlayFabAdminApi.AddPlayerTag(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
--- client is permitted to request in a call to StartGame
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/addserverbuild
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/addserverbuild#addserverbuildrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/addserverbuild#addserverbuildresult
-function PlayFabAdminApi.AddServerBuild(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/AddServerBuild", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Increments the specified virtual currency by the stated amount
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/player-item-management/adduservirtualcurrency#adduservirtualcurrencyrequest
@@ -504,16 +494,6 @@ function PlayFabAdminApi.GetServerBuildInfo(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetServerBuildInfo", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
--- use - see AddServerBuild)
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/getserverbuilduploadurl
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/getserverbuilduploadurl#getserverbuilduploadurlrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/getserverbuilduploadurl#getserverbuilduploadurlresult
-function PlayFabAdminApi.GetServerBuildUploadUrl(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetServerBuildUploadUrl", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Retrieves the set of items defined for the specified store, including all prices defined
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems#getstoreitemsrequest
@@ -692,15 +672,6 @@ end
 function PlayFabAdminApi.ListVirtualCurrencyTypes(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ListVirtualCurrencyTypes", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Updates the game server mode details for the specified game server executable
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/modifymatchmakergamemodes
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/modifymatchmakergamemodes#modifymatchmakergamemodesrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/matchmaking/modifymatchmakergamemodes#modifymatchmakergamemodesresult
-function PlayFabAdminApi.ModifyMatchmakerGameModes(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/ModifyMatchmakerGameModes", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Updates the build details for the specified game server executable

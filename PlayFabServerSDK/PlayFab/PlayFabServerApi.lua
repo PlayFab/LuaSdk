@@ -815,15 +815,6 @@ function PlayFabServerApi.RefreshGameServerInstanceHeartbeat(request, onSuccess,
     IPlayFabHttps.MakePlayFabApiCall("/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Inform the matchmaker that a new Game Server Instance is added.
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame#registergamerequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame#registergameresponse
-function PlayFabServerApi.RegisterGame(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Removes the specified friend from the the user's friend list
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend#removefriendrequest
