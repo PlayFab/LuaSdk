@@ -84,6 +84,15 @@ function PlayFabMultiplayerApi.CreateBuildWithProcessBasedServer(request, onSucc
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/CreateBuildWithProcessBasedServer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Create a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/createlobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/createlobby#createlobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/createlobby#createlobbyresult
+function PlayFabMultiplayerApi.CreateLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/CreateLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Create a matchmaking ticket as a client.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/creatematchmakingticket
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/creatematchmakingticket#creatematchmakingticketrequest
@@ -186,6 +195,15 @@ function PlayFabMultiplayerApi.DeleteContainerImageRepository(request, onSuccess
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/DeleteContainerImageRepository", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Delete a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/deletelobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/deletelobby#deletelobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/deletelobby#lobbyemptyresult
+function PlayFabMultiplayerApi.DeleteLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/DeleteLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Deletes a remote user to log on to a VM for a multiplayer server build.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deleteremoteuser
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/deleteremoteuser#deleteremoteuserrequest
@@ -202,6 +220,24 @@ end
 function PlayFabMultiplayerApi.EnableMultiplayerServersForTitle(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/EnableMultiplayerServersForTitle", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Find lobbies which match certain criteria, and which friends are in.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/findfriendlobbies
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/findfriendlobbies#findfriendlobbiesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/findfriendlobbies#findfriendlobbiesresult
+function PlayFabMultiplayerApi.FindFriendLobbies(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/FindFriendLobbies", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Find all the lobbies that match certain criteria.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/findlobbies
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/findlobbies#findlobbiesrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/findlobbies#findlobbiesresult
+function PlayFabMultiplayerApi.FindLobbies(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/FindLobbies", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
@@ -249,6 +285,15 @@ end
 function PlayFabMultiplayerApi.GetContainerRegistryCredentials(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetContainerRegistryCredentials", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Get a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/getlobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/getlobby#getlobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/getlobby#getlobbyresult
+function PlayFabMultiplayerApi.GetLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/GetLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Get a match.
@@ -359,6 +404,33 @@ function PlayFabMultiplayerApi.GetTitleMultiplayerServersQuotas(request, onSucce
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/GetTitleMultiplayerServersQuotas", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Send a notification to invite a player to a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/invitetolobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/invitetolobby#invitetolobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/invitetolobby#lobbyemptyresult
+function PlayFabMultiplayerApi.InviteToLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/InviteToLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Join an Arranged lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/joinarrangedlobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/joinarrangedlobby#joinarrangedlobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/joinarrangedlobby#joinlobbyresult
+function PlayFabMultiplayerApi.JoinArrangedLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/JoinArrangedLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Join a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/joinlobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/joinlobby#joinlobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/joinlobby#joinlobbyresult
+function PlayFabMultiplayerApi.JoinLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/JoinLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Join a matchmaking ticket.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/joinmatchmakingticket
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/joinmatchmakingticket#joinmatchmakingticketrequest
@@ -366,6 +438,15 @@ end
 function PlayFabMultiplayerApi.JoinMatchmakingTicket(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Match/JoinMatchmakingTicket", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Leave a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/leavelobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/leavelobby#leavelobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/leavelobby#lobbyemptyresult
+function PlayFabMultiplayerApi.LeaveLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/LeaveLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Lists archived multiplayer server sessions for a build.
@@ -514,6 +595,15 @@ function PlayFabMultiplayerApi.RemoveMatchmakingQueue(request, onSuccess, onErro
     IPlayFabHttps.MakePlayFabApiCall("/Match/RemoveMatchmakingQueue", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Remove a member from a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/removemember
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/removemember#removememberfromlobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/removemember#lobbyemptyresult
+function PlayFabMultiplayerApi.RemoveMember(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/RemoveMember", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
 -- to request a server with player entity token.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/multiplayerserver/multiplayerserver/requestmultiplayerserver
@@ -549,6 +639,24 @@ end
 function PlayFabMultiplayerApi.ShutdownMultiplayerServer(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/ShutdownMultiplayerServer", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Subscribe to lobby resource notifications.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/subscribetolobbyresource
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/subscribetolobbyresource#subscribetolobbyresourcerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/subscribetolobbyresource#subscribetolobbyresourceresult
+function PlayFabMultiplayerApi.SubscribeToLobbyResource(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/SubscribeToLobbyResource", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Unsubscribe from lobby notifications.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/unsubscribefromlobbyresource
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/unsubscribefromlobbyresource#unsubscribefromlobbyresourcerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/unsubscribefromlobbyresource#lobbyemptyresult
+function PlayFabMultiplayerApi.UnsubscribeFromLobbyResource(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/UnsubscribeFromLobbyResource", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Untags a container image.
@@ -594,6 +702,15 @@ end
 function PlayFabMultiplayerApi.UpdateBuildRegions(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/MultiplayerServer/UpdateBuildRegions", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Update a lobby.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/updatelobby
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/updatelobby#updatelobbyrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/updatelobby#lobbyemptyresult
+function PlayFabMultiplayerApi.UpdateLobby(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Lobby/UpdateLobby", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Uploads a multiplayer server game certificate.
