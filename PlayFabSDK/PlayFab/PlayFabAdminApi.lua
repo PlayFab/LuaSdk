@@ -485,15 +485,6 @@ function PlayFabAdminApi.GetSegments(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetSegments", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the build details for the specified game server executable
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/getserverbuildinfo
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/getserverbuildinfo#getserverbuildinforequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/getserverbuildinfo#getserverbuildinforesult
-function PlayFabAdminApi.GetServerBuildInfo(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetServerBuildInfo", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Retrieves the set of items defined for the specified store, including all prices defined
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/getstoreitems#getstoreitemsrequest
@@ -656,15 +647,6 @@ function PlayFabAdminApi.ListOpenIdConnection(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ListOpenIdConnection", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Retrieves the build details for all game server executables which are currently defined for the title
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/listserverbuilds
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/listserverbuilds#listbuildsrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/listserverbuilds#listbuildsresult
-function PlayFabAdminApi.ListServerBuilds(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/ListServerBuilds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
 -- Retuns the list of all defined virtual currencies for the title
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/title-wide-data-management/listvirtualcurrencytypes#listvirtualcurrencytypesrequest
@@ -699,16 +681,6 @@ end
 function PlayFabAdminApi.RemovePlayerTag(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
-end
-
--- Removes the game server executable specified from the set of those a client is permitted to request in a call to
--- StartGame
--- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/removeserverbuild
--- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/removeserverbuild#removeserverbuildrequest
--- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/custom-server-management/removeserverbuild#removeserverbuildresult
-function PlayFabAdminApi.RemoveServerBuild(request, onSuccess, onError)
-    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
-    IPlayFabHttps.MakePlayFabApiCall("/Admin/RemoveServerBuild", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Removes one or more virtual currencies from the set defined for the title.
