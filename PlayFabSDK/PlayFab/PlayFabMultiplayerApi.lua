@@ -650,6 +650,15 @@ function PlayFabMultiplayerApi.SubscribeToLobbyResource(request, onSuccess, onEr
     IPlayFabHttps.MakePlayFabApiCall("/Lobby/SubscribeToLobbyResource", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
+-- Subscribe to match resource notifications.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/subscribetomatchmakingresource
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/subscribetomatchmakingresource#subscribetomatchresourcerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/subscribetomatchmakingresource#subscribetomatchresourceresult
+function PlayFabMultiplayerApi.SubscribeToMatchmakingResource(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Match/SubscribeToMatchmakingResource", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
 -- Unsubscribe from lobby notifications.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/unsubscribefromlobbyresource
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/lobby/lobby/unsubscribefromlobbyresource#unsubscribefromlobbyresourcerequest
@@ -657,6 +666,15 @@ end
 function PlayFabMultiplayerApi.UnsubscribeFromLobbyResource(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Lobby/UnsubscribeFromLobbyResource", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
+end
+
+-- Unsubscribe from match resource notifications.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/unsubscribefrommatchmakingresource
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/unsubscribefrommatchmakingresource#unsubscribefrommatchresourcerequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/match/matchmaking/unsubscribefrommatchmakingresource#unsubscribefrommatchresourceresult
+function PlayFabMultiplayerApi.UnsubscribeFromMatchmakingResource(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings._internalSettings.entityToken) then error("Must call GetEntityToken first, to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Match/UnsubscribeFromMatchmakingResource", request, "X-EntityToken", PlayFabSettings._internalSettings.entityToken, onSuccess, onError)
 end
 
 -- Untags a container image.
