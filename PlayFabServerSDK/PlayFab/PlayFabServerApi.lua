@@ -177,7 +177,8 @@ function PlayFabServerApi.EvaluateRandomResultTable(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Server/EvaluateRandomResultTable", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
--- Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+-- Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+-- PlayFab ID is the entity ID of the player's master_player_account entity.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript#executecloudscriptserverrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript#executecloudscriptresult
@@ -434,6 +435,15 @@ end
 function PlayFabServerApi.GetPlayFabIDsFromGenericIDs(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromGenericIDs", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoserviceaccountids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoserviceaccountids#getplayfabidsfromnintendoserviceaccountidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoserviceaccountids#getplayfabidsfromnintendoserviceaccountidsresult
+function PlayFabServerApi.GetPlayFabIDsFromNintendoServiceAccountIds(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Server/GetPlayFabIDsFromNintendoServiceAccountIds", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
