@@ -185,7 +185,8 @@ function PlayFabClientApi.CreateSharedGroup(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Client/CreateSharedGroup", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
+-- Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+-- PlayFab ID is the entity ID of the player's master_player_account entity.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/server-side-cloud-script/executecloudscript
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/server-side-cloud-script/executecloudscript#executecloudscriptrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/server-side-cloud-script/executecloudscript#executecloudscriptresult
@@ -520,7 +521,16 @@ function PlayFabClientApi.GetPlayFabIDsFromKongregateIDs(request, onSuccess, onE
     IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
 end
 
--- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch identifiers.
+-- Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoserviceaccountids
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoserviceaccountids#getplayfabidsfromnintendoserviceaccountidsrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoserviceaccountids#getplayfabidsfromnintendoserviceaccountidsresult
+function PlayFabClientApi.GetPlayFabIDsFromNintendoServiceAccountIds(request, onSuccess, onError)
+    if (not PlayFabClientApi.IsClientLoggedIn()) then error("Must be logged in to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Client/GetPlayFabIDsFromNintendoServiceAccountIds", request, "X-Authorization", PlayFabSettings._internalSettings.sessionTicket, onSuccess, onError)
+end
+
+-- Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoswitchdeviceids
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoswitchdeviceids#getplayfabidsfromnintendoswitchdeviceidsrequest
 -- Response Documentation: https://docs.microsoft.com/rest/api/playfab/client/account-management/getplayfabidsfromnintendoswitchdeviceids#getplayfabidsfromnintendoswitchdeviceidsresult

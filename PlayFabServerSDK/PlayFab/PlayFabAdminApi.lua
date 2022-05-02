@@ -260,6 +260,17 @@ function PlayFabAdminApi.ExportMasterPlayerData(request, onSuccess, onError)
     IPlayFabHttps.MakePlayFabApiCall("/Admin/ExportMasterPlayerData", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
+-- Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
+-- match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
+-- be reflected in the results.
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/playstream/exportplayersinsegment
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/playstream/exportplayersinsegment#exportplayersinsegmentrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/playstream/exportplayersinsegment#exportplayersinsegmentresult
+function PlayFabAdminApi.ExportPlayersInSegment(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/ExportPlayersInSegment", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
 -- Get information about a ActionsOnPlayersInSegment task instance.
 -- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/getactionsonplayersinsegmenttaskinstance
 -- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/scheduledtask/getactionsonplayersinsegmenttaskinstance#gettaskinstancerequest
@@ -474,6 +485,18 @@ end
 function PlayFabAdminApi.GetRandomResultTables(request, onSuccess, onError)
     if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
     IPlayFabHttps.MakePlayFabApiCall("/Admin/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
+end
+
+-- Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
+-- complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
+-- from which the files containing the player profile data can be downloaded. Otherwise, it returns the current 'State' of
+-- the export
+-- API Method Documentation: https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentexport
+-- Request Documentation: https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentexport#getplayersinsegmentexportrequest
+-- Response Documentation: https://docs.microsoft.com/rest/api/playfab/admin/playstream/getsegmentexport#getplayersinsegmentexportresponse
+function PlayFabAdminApi.GetSegmentExport(request, onSuccess, onError)
+    if (not PlayFabSettings.settings.titleId or not PlayFabSettings.settings.devSecretKey) then error("Must have PlayFabSettings.settings.devSecretKey set to call this method") end
+    IPlayFabHttps.MakePlayFabApiCall("/Admin/GetSegmentExport", request, "X-SecretKey", PlayFabSettings.settings.devSecretKey, onSuccess, onError)
 end
 
 -- Get detail information of a segment and its associated definition(s) and action(s) for a title.
