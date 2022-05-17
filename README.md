@@ -1,7 +1,23 @@
 # LuaSdk README
 
+## 1. Community Support
 
-## 1. Overview:
+This is a community supported SDK. 
+
+For new and existing users, you can use the current version as it is. The team at Microsoft would no longer be providing official support for those using this SDK. You can continue to get community support and updates at [PlayFab forums](https://community.playfab.com/index.html).
+
+We are currently looking for reliable community partners to provide long-term support for this SDK. If you are interested to take ownership and provide future maintenance, let us know. 
+
+What you have to do: 
+* Fork this repo
+* Push your updates
+* Make sure you follow the Apache License, Version 2.0 guidelines for reproduction and modification, and document that Microsoft PlayFab is the original creator
+* Go to [PlayFab forums](https://community.playfab.com/index.html)
+* Write a post with a link to your forked repo so everyone knows about them
+
+We're excited to hear from you. Thank you for your support and happy coding.
+
+## 2. Overview:
 
 The PlayFab LuaSdk includes the files needed to make PlayFab HTTPS API calls within a Lua Project.
 
@@ -12,7 +28,7 @@ Current supported platforms:
 * If your favorite Lua-engine/environment is not listed, let us know on the [Forums](https://community.playfab.com/index.html).
 
 
-## 2. Prerequisites:
+## 3. Prerequisites:
 
 * Users should be very familiar with the topics covered in our [getting started guide](https://api.playfab.com/docs/general-getting-started).
 
@@ -22,7 +38,7 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
 * [Support for SSL/TLS protocols on Windows](http://blogs.msdn.com/b/kaushal/archive/2011/10/02/support-for-ssl-tls-protocols-on-windows.aspx)
 
 
-## 3. Contents:
+## 4. Contents:
 
 * PlayFabClientSDK - All files neccessary to make API calls to the PlayFab Client API
  * This is the SDK you should include in your game, and distribute to your players
@@ -34,7 +50,7 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
  * For the security of your title, do not distribute any build which contains your devSecretKey
 
 
-## 4. LuaDist Example Instructions:
+## 5. LuaDist Example Instructions:
 
 * Download PlayFab LuaSdk, copy PlayFabClientSDK/PlayFab into your project folder
  * Specifically, your PlayFabClientApi.lua file should be located: {YourLuaProjectFolder}/PlayFab/PlayFabClientApi.lua
@@ -63,7 +79,7 @@ lua PlayFabTesting/TestPlayFabConsole.lua
 ```
 
 
-## 5. Defold Example Instructions:
+## 6. Defold Example Instructions:
 
 * Download and install defold
 * Set a project-dependency to our Defold Client Example
@@ -93,7 +109,7 @@ end
 * Link the file to a gui script and run!
 
 
-## 6. Troubleshooting:
+## 7. Troubleshooting:
 
 For a complete list of available APIs, check out the [online documentation](http://api.playfab.com/Documentation/).
 
@@ -106,7 +122,7 @@ Our Developer Success Team can assist with answering any questions as well as pr
 [Forums, Support and Knowledge Base](https://community.playfab.com/index.html)
 
 
-## 7. Copyright and Licensing Information:
+## 8. Copyright and Licensing Information:
 
   Apache License --
   Version 2.0, August 2016
